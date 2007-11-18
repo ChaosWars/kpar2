@@ -29,6 +29,12 @@
             <property name="name">
                 <cstring>splitter1</cstring>
             </property>
+            <property name="frameShape">
+                <enum>NoFrame</enum>
+            </property>
+            <property name="frameShadow">
+                <enum>Plain</enum>
+            </property>
             <property name="orientation">
                 <enum>Vertical</enum>
             </property>
@@ -235,12 +241,7 @@
     <signal>fileProgress( int progress )</signal>
 </signals>
 <slots>
-    <slot>appendHeaderInfo( ParHeaders * headers )</slot>
-    <slot>fileLoaded( const QString &amp; filename )</slot>
-    <slot>enableRepair( bool enable )</slot>
-    <slot>enableCheckParity( bool enable )</slot>
-    <slot>done( const QString &amp; info )</slot>
-    <slot>clearFileDisplay()</slot>
+    <slot>customEvent( QCustomEvent * e )</slot>
 </slots>
 <functions>
     <function access="private" specifier="non virtual">init()</function>

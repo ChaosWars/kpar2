@@ -11,6 +11,7 @@
 *****************************************************************************/
 
 #include <parheaders.h>
+#include "kpar2customevents.h"
 
 void KPar2GUI::init()
 {
@@ -20,36 +21,32 @@ void KPar2GUI::init()
     connect( this, SIGNAL( totalFileProgress( int ) ), TotalFileProgress, SLOT( setValue( int ) ) );
 }
 
-void KPar2GUI::appendHeaderInfo( ParHeaders *headers )
+void KPar2GUI::customEvent( QCustomEvent *e )
 {
-    FileDisplay->append( "There are " + QString::number( headers->recoverable_files ) + " recoverable files and " +  QString::number( headers->other_files ) + " other files." );
-    FileDisplay->append( "The block size used was " + QString::number( headers->block_size ) );
-    FileDisplay->append( "There are a total of " + QString::number( headers->data_blocks ) + " data blocks." );
-    FileDisplay->append( "The total size of the data files is " + QString::number( headers->data_size ) + " bytes" );
-    FileDisplay->append("\n");
-}
-
-void KPar2GUI::fileLoaded( const QString& filename )
-{
-    FileDisplay->append( filename );
-}
-
-void KPar2GUI::enableRepair( bool enable )
-{
-    RepairFilesButton->setEnabled( enable );
-}
-
-void KPar2GUI::enableCheckParity( bool enable )
-{
-    CheckParityButton->setEnabled( enable );
-}
-
-void KPar2GUI::done( const QString& info )
-{
-    FileDisplay->append( info );
-}
-
-void KPar2GUI::clearFileDisplay()
-{
-    FileDisplay->clear();
+        if( e->type() ==  QEvent::User ){
+            HeaderInfo *he = ( HeaderInfo* )e;
+            FileDisplay->append( "There are " + QString::number( he->headers()->recoverable_files ) + " recoverable files and " +  QString::number( he->headers()->other_files ) + " other files." );
+            FileDisplay->append( "The block size used was " + QString::number( he->headers()->block_size ) );
+            FileDisplay->append( "There are a total of " + QString::number( he->headers()->data_blocks ) + " data blocks." );
+            FileDisplay->append( "The total size of the data files is " + QString::number( he->headers()->data_size ) + " bytes" );
+            FileDisplay->append("\n");
+        }else if( e->type() ==  QEvent::User + 1 ){
+            FileLoaded *fe = ( FileLoaded* )e;
+            FileDisplay->append( fe->file() );
+        }else if( e->type() ==  QEvent::User + 2 ){
+            FileProgress *fe = ( FileProgress* )e;
+            CurrentFileProgress->setValue( fe->progress() );
+        }else if( e->type() ==  QEvent::User + 3 ){
+            TotalProgress *fe = ( TotalProgress* )e;
+            TotalFileProgress->setValue( fe->progress() );
+        }else if( e->type() ==  QEvent::User + 4 ){
+            EnableCheckParity *ee = ( EnableCheckParity* )e;
+            CheckParityButton->setEnabled( ee->enable() );
+        }else if( e->type() ==  QEvent::User + 5 ){
+            EnableRepair *ee = ( EnableRepair* )e;
+            RepairFilesButton->setEnabled( ee->enable() );
+        }else if( e->type() ==  QEvent::User + 6 ){
+            Done *de = ( Done* )e;
+            FileDisplay->append( de->info() );
+        }
 }

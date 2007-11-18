@@ -78,7 +78,6 @@ void KPar2Part::fileOpen()
 
     if (file_name.isEmpty() == false){
         openURL(file_name);
-//         emit( loadPAR2Files( file_name ) );
         kpar2thread->loadPAR2Files( file_name );
     }
 }
@@ -110,7 +109,6 @@ KParts::Part* KPar2PartFactory::createPartObject( QWidget *parentWidget, const c
 {
     // Create an instance of our Part
     KPar2Part* obj = new KPar2Part( parentWidget, widgetName, parent, name );
-
     return obj;
 }
 

@@ -8,6 +8,7 @@ src/kpar2.cpp
 src/kpar2.h
 src/kpar2_part.cpp
 src/kpar2_part.h
+src/kpar2customevents.h
 src/kpar2gui.ui.h
 src/kpar2object.cpp
 src/kpar2object.h

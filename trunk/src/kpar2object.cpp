@@ -22,9 +22,11 @@
 #include <par2repairer.h>
 #include "kpar2object.h"
 #include "kpar2gui.h"
+#include "kpar2customevents.h"
 
 KPar2Object::KPar2Object( KPar2GUI *gui )
 {
+    _gui = gui;
     total_files = processed_files = 0;
     par2repairer = new Par2Repairer();
     cmdline = new CommandLine();
@@ -36,13 +38,6 @@ KPar2Object::KPar2Object( KPar2GUI *gui )
             connect( sigc::mem_fun( *this,&KPar2Object::signal_headers ) );
     par2repairer->sig_done.
             connect( sigc::mem_fun( *this,&KPar2Object::signal_done ) );
-    connect( this, SIGNAL( headerInfo( ParHeaders* ) ), gui, SLOT( appendHeaderInfo( ParHeaders* ) ) );
-    connect( this, SIGNAL( fileLoaded( const QString& ) ), gui, SLOT( fileLoaded( const QString& ) ) );
-    connect( this, SIGNAL( fileProgress( int ) ), gui, SIGNAL( fileProgress( int ) ) );
-    connect( this, SIGNAL( totalProgress( int ) ), gui, SIGNAL( totalFileProgress( int ) ) );
-    connect( this, SIGNAL( enableCheckParity( bool ) ), gui, SLOT( enableCheckParity( bool ) ) );
-    connect( this, SIGNAL( enableRepair( bool ) ), gui, SLOT( enableRepair( bool ) ) );
-//     connect( this, SIGNAL( done( const QString& ) ), gui, SLOT( done( const QString& ) ) );
 }
 
 KPar2Object::~KPar2Object()
@@ -56,12 +51,16 @@ void KPar2Object::loadPAR2Files( const QString& par2file )
     const char *program = "par2verify";
     char *argv[] = {const_cast<char*>( program ), const_cast<char*>( par2file.latin1() )};
     cmdline->Parse( 2, argv );
-    if( par2repairer->PreProcess( *cmdline ) == eSuccess )
-        emit( enableCheckParity( true ) );
-    else
-        emit( enableCheckParity( false ) );
+    if( par2repairer->PreProcess( *cmdline ) == eSuccess ){
+        EnableCheckParity *e = new EnableCheckParity( true );
+        QApplication::postEvent( _gui, e );
+    }else{
+        EnableCheckParity *e = new EnableCheckParity( false );
+        QApplication::postEvent( _gui, e );
+    }
 
-    emit( fileProgress( 0.00 ) );
+    FileProgress *e = new FileProgress( 0 );
+    QApplication::postEvent( _gui, e );
 }
 
 void KPar2Object::checkParity()
@@ -70,10 +69,13 @@ void KPar2Object::checkParity()
     char *argv[] = {const_cast<char*>( program ), const_cast<char*>( par2file.latin1() )};
     cmdline->Parse( 2, argv );
 
-    if( par2repairer->Process( *cmdline, false ) == eRepairPossible )
-        emit( enableRepair( true ) );
-    else
-        emit( enableRepair( false ) );
+    if( par2repairer->Process( *cmdline, false ) == eRepairPossible ){
+        EnableRepair *e = new EnableRepair( true );
+        QApplication::postEvent( _gui, e );
+    }else{
+        EnableRepair *e = new EnableRepair( false );
+        QApplication::postEvent( _gui, e );
+    }
 }
 
 void KPar2Object::repairFiles()
@@ -82,28 +84,34 @@ void KPar2Object::repairFiles()
     char *argv[] = {const_cast<char*>( program ), const_cast<char*>( par2file.latin1() )};
     cmdline->Parse( 2, argv );
 
-    if( par2repairer->Process( *cmdline, true ) == eSuccess )
-        emit( enableRepair( false ) );
+    if( par2repairer->Process( *cmdline, true ) == eSuccess ){
+        EnableRepair *e = new EnableRepair( true );
+        QApplication::postEvent( _gui, e );
+    }
 }
 
 void KPar2Object::signal_filename( std::string str )
 {
-    emit( fileLoaded( QString( str ) ) );
+    FileLoaded *e = new FileLoaded( str );
+    QApplication::postEvent( _gui, e );
 }
 
 void KPar2Object::signal_progress( double value )
 {
-    emit( fileProgress( static_cast<int>( value/10.0 ) ) );
+    FileProgress *e = new FileProgress( static_cast<int>( value/10.0 ) );
+    QApplication::postEvent( _gui, e );
 }
 
 void KPar2Object::signal_headers( ParHeaders* headers )
 {
-    emit( headerInfo( headers ) );
+    HeaderInfo *e = new HeaderInfo( headers );
+    QApplication::postEvent( _gui, e );
 }
 
 void KPar2Object::signal_done( std::string filename, int blocks_available, int blocks_total )
 {
-    emit( done( QString( "%1 : %2 blocks available of a total of %3 blocks" ).arg( filename ).arg( blocks_available ).arg( blocks_total ) ) );
+    Done *e = new Done( QString( "%1 : %2 blocks available of a total of %3 blocks" ).arg( filename ).arg( blocks_available ).arg( blocks_total ) );
+    QApplication::postEvent( _gui, e );
 }
 
 #include "kpar2object.moc"

@@ -35,22 +35,12 @@ class KPar2Object : public QObject
     public:
         KPar2Object( KPar2GUI *gui );
         ~KPar2Object();
-
-    public slots:
         void loadPAR2Files( const QString& par2file );
         void checkParity();
         void repairFiles();
 
-    signals:
-        void headerInfo( ParHeaders *headers );
-        void fileLoaded( const QString& filename );
-        void fileProgress( int progress );
-        void totalProgress( int progress );
-        void enableCheckParity( bool enabled );
-        void enableRepair( bool enabled );
-        void done( const QString& info );
-
     private:
+        KPar2GUI *_gui;
         int total_files;
         int processed_files;
         QString par2file;
