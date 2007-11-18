@@ -1,0 +1,256 @@
+<!DOCTYPE UI><UI version="3.3" stdsetdef="1">
+<class>KPar2GUI</class>
+<widget class="QWidget">
+    <property name="name">
+        <cstring>KPar2GUI</cstring>
+    </property>
+    <property name="geometry">
+        <rect>
+            <x>0</x>
+            <y>0</y>
+            <width>480</width>
+            <height>360</height>
+        </rect>
+    </property>
+    <property name="minimumSize">
+        <size>
+            <width>480</width>
+            <height>360</height>
+        </size>
+    </property>
+    <property name="caption">
+        <string>KPar2</string>
+    </property>
+    <vbox>
+        <property name="name">
+            <cstring>unnamed</cstring>
+        </property>
+        <widget class="QSplitter">
+            <property name="name">
+                <cstring>splitter1</cstring>
+            </property>
+            <property name="orientation">
+                <enum>Vertical</enum>
+            </property>
+            <widget class="KTextBrowser">
+                <property name="name">
+                    <cstring>FileDisplay</cstring>
+                </property>
+                <property name="enabled">
+                    <bool>true</bool>
+                </property>
+                <property name="textFormat">
+                    <enum>LogText</enum>
+                </property>
+                <property name="autoFormatting">
+                    <set>AutoAll</set>
+                </property>
+            </widget>
+            <widget class="QLayoutWidget">
+                <property name="name">
+                    <cstring>layout9</cstring>
+                </property>
+                <vbox>
+                    <property name="name">
+                        <cstring>unnamed</cstring>
+                    </property>
+                    <widget class="QGroupBox">
+                        <property name="name">
+                            <cstring>ProgressBox</cstring>
+                        </property>
+                        <property name="title">
+                            <string>Progress</string>
+                        </property>
+                        <vbox>
+                            <property name="name">
+                                <cstring>unnamed</cstring>
+                            </property>
+                            <widget class="KProgress">
+                                <property name="name">
+                                    <cstring>CurrentFileProgress</cstring>
+                                </property>
+                            </widget>
+                            <widget class="KProgress">
+                                <property name="name">
+                                    <cstring>TotalFileProgress</cstring>
+                                </property>
+                            </widget>
+                        </vbox>
+                    </widget>
+                    <widget class="QLayoutWidget">
+                        <property name="name">
+                            <cstring>layout8</cstring>
+                        </property>
+                        <hbox>
+                            <property name="name">
+                                <cstring>unnamed</cstring>
+                            </property>
+                            <widget class="QLayoutWidget">
+                                <property name="name">
+                                    <cstring>layout7</cstring>
+                                </property>
+                                <vbox>
+                                    <property name="name">
+                                        <cstring>unnamed</cstring>
+                                    </property>
+                                    <spacer>
+                                        <property name="name">
+                                            <cstring>spacer4</cstring>
+                                        </property>
+                                        <property name="orientation">
+                                            <enum>Vertical</enum>
+                                        </property>
+                                        <property name="sizeType">
+                                            <enum>Expanding</enum>
+                                        </property>
+                                        <property name="sizeHint">
+                                            <size>
+                                                <width>20</width>
+                                                <height>30</height>
+                                            </size>
+                                        </property>
+                                    </spacer>
+                                    <widget class="QLayoutWidget">
+                                        <property name="name">
+                                            <cstring>layout1</cstring>
+                                        </property>
+                                        <hbox>
+                                            <property name="name">
+                                                <cstring>unnamed</cstring>
+                                            </property>
+                                            <widget class="KPushButton">
+                                                <property name="name">
+                                                    <cstring>CheckParityButton</cstring>
+                                                </property>
+                                                <property name="enabled">
+                                                    <bool>false</bool>
+                                                </property>
+                                                <property name="text">
+                                                    <string>Check parity</string>
+                                                </property>
+                                                <property name="accel">
+                                                    <string></string>
+                                                </property>
+                                                <property name="autoDefault">
+                                                    <bool>true</bool>
+                                                </property>
+                                                <property name="default">
+                                                    <bool>true</bool>
+                                                </property>
+                                            </widget>
+                                            <widget class="KPushButton">
+                                                <property name="name">
+                                                    <cstring>RepairFilesButton</cstring>
+                                                </property>
+                                                <property name="enabled">
+                                                    <bool>false</bool>
+                                                </property>
+                                                <property name="text">
+                                                    <string>Repair files</string>
+                                                </property>
+                                                <property name="accel">
+                                                    <string>Alt+R</string>
+                                                </property>
+                                            </widget>
+                                        </hbox>
+                                    </widget>
+                                </vbox>
+                            </widget>
+                            <spacer>
+                                <property name="name">
+                                    <cstring>spacer5</cstring>
+                                </property>
+                                <property name="orientation">
+                                    <enum>Horizontal</enum>
+                                </property>
+                                <property name="sizeType">
+                                    <enum>Expanding</enum>
+                                </property>
+                                <property name="sizeHint">
+                                    <size>
+                                        <width>38</width>
+                                        <height>20</height>
+                                    </size>
+                                </property>
+                            </spacer>
+                            <widget class="QButtonGroup">
+                                <property name="name">
+                                    <cstring>RepairOptions</cstring>
+                                </property>
+                                <property name="title">
+                                    <string>Repair options</string>
+                                </property>
+                                <vbox>
+                                    <property name="name">
+                                        <cstring>unnamed</cstring>
+                                    </property>
+                                    <widget class="QCheckBox">
+                                        <property name="name">
+                                            <cstring>AutoCheck</cstring>
+                                        </property>
+                                        <property name="text">
+                                            <string>Auto check</string>
+                                        </property>
+                                        <property name="accel">
+                                            <string>Alt+E</string>
+                                        </property>
+                                    </widget>
+                                    <widget class="QCheckBox">
+                                        <property name="name">
+                                            <cstring>AutoRepair</cstring>
+                                        </property>
+                                        <property name="text">
+                                            <string>Auto repair</string>
+                                        </property>
+                                        <property name="accel">
+                                            <string>Alt+P</string>
+                                        </property>
+                                    </widget>
+                                </vbox>
+                            </widget>
+                        </hbox>
+                    </widget>
+                </vbox>
+            </widget>
+        </widget>
+    </vbox>
+</widget>
+<tabstops>
+    <tabstop>CheckParityButton</tabstop>
+    <tabstop>RepairFilesButton</tabstop>
+    <tabstop>AutoCheck</tabstop>
+    <tabstop>AutoRepair</tabstop>
+    <tabstop>FileDisplay</tabstop>
+</tabstops>
+<includes>
+    <include location="local" impldecl="in implementation">kpar2gui.ui.h</include>
+</includes>
+<forwards>
+    <forward>class ParHeaders</forward>
+</forwards>
+<signals>
+    <signal>checkParity()</signal>
+    <signal>repairFiles()</signal>
+    <signal>totalFileProgress( int progress )</signal>
+    <signal>fileProgress( int progress )</signal>
+</signals>
+<slots>
+    <slot>appendHeaderInfo( ParHeaders * headers )</slot>
+    <slot>fileLoaded( const QString &amp; filename )</slot>
+    <slot>enableRepair( bool enable )</slot>
+    <slot>enableCheckParity( bool enable )</slot>
+    <slot>done( const QString &amp; info )</slot>
+    <slot>clearFileDisplay()</slot>
+</slots>
+<functions>
+    <function access="private" specifier="non virtual">init()</function>
+</functions>
+<layoutdefaults spacing="6" margin="11"/>
+<includehints>
+    <includehint>ktextbrowser.h</includehint>
+    <includehint>kprogress.h</includehint>
+    <includehint>kprogress.h</includehint>
+    <includehint>kpushbutton.h</includehint>
+    <includehint>kpushbutton.h</includehint>
+</includehints>
+</UI>
