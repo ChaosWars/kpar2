@@ -72,10 +72,10 @@ void KPar2GUI::readConfig()
 
 bool KPar2GUI::autoCheck()
 {
-    return AutoCheck->isChecked();
+    return kcfg_AutoCheck->isChecked();
 }
 
 bool KPar2GUI::autoRepair()
 {
-    return AutoRepair->isChecked();
+    return kcfg_AutoRepair->isChecked();
 }
