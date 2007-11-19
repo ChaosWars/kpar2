@@ -1,8 +1,8 @@
 <?xml version = '1.0'?>
 <kdevelop>
   <general>
-    <author/>
-    <email/>
+    <author></author>
+    <email></email>
     <version>$VERSION$</version>
     <projectmanagement>KDevCustomProject</projectmanagement>
     <primarylanguage>C++</primarylanguage>
@@ -13,42 +13,42 @@
       <language>C</language>
     </secondaryLanguages>
     <projectname>kpar2</projectname>
-    <description/>
-    <defaultencoding/>
+    <description></description>
+    <defaultencoding></defaultencoding>
     <versioncontrol>kdevsubversion</versioncontrol>
   </general>
   <kdevcustomproject>
     <filelistdirectory>/home/lawrence/Projects/kpar2</filelistdirectory>
     <run>
-      <mainprogram/>
+      <mainprogram>/home/lawrence/Projects/kpar2-build/src/kpar2</mainprogram>
       <directoryradio>custom</directoryradio>
       <customdirectory>/home/lawrence/Projects/kpar2</customdirectory>
-      <programargs/>
+      <programargs></programargs>
       <terminal>false</terminal>
-      <autocompile>true</autocompile>
+      <autocompile>false</autocompile>
       <envvars/>
-      <globaldebugarguments/>
-      <globalcwd>/home/lawrence/Projects/kpar2</globalcwd>
+      <globaldebugarguments></globaldebugarguments>
+      <globalcwd>/home/lawrence/Projects/kpar2-build/src/</globalcwd>
       <useglobalprogram>false</useglobalprogram>
       <autoinstall>false</autoinstall>
       <autokdesu>false</autokdesu>
     </run>
     <build>
       <buildtool>make</buildtool>
-      <builddir>/home/lawrence/Projects/kpar2</builddir>
+      <builddir>/home/lawrence/Projects/kpar2-build</builddir>
     </build>
     <make>
       <abortonerror>false</abortonerror>
       <numberofjobs>1</numberofjobs>
       <dontact>false</dontact>
-      <makebin/>
+      <makebin></makebin>
       <selectedenvironment>default</selectedenvironment>
       <environments>
         <default/>
       </environments>
       <prio>0</prio>
-      <defaulttarget/>
-      <makeoptions/>
+      <defaulttarget></defaulttarget>
+      <makeoptions></makeoptions>
     </make>
     <filetypes>
       <filetype>*.java</filetype>
@@ -69,14 +69,17 @@
     <blacklist/>
     <other>
       <prio>0</prio>
-      <otherbin/>
-      <defaulttarget/>
-      <otheroptions/>
+      <otherbin></otherbin>
+      <defaulttarget></defaulttarget>
+      <otheroptions></otheroptions>
       <selectedenvironment>default</selectedenvironment>
       <environments>
         <default/>
       </environments>
     </other>
+    <general>
+      <activedir>src</activedir>
+    </general>
   </kdevcustomproject>
   <kdevfilecreate>
     <filetypes/>
@@ -146,7 +149,7 @@
       <designerpluginpaths/>
     </qt>
     <creategettersetter>
-      <prefixGet/>
+      <prefixGet></prefixGet>
       <prefixSet>set</prefixSet>
       <prefixVariable>m_,_</prefixVariable>
       <parameterName>theValue</parameterName>
@@ -175,11 +178,11 @@
   </kdevfileview>
   <kdevdebugger>
     <general>
-      <gdbpath/>
-      <dbgshell/>
-      <configGdbScript/>
-      <runShellScript/>
-      <runGdbScript/>
+      <gdbpath></gdbpath>
+      <dbgshell></dbgshell>
+      <configGdbScript></configGdbScript>
+      <runShellScript></runShellScript>
+      <runGdbScript></runGdbScript>
       <breakonloadinglibs>true</breakonloadinglibs>
       <separatetty>false</separatetty>
       <floatingtoolbar>false</floatingtoolbar>

@@ -21,24 +21,18 @@
 #ifndef _KPAR2THREAD_H_
 #define _KPAR2THREAD_H_
 
+#include "kpar2object.h"
 #include <qobject.h>
 #include <qthread.h>
 
 class KPar2GUI;
-class KPar2Object;
+// class KPar2Object;
 
 class KPar2Thread : public QObject, QThread
 {
     Q_OBJECT
 
     public:
-        typedef enum _Operation{
-            load = 0,
-            verify = 1,
-            repair = 2,
-            noop = 3
-        } Operation;
-
         KPar2Thread( KPar2GUI *gui );
         ~KPar2Thread();
 

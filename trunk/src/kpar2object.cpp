@@ -27,67 +27,130 @@
 KPar2Object::KPar2Object( KPar2GUI *gui )
 {
     _gui = gui;
-    total_files = processed_files = 0;
-    par2repairer = new Par2Repairer();
-    cmdline = new CommandLine();
-    par2repairer->sig_filename.
-            connect( sigc::mem_fun( *this, &KPar2Object::signal_filename ) );
-    par2repairer->sig_progress.
-            connect( sigc::mem_fun( *this,&KPar2Object::signal_progress ) );
-    par2repairer->sig_headers.
-            connect( sigc::mem_fun( *this,&KPar2Object::signal_headers ) );
-    par2repairer->sig_done.
-            connect( sigc::mem_fun( *this,&KPar2Object::signal_done ) );
+    operation = noop;
+    total_files = 0;
+    processed_files = 0;
+    files_to_repair = 0;
+    par2repairer = NULL;
+    cmdline = NULL;
 }
 
 KPar2Object::~KPar2Object()
 {
+//     f->disconnect();
+//     p->disconnect();
+//     h->disconnect();
+//     d->disconnect();
     delete par2repairer;
     delete cmdline;
 }
 
 void KPar2Object::loadPAR2Files( const QString& par2file )
 {
-    const char *program = "par2verify";
-    char *argv[] = {const_cast<char*>( program ), const_cast<char*>( par2file.latin1() )};
-    cmdline->Parse( 2, argv );
-    if( par2repairer->PreProcess( *cmdline ) == eSuccess ){
-        EnableCheckParity *e = new EnableCheckParity( true );
-        QApplication::postEvent( _gui, e );
+    if( !par2file.isEmpty() ){
+        total_files = 0;
+        processed_files = 0;
+
+        FileProgress *f1 = new FileProgress( 0 );
+        QApplication::postEvent( _gui, f1 );
+
+        TotalProgress *t = new TotalProgress( 0 );
+        QApplication::postEvent( _gui, t );
+
+        operation = load;
+        const char *program = "par2verify";
+        char *argv[] = { const_cast<char*>( program ), const_cast<char*>( par2file.latin1() ) };
+
+        if( cmdline == NULL ){
+            cmdline = new CommandLine();
+        }else{
+            delete cmdline;
+            cmdline = new CommandLine();
+        }
+
+        if( par2repairer == NULL ){
+            par2repairer = new Par2Repairer();
+        }else{
+            delete par2repairer;
+            par2repairer = new Par2Repairer();
+        }
+
+   /* *f = */par2repairer->sig_filename.
+            connect( sigc::mem_fun( *this, &KPar2Object::signal_filename ) );
+   /* *p = */par2repairer->sig_progress.
+                     connect( sigc::mem_fun( *this,&KPar2Object::signal_progress ) );
+   /* *h = */par2repairer->sig_headers.
+                     connect( sigc::mem_fun( *this,&KPar2Object::signal_headers ) );
+   /* *d = */par2repairer->sig_done.
+                     connect( sigc::mem_fun( *this,&KPar2Object::signal_done ) );
+
+        cmdline->Parse( 2, argv );
+
+        if( par2repairer->PreProcess( *cmdline ) == eSuccess ){
+            EnableCheckParity *c = new EnableCheckParity( true );
+            QApplication::postEvent( _gui, c );
+        }else{
+            EnableCheckParity *c = new EnableCheckParity( false );
+            QApplication::postEvent( _gui, c );
+        }
+
+        FileProgress *f2 = new FileProgress( 0 );
+        QApplication::postEvent( _gui, f2 );
+
     }else{
-        EnableCheckParity *e = new EnableCheckParity( false );
-        QApplication::postEvent( _gui, e );
+        qDebug( "Empty string passed as file to load, aborting!" );
     }
 
-    FileProgress *e = new FileProgress( 0 );
-    QApplication::postEvent( _gui, e );
 }
 
-void KPar2Object::checkParity()
+void KPar2Object::checkParity( const QString& par2file )
 {
-    const char *program = "par2verify";
-    char *argv[] = {const_cast<char*>( program ), const_cast<char*>( par2file.latin1() )};
-    cmdline->Parse( 2, argv );
+    if( !par2file.isEmpty() ){
+        operation = verify;
+        const char *program = "par2verify";
+        char *argv[] = {const_cast<char*>( program ), const_cast<char*>( par2file.latin1() )};
+        cmdline->Parse( 2, argv );
 
-    if( par2repairer->Process( *cmdline, false ) == eRepairPossible ){
-        EnableRepair *e = new EnableRepair( true );
-        QApplication::postEvent( _gui, e );
+        if( par2repairer->Process( *cmdline, false ) == eRepairPossible ){
+            EnableRepair *e = new EnableRepair( true );
+            QApplication::postEvent( _gui, e );
+        }else{
+            EnableRepair *e = new EnableRepair( false );
+            QApplication::postEvent( _gui, e );
+        }
+
+        processed_files = 0;
+
     }else{
-        EnableRepair *e = new EnableRepair( false );
-        QApplication::postEvent( _gui, e );
+        qDebug( "Empty string passed as file to load, aborting!" );
     }
+
 }
 
-void KPar2Object::repairFiles()
+void KPar2Object::repairFiles( const QString& par2file )
 {
-    const char *program = "par2repair";
-    char *argv[] = {const_cast<char*>( program ), const_cast<char*>( par2file.latin1() )};
-    cmdline->Parse( 2, argv );
+    if( !par2file.isEmpty() ){
 
-    if( par2repairer->Process( *cmdline, true ) == eSuccess ){
-        EnableRepair *e = new EnableRepair( true );
-        QApplication::postEvent( _gui, e );
+        FileProgress *f1 = new FileProgress( 0 );
+        QApplication::postEvent( _gui, f1 );
+
+        TotalProgress *t = new TotalProgress( 0 );
+        QApplication::postEvent( _gui, t );
+
+        operation = repair;
+        const char *program = "par2repair";
+        char *argv[] = {const_cast<char*>( program ), const_cast<char*>( par2file.latin1() )};
+        cmdline->Parse( 2, argv );
+
+        if( par2repairer->Process( *cmdline, true ) == eSuccess ){
+            files_to_repair = 0;
+            EnableRepair *e = new EnableRepair( true );
+            QApplication::postEvent( _gui, e );
+        }
+    }else{
+        qDebug( "Empty string passed as file to load, aborting!" );
     }
+
 }
 
 void KPar2Object::signal_filename( std::string str )
@@ -98,20 +161,62 @@ void KPar2Object::signal_filename( std::string str )
 
 void KPar2Object::signal_progress( double value )
 {
-    FileProgress *e = new FileProgress( static_cast<int>( value/10.0 ) );
+    double current_progress = value/10.0;
+    FileProgress *e = new FileProgress( static_cast<int>( current_progress ) );
     QApplication::postEvent( _gui, e );
+
+    if( operation == verify ){
+
+        if( processed_files > 0 ){
+
+            if( total_files > 0 ){
+                int progress = static_cast<int>( ( static_cast<double>( processed_files )/ static_cast<double>( total_files ) ) * 100.00 );
+                TotalProgress *e = new TotalProgress( progress );
+                QApplication::postEvent( _gui, e );
+            }
+
+        }
+
+    }else if( operation == repair ){
+
+        if( processed_files > 0 ){
+
+            if( total_files > 0 ){
+                int progress = static_cast<int>( ( static_cast<double>( processed_files )/ static_cast<double>( files_to_repair ) ) * 100.00 );
+                TotalProgress *e = new TotalProgress( progress );
+                QApplication::postEvent( _gui, e );
+            }
+
+        }
+
+    }
 }
 
 void KPar2Object::signal_headers( ParHeaders* headers )
 {
+    total_files = headers->recoverable_files;
     HeaderInfo *e = new HeaderInfo( headers );
     QApplication::postEvent( _gui, e );
 }
 
 void KPar2Object::signal_done( std::string filename, int blocks_available, int blocks_total )
 {
-    Done *e = new Done( QString( "%1 : %2 blocks available of a total of %3 blocks" ).arg( filename ).arg( blocks_available ).arg( blocks_total ) );
-    QApplication::postEvent( _gui, e );
+    processed_files++;
+    int data = blocks_total - blocks_available;
+
+    if( data == 0 ){
+        Done *e = new Done( QString( "Found" ) );
+        QApplication::postEvent( _gui, e );
+    }else if( data < blocks_total ){
+        files_to_repair++;
+        Done *e = new Done( QString( "Damaged" ) );
+        QApplication::postEvent( _gui, e );
+    }else if( data == blocks_total ){
+        files_to_repair++;
+        Done *e = new Done( QString( "%1\nMissing" ).arg( filename ) );
+        QApplication::postEvent( _gui, e );
+    }
+
 }
 
 #include "kpar2object.moc"

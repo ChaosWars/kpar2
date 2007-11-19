@@ -19,13 +19,13 @@
  ***************************************************************************/
 
 #include "kpar2thread.h"
-#include "kpar2object.h"
 #include "kpar2gui.h"
 
 KPar2Thread::KPar2Thread( KPar2GUI *gui )
 {
+    obj = NULL;
     _gui = gui;
-    operation = KPar2Thread::noop;
+    operation = noop;
     connect( gui, SIGNAL( checkParity() ), this, SLOT( checkParity() ) );
     connect( gui, SIGNAL( repairFiles() ), this, SLOT( repairFiles() ) );
 }
@@ -36,29 +36,32 @@ KPar2Thread::~KPar2Thread()
 
 void KPar2Thread::run()
 {
-    if( !obj )
+    if( obj == NULL )
         obj = new KPar2Object( _gui );
+//     KPar2Object obj( _gui );
 
     switch( operation ){
-        case KPar2Thread::load:
+        case load:
             obj->loadPAR2Files( par2file );
             break;
-        case KPar2Thread::verify:
-            obj->checkParity();
+        case verify:
+            obj->checkParity( par2file );
             break;
-        case KPar2Thread::repair:
-            obj->repairFiles();
+        case repair:
+            obj->repairFiles( par2file );
             break;
         default:
             break;
     }
+
+//     delete obj;
 
 }
 
 void KPar2Thread::loadPAR2Files( const QString& file )
 {
     if( !running() ){
-        operation = KPar2Thread::load;
+        operation = load;
         par2file = file;
         start();
     }
@@ -67,7 +70,7 @@ void KPar2Thread::loadPAR2Files( const QString& file )
 void KPar2Thread::checkParity()
 {
     if( !running() ){
-        operation = KPar2Thread::verify;
+        operation = verify;
         start();
     }
 }
@@ -75,7 +78,7 @@ void KPar2Thread::checkParity()
 void KPar2Thread::repairFiles()
 {
     if( !running() ){
-        operation = KPar2Thread::repair;
+        operation = repair;
         start();
     }
 }

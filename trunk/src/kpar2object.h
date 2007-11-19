@@ -21,12 +21,20 @@
 #ifndef _KPAR2OBJECT_H_
 #define _KPAR2OBJECT_H_
 
+#include <sigc++/sigc++.h>
 #include <qobject.h>
 
 class KPar2GUI;
 class ParHeaders;
 class Par2Repairer;
 class CommandLine;
+
+typedef enum _Operation{
+    load = 0,
+    verify = 1,
+    repair = 2,
+    noop = 3
+} Operation;
 
 class KPar2Object : public QObject
 {
@@ -36,16 +44,21 @@ class KPar2Object : public QObject
         KPar2Object( KPar2GUI *gui );
         ~KPar2Object();
         void loadPAR2Files( const QString& par2file );
-        void checkParity();
-        void repairFiles();
+        void checkParity( const QString& par2file );
+        void repairFiles( const QString& par2file );
 
     private:
         KPar2GUI *_gui;
+        Par2Repairer *par2repairer;
+        CommandLine *cmdline;
+        Operation operation;
+        sigc::connection *f;
+//         sigc::connection *p;
+//         sigc::connection *h;
+//         sigc::connection *d;
         int total_files;
         int processed_files;
-        QString par2file;
-        CommandLine *cmdline;
-        Par2Repairer *par2repairer;
+        int files_to_repair;
         void signal_filename( std::string str );
         void signal_progress( double value );
         void signal_headers( ParHeaders* headers );
