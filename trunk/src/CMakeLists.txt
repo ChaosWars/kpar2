@@ -22,5 +22,6 @@ INSTALL(TARGETS kpar2 kpar2part
         LIBRARY DESTINATION $ENV{KDEDIR}/lib/kde3 )
 INSTALL( FILES kpar2.desktop DESTINATION $ENV{KDEDIR}/share/applnk/Utilities )
 INSTALL( FILES kpar2_part.desktop DESTINATION $ENV{KDEDIR}/share/services )
+INSTALL( FILES x-par2.desktop DESTINATION $ENV{KDEDIR}/share/mimelnk/application )
 INSTALL( FILES kpar2_shell.rc DESTINATION $ENV{KDEDIR}/share/apps/kpar2 )
 INSTALL( FILES kpar2_part.rc DESTINATION $ENV{KDEDIR}/share/apps/kpar2part )
