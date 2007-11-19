@@ -60,7 +60,6 @@ KPar2Part::~KPar2Part()
 
 bool KPar2Part::openFile()
 {
-    qDebug( "openFile() called with m_file = %s", m_file.latin1() );
     // m_file is always local so we can use QFile on it
     QFile file( m_file );
     kpar2thread->loadPAR2Files( m_file.latin1() );

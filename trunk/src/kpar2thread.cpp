@@ -32,20 +32,29 @@ KPar2Thread::KPar2Thread( KPar2GUI *gui )
 
 KPar2Thread::~KPar2Thread()
 {
+    delete obj;
 }
 
 void KPar2Thread::run()
 {
     if( obj == NULL )
         obj = new KPar2Object( _gui );
-//     KPar2Object obj( _gui );
 
     switch( operation ){
         case load:
             obj->loadPAR2Files( par2file );
+
+            if( _gui->autoCheck() )
+                obj->checkParity( par2file );
+
+            if( _gui->autoRepair() )
+                obj->checkParity( par2file );
             break;
         case verify:
             obj->checkParity( par2file );
+
+            if( _gui->autoRepair() )
+                obj->checkParity( par2file );
             break;
         case repair:
             obj->repairFiles( par2file );
@@ -53,8 +62,6 @@ void KPar2Thread::run()
         default:
             break;
     }
-
-//     delete obj;
 
 }
 

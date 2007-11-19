@@ -75,13 +75,13 @@ void KPar2Object::loadPAR2Files( const QString& par2file )
             par2repairer = new Par2Repairer();
         }
 
-   /* *f = */par2repairer->sig_filename.
+        par2repairer->sig_filename.
             connect( sigc::mem_fun( *this, &KPar2Object::signal_filename ) );
-   /* *p = */par2repairer->sig_progress.
+        par2repairer->sig_progress.
                      connect( sigc::mem_fun( *this,&KPar2Object::signal_progress ) );
-   /* *h = */par2repairer->sig_headers.
+        par2repairer->sig_headers.
                      connect( sigc::mem_fun( *this,&KPar2Object::signal_headers ) );
-   /* *d = */par2repairer->sig_done.
+        par2repairer->sig_done.
                      connect( sigc::mem_fun( *this,&KPar2Object::signal_done ) );
 
         cmdline->Parse( 2, argv );

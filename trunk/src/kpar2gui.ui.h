@@ -69,3 +69,13 @@ void KPar2GUI::readConfig()
     kcfg_AutoCheck->setChecked( KPar2GUISettings::self()->autoCheck() );
     kcfg_AutoRepair->setChecked( KPar2GUISettings::self()->autoRepair() );
 }
+
+bool KPar2GUI::autoCheck()
+{
+    return AutoCheck->isChecked();
+}
+
+bool KPar2GUI::autoRepair()
+{
+    return AutoRepair->isChecked();
+}

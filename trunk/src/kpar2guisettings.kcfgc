@@ -1,0 +1,4 @@
+File=kpar2guisettings.kcfg
+ClassName=KPar2GUISettings
+Singleton=true
+Mutators=true

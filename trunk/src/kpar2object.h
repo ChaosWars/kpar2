@@ -21,7 +21,6 @@
 #ifndef _KPAR2OBJECT_H_
 #define _KPAR2OBJECT_H_
 
-#include <sigc++/sigc++.h>
 #include <qobject.h>
 
 class KPar2GUI;
@@ -52,10 +51,6 @@ class KPar2Object : public QObject
         Par2Repairer *par2repairer;
         CommandLine *cmdline;
         Operation operation;
-        sigc::connection *f;
-//         sigc::connection *p;
-//         sigc::connection *h;
-//         sigc::connection *d;
         int total_files;
         int processed_files;
         int files_to_repair;
