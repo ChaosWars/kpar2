@@ -6,5 +6,5 @@ Icon=kpar2
 Type=Application
 DocPath=kpar2/kpar2.html
 Comment=A PAR2 verification and repair application
-Categories=Application;Internet;
+Categories=Application;Utilities;
 Terminal=false
