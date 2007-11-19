@@ -42,19 +42,30 @@ void KPar2Thread::run()
 
     switch( operation ){
         case load:
-            obj->loadPAR2Files( par2file );
+            if( obj->loadPAR2Files( par2file ) ){
 
-            if( _gui->autoCheck() )
-                obj->checkParity( par2file );
+                if( _gui->autoCheck() ){
 
-            if( _gui->autoRepair() )
-                obj->checkParity( par2file );
+                    if( obj->checkParity( par2file ) ){
+
+                        if( _gui->autoRepair() ){
+                            obj->repairFiles( par2file );
+                        }
+
+                    }
+
+                }
+
+            }
             break;
         case verify:
-            obj->checkParity( par2file );
+            if( obj->checkParity( par2file ) ){
 
-            if( _gui->autoRepair() )
-                obj->checkParity( par2file );
+                if( _gui->autoRepair() ){
+                    obj->repairFiles( par2file );
+                }
+
+            }
             break;
         case repair:
             obj->repairFiles( par2file );

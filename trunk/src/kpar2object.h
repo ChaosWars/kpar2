@@ -42,9 +42,9 @@ class KPar2Object : public QObject
     public:
         KPar2Object( KPar2GUI *gui );
         ~KPar2Object();
-        void loadPAR2Files( const QString& par2file );
-        void checkParity( const QString& par2file );
-        void repairFiles( const QString& par2file );
+        bool loadPAR2Files( const QString& par2file );
+        bool checkParity( const QString& par2file );
+        bool repairFiles( const QString& par2file );
 
     private:
         KPar2GUI *_gui;

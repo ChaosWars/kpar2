@@ -37,16 +37,14 @@ KPar2Object::KPar2Object( KPar2GUI *gui )
 
 KPar2Object::~KPar2Object()
 {
-//     f->disconnect();
-//     p->disconnect();
-//     h->disconnect();
-//     d->disconnect();
     delete par2repairer;
     delete cmdline;
 }
 
-void KPar2Object::loadPAR2Files( const QString& par2file )
+bool KPar2Object::loadPAR2Files( const QString& par2file )
 {
+    bool result = false;
+
     if( !par2file.isEmpty() ){
         total_files = 0;
         processed_files = 0;
@@ -75,23 +73,28 @@ void KPar2Object::loadPAR2Files( const QString& par2file )
             par2repairer = new Par2Repairer();
         }
 
-        par2repairer->sig_filename.
-            connect( sigc::mem_fun( *this, &KPar2Object::signal_filename ) );
-        par2repairer->sig_progress.
-                     connect( sigc::mem_fun( *this,&KPar2Object::signal_progress ) );
-        par2repairer->sig_headers.
-                     connect( sigc::mem_fun( *this,&KPar2Object::signal_headers ) );
-        par2repairer->sig_done.
-                     connect( sigc::mem_fun( *this,&KPar2Object::signal_done ) );
+        par2repairer->sig_filename.connect( sigc::mem_fun( *this, &KPar2Object::signal_filename ) );
+        par2repairer->sig_progress.connect( sigc::mem_fun( *this, &KPar2Object::signal_progress ) );
+        par2repairer->sig_headers.connect( sigc::mem_fun( *this, &KPar2Object::signal_headers ) );
+        par2repairer->sig_done.connect( sigc::mem_fun( *this, &KPar2Object::signal_done ) );
 
         cmdline->Parse( 2, argv );
 
         if( par2repairer->PreProcess( *cmdline ) == eSuccess ){
-            EnableCheckParity *c = new EnableCheckParity( true );
-            QApplication::postEvent( _gui, c );
+            result = true;
+
+            if( !_gui->autoCheck() ){
+                EnableCheckParity *c = new EnableCheckParity( true );
+                QApplication::postEvent( _gui, c );
+            }
+
         }else{
-            EnableCheckParity *c = new EnableCheckParity( false );
-            QApplication::postEvent( _gui, c );
+
+            if( !_gui->autoCheck() ){
+                EnableCheckParity *c = new EnableCheckParity( false );
+                QApplication::postEvent( _gui, c );
+            }
+
         }
 
         FileProgress *f2 = new FileProgress( 0 );
@@ -101,10 +104,13 @@ void KPar2Object::loadPAR2Files( const QString& par2file )
         qDebug( "Empty string passed as file to load, aborting!" );
     }
 
+    return result;
 }
 
-void KPar2Object::checkParity( const QString& par2file )
+bool KPar2Object::checkParity( const QString& par2file )
 {
+    bool result = false;
+
     if( !par2file.isEmpty() ){
         operation = verify;
         const char *program = "par2verify";
@@ -112,11 +118,25 @@ void KPar2Object::checkParity( const QString& par2file )
         cmdline->Parse( 2, argv );
 
         if( par2repairer->Process( *cmdline, false ) == eRepairPossible ){
-            EnableRepair *e = new EnableRepair( true );
-            QApplication::postEvent( _gui, e );
+            result = true;
+
+            if( !_gui->autoRepair() ){
+                EnableRepair *e = new EnableRepair( true );
+                QApplication::postEvent( _gui, e );
+            }
+
+            if( !_gui->autoCheck() ){
+                EnableCheckParity *c = new EnableCheckParity( false );
+                QApplication::postEvent( _gui, c );
+            }
+
         }else{
-            EnableRepair *e = new EnableRepair( false );
-            QApplication::postEvent( _gui, e );
+
+            if( !_gui->autoRepair() ){
+                EnableRepair *e = new EnableRepair( false );
+                QApplication::postEvent( _gui, e );
+            }
+
         }
 
         processed_files = 0;
@@ -125,10 +145,14 @@ void KPar2Object::checkParity( const QString& par2file )
         qDebug( "Empty string passed as file to load, aborting!" );
     }
 
+    return result;
+
 }
 
-void KPar2Object::repairFiles( const QString& par2file )
+bool KPar2Object::repairFiles( const QString& par2file )
 {
+    bool result = false;
+
     if( !par2file.isEmpty() ){
 
         FileProgress *f1 = new FileProgress( 0 );
@@ -143,14 +167,21 @@ void KPar2Object::repairFiles( const QString& par2file )
         cmdline->Parse( 2, argv );
 
         if( par2repairer->Process( *cmdline, true ) == eSuccess ){
+            result = true;
             files_to_repair = 0;
-            EnableRepair *e = new EnableRepair( true );
-            QApplication::postEvent( _gui, e );
+
+            if( !_gui->autoRepair() ){
+                EnableRepair *e = new EnableRepair( false );
+                QApplication::postEvent( _gui, e );
+            }
+
         }
+
     }else{
         qDebug( "Empty string passed as file to load, aborting!" );
     }
 
+    return result;
 }
 
 void KPar2Object::signal_filename( std::string str )
