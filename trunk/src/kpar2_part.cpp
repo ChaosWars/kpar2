@@ -49,7 +49,6 @@ KPar2Part::KPar2Part( QWidget *parentWidget, const char *widgetName,
 
     // Set up the PAR2 thread
     kpar2thread = new KPar2Thread( m_widget );
-//     connect( this, SIGNAL( loadPAR2Files( const QString& ) ), kpar2thread, SLOT( loadPAR2Files( const QString& ) ) );
 
     // set our XML-UI resource file
     setXMLFile("kpar2_part.rc");
@@ -61,11 +60,10 @@ KPar2Part::~KPar2Part()
 
 bool KPar2Part::openFile()
 {
+    qDebug( "openFile() called with m_file = %s", m_file.latin1() );
     // m_file is always local so we can use QFile on it
-    QFile file(m_file);
-    if (file.open(IO_ReadOnly) == false)
-        return false;
-
+    QFile file( m_file );
+    kpar2thread->loadPAR2Files( m_file.latin1() );
     return true;
 }
 
@@ -74,11 +72,10 @@ void KPar2Part::fileOpen()
     // this slot is called whenever the File->Open menu is selected,
     // the Open shortcut is pressed (usually CTRL+O) or the Open toolbar
     // button is clicked
-    QString file_name = KFileDialog::getOpenFileName( NULL, "*.par2 *.PAR2 | PAR2 Files", 0, NULL );
+    QString file_name = KFileDialog::getOpenFileName( QDir::homeDirPath(), "*.par2 *.PAR2 | PAR2 Files", 0, NULL );
 
     if (file_name.isEmpty() == false){
-        openURL(file_name);
-        kpar2thread->loadPAR2Files( file_name );
+        openURL( file_name );
     }
 }
 

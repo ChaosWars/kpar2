@@ -243,7 +243,7 @@
                                     </property>
                                     <widget class="QCheckBox">
                                         <property name="name">
-                                            <cstring>AutoCheck</cstring>
+                                            <cstring>kcfg_AutoCheck</cstring>
                                         </property>
                                         <property name="text">
                                             <string>Auto check</string>
@@ -254,7 +254,7 @@
                                     </widget>
                                     <widget class="QCheckBox">
                                         <property name="name">
-                                            <cstring>AutoRepair</cstring>
+                                            <cstring>kcfg_AutoRepair</cstring>
                                         </property>
                                         <property name="text">
                                             <string>Auto repair</string>
@@ -275,8 +275,8 @@
 <tabstops>
     <tabstop>CheckParityButton</tabstop>
     <tabstop>RepairFilesButton</tabstop>
-    <tabstop>AutoCheck</tabstop>
-    <tabstop>AutoRepair</tabstop>
+    <tabstop>kcfg_AutoCheck</tabstop>
+    <tabstop>kcfg_AutoRepair</tabstop>
     <tabstop>FileDisplay</tabstop>
 </tabstops>
 <includes>
@@ -293,9 +293,12 @@
 </signals>
 <slots>
     <slot>customEvent( QCustomEvent * e )</slot>
+    <slot>saveSettings()</slot>
+    <slot>readConfig()</slot>
 </slots>
 <functions>
     <function access="private" specifier="non virtual">init()</function>
+    <function access="private" specifier="non virtual">destroy()</function>
 </functions>
 <layoutdefaults spacing="6" margin="11"/>
 <includehints>

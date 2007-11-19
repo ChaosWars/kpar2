@@ -81,8 +81,8 @@ class KPar2PartFactory : public KParts::Factory
         KPar2PartFactory();
         virtual ~KPar2PartFactory();
         virtual KParts::Part* createPartObject( QWidget *parentWidget, const char *widgetName,
-                QObject *parent, const char *name,
-                const char *classname, const QStringList &args );
+                                                QObject *parent, const char *name,
+                                                const char *classname, const QStringList &args );
         static KInstance* instance();
 
     private:

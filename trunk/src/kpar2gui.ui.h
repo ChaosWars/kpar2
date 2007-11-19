@@ -12,6 +12,7 @@
 
 #include <parheaders.h>
 #include "kpar2customevents.h"
+#include "kpar2guisettings.h"
 
 void KPar2GUI::init()
 {
@@ -19,6 +20,12 @@ void KPar2GUI::init()
     connect( RepairFilesButton, SIGNAL( clicked() ), this, SIGNAL( repairFiles() ) );
     connect( this, SIGNAL( fileProgress( int ) ), CurrentFileProgress, SLOT( setValue( int ) ) );
     connect( this, SIGNAL( totalFileProgress( int ) ), TotalFileProgress, SLOT( setValue( int ) ) );
+    readConfig();
+}
+
+void KPar2GUI::destroy()
+{
+    saveSettings();
 }
 
 void KPar2GUI::customEvent( QCustomEvent *e )
@@ -29,7 +36,6 @@ void KPar2GUI::customEvent( QCustomEvent *e )
             FileDisplay->append( "The block size used was " + QString::number( he->headers()->block_size ) );
             FileDisplay->append( "There are a total of " + QString::number( he->headers()->data_blocks ) + " data blocks." );
             FileDisplay->append( "The total size of the data files is " + QString::number( he->headers()->data_size ) + " bytes" );
-            FileDisplay->append("\n");
         }else if( e->type() ==  QEvent::User + 1 ){
             FileLoaded *fe = ( FileLoaded* )e;
             FileDisplay->append( fe->file() );
@@ -49,4 +55,17 @@ void KPar2GUI::customEvent( QCustomEvent *e )
             Done *de = ( Done* )e;
             FileDisplay->append( de->info() );
         }
+}
+
+void KPar2GUI::saveSettings()
+{
+    KPar2GUISettings::self()->setAutoCheck( kcfg_AutoCheck->isChecked() );
+    KPar2GUISettings::self()->setAutoRepair( kcfg_AutoRepair->isChecked() );
+    KPar2GUISettings::self()->writeConfig();
+}
+
+void KPar2GUI::readConfig()
+{
+    kcfg_AutoCheck->setChecked( KPar2GUISettings::self()->autoCheck() );
+    kcfg_AutoRepair->setChecked( KPar2GUISettings::self()->autoRepair() );
 }

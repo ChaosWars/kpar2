@@ -45,26 +45,20 @@ int main(int argc, char **argv)
     KApplication app;
 
     // see if we are starting with session management
-    if (app.isRestored())
-    {
+    if (app.isRestored()){
         RESTORE(KPar2);
-    }
-    else
-    {
+    }else{
         // no session.. just start up normally
         KCmdLineArgs *args = KCmdLineArgs::parsedArgs();
 
-        if ( args->count() == 0 )
-        {
-        KPar2 *widget = new KPar2;
-        widget->show();
-        }
-        else
-        {
+        if ( args->count() == 0 ){
+            KPar2 *widget = new KPar2();
+            widget->show();
+        }else{
             int i = 0;
             for (; i < args->count(); i++ )
             {
-                KPar2 *widget = new KPar2;
+                KPar2 *widget = new KPar2();
                 widget->show();
                 widget->load( args->url( i ) );
             }
