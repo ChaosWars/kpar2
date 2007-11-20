@@ -6,7 +6,7 @@
 **      images/damaged.png
 **      images/missing.png
 **
-** Created: Tue Nov 20 20:08:42 2007
+** Created: Tue Nov 20 20:21:15 2007
 **      by: The User Interface Compiler ($Id: qt/embed.cpp   3.3.8   edited Jan 11 14:47 $)
 **
 ** WARNING! All changes made in this file will be lost!
