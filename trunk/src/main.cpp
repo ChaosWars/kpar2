@@ -25,9 +25,9 @@
 #include <klocale.h>
 
 static const char description[] =
-    I18N_NOOP("PAR2 verification and repair application for KDE3");
+    I18N_NOOP( "PAR2 verification and repair application for KDE3" );
 
-static const char version[] = "0.1";
+static const char version[] = "0.2";
 
 static KCmdLineOptions options[] =
 {
@@ -37,16 +37,16 @@ static KCmdLineOptions options[] =
 
 int main(int argc, char **argv)
 {
-    KAboutData about("kpar2", I18N_NOOP("KPar2"), version, description,
-                     KAboutData::License_GPL, "(C) 2007 Lawrence Lee", 0, 0, "valher@facticius.net");
-    about.addAuthor( "Lawrence Lee", 0, "valher@facticius.net" );
-    KCmdLineArgs::init(argc, argv, &about);
+    KAboutData about( "kpar2", I18N_NOOP("KPar2"), version, description,
+                     KAboutData::License_GPL, "(C) 2007 Lawrence Lee", 0, 0, "valheru@facticius.net" );
+    about.addAuthor( "Lawrence Lee", 0, "valheru@facticius.net" );
+    KCmdLineArgs::init( argc, argv, &about );
     KCmdLineArgs::addCmdLineOptions( options );
     KApplication app;
 
     // see if we are starting with session management
-    if (app.isRestored()){
-        RESTORE(KPar2);
+    if ( app.isRestored() ){
+        RESTORE( KPar2 );
     }else{
         // no session.. just start up normally
         KCmdLineArgs *args = KCmdLineArgs::parsedArgs();
