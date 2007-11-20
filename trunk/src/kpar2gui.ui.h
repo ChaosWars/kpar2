@@ -11,10 +11,11 @@
 *****************************************************************************/
 
 #include <parheaders.h>
-#include <kpixmap.h>
+#include <qpixmap.h>
 #include <qimage.h>
 #include "kpar2customevents.h"
 #include "kpar2guisettings.h"
+#include "kpar2gui_images.h"
 
 void KPar2GUI::init()
 {
@@ -58,15 +59,15 @@ void KPar2GUI::customEvent( QCustomEvent *e )
             Done *de = ( Done* )e;
 
             if( de->info() == "Found" ){
-                FileDisplay->lastItem()->setText( 1, "Found" );
-//                 FileDisplay->lastItem()->setPixmap( 1, KIcon( "apply" ) );
+//                 FileDisplay->lastItem()->setText( 1, "Found" );
+                FileDisplay->lastItem()->setPixmap( 1, QPixmap( QImage( image_0_data ) ) );
             }else if( de->info() == "Damaged" ){
-                FileDisplay->lastItem()->setText( 1, "Damaged" );
-//                 FileDisplay->lastItem()->setPixmap( 1, KPixmap( QImage ( "reload" ) ) );
+//                 FileDisplay->lastItem()->setText( 1, "Damaged" );
+                FileDisplay->lastItem()->setPixmap( 1, QPixmap( QImage ( "reload" ) ) );
             }else{ //Missing
                 new QListViewItem( FileDisplay, FileDisplay->lastItem(), de->info() );
-                FileDisplay->lastItem()->setText( 1, "Missing" );
-//                 FileDisplay->lastItem()->setPixmap( 1, KPixmap( QImage ( "cancel" ) ) );
+//                 FileDisplay->lastItem()->setText( 1, "Missing" );
+                FileDisplay->lastItem()->setPixmap( 1, QPixmap( QImage ( "cancel" ) ) );
             }
 
         }else if( e->type() ==  QEvent::User + 7 ){

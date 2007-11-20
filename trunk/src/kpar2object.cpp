@@ -122,6 +122,9 @@ bool KPar2Object::checkParity( const QString& par2file )
         if( par2repairer->Process( *cmdline, false ) == eRepairPossible ){
             result = true;
 
+            Finished *f = new Finished( "Repair is possible" );
+            QApplication::postEvent( _gui, f );
+
             if( !_gui->autoRepair() ){
                 EnableRepair *e = new EnableRepair( true );
                 QApplication::postEvent( _gui, e );
