@@ -33,8 +33,10 @@ void KPar2GUI::customEvent( QCustomEvent *e )
 {
         if( e->type() ==  QEvent::User ){
             HeaderInfo *he = ( HeaderInfo* )e;
-            QListViewItem *i = new QListViewItem( FileDisplay, FileDisplay->lastItem(), "There are " + QString::number( he->headers()->recoverable_files ) + " recoverable files and " +  QString::number( he->headers()->other_files ) + " other files.\nThe block size used was " + QString::number( he->headers()->block_size ) + "\nThere are a total of " + QString::number( he->headers()->data_blocks ) + " data blocks.\nThe total size of the data files is " + QString::number( he->headers()->data_size ) + " bytes.\n" );
-            i->setMultiLinesEnabled( true );
+            new QListViewItem( FileDisplay, FileDisplay->lastItem(), "There are " + QString::number( he->headers()->recoverable_files ) + " recoverable files and " +  QString::number( he->headers()->other_files ) + " other files." );
+            new QListViewItem( FileDisplay, FileDisplay->lastItem(), "The block size used was " + QString::number( he->headers()->block_size ) );
+            new QListViewItem( FileDisplay, FileDisplay->lastItem(), "There are a total of " + QString::number( he->headers()->data_blocks ) + " data blocks." );
+            new QListViewItem( FileDisplay, FileDisplay->lastItem(), "The total size of the data files is " + QString::number( he->headers()->data_size ) + " bytes." );
         }else if( e->type() ==  QEvent::User + 1 ){
             FileLoaded *fe = ( FileLoaded* )e;
             new QListViewItem( FileDisplay, FileDisplay->lastItem(), fe->file() );
