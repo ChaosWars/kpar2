@@ -16,7 +16,7 @@ IF( NOT KPAR2_BIN_INSTALL_DIR )
     SET( KPAR2_BIN_INSTALL_DIR ${CMAKE_INSTALL_PREFIX}/bin CACHE PATH "kpar2 binary install path" )
 ENDIF( NOT KPAR2_BIN_INSTALL_DIR )
 
-SET( KPART_SRC kpar2_part.cpp kpar2thread.cpp kpar2object.cpp )
+SET( KPART_SRC kpar2_part.cpp kpar2thread.cpp kpar2object.cpp kpar2gui_images.cpp )
 SET( KPART_UI kpar2gui.ui )
 SET( SRC main.cpp kpar2.cpp )
 ADD_DEFINITIONS( ${QT_DEFINITIONS} ${KDE3_DEFINITIONS} )
