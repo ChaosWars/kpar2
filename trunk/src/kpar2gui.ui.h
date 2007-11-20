@@ -35,13 +35,13 @@ void KPar2GUI::customEvent( QCustomEvent *e )
 {
         if( e->type() ==  QEvent::User ){
             HeaderInfo *he = ( HeaderInfo* )e;
-            new QListViewItem( FileDisplay, FileDisplay->lastItem(), "There are " + QString::number( he->headers()->recoverable_files ) + " recoverable files and " +  QString::number( he->headers()->other_files ) + " other files." );
-            new QListViewItem( FileDisplay, FileDisplay->lastItem(), "The block size used was " + QString::number( he->headers()->block_size ) );
-            new QListViewItem( FileDisplay, FileDisplay->lastItem(), "There are a total of " + QString::number( he->headers()->data_blocks ) + " data blocks." );
-            new QListViewItem( FileDisplay, FileDisplay->lastItem(), "The total size of the data files is " + QString::number( he->headers()->data_size ) + " bytes." );
+            FileDisplay->ensureItemVisible( new QListViewItem( FileDisplay, FileDisplay->lastItem(), "There are " + QString::number( he->headers()->recoverable_files ) + " recoverable files and " +  QString::number( he->headers()->other_files ) + " other files." ) );
+            FileDisplay->ensureItemVisible( new QListViewItem( FileDisplay, FileDisplay->lastItem(), "The block size used was " + QString::number( he->headers()->block_size ) ) );
+            FileDisplay->ensureItemVisible( new QListViewItem( FileDisplay, FileDisplay->lastItem(), "There are a total of " + QString::number( he->headers()->data_blocks ) + " data blocks." ) );
+            FileDisplay->ensureItemVisible(  new QListViewItem( FileDisplay, FileDisplay->lastItem(), "The total size of the data files is " + QString::number( he->headers()->data_size ) + " bytes." ) );
         }else if( e->type() ==  QEvent::User + 1 ){
             FileLoaded *fe = ( FileLoaded* )e;
-            new QListViewItem( FileDisplay, FileDisplay->lastItem(), fe->file() );
+            FileDisplay->ensureItemVisible( new QListViewItem( FileDisplay, FileDisplay->lastItem(), fe->file() ) );
         }else if( e->type() ==  QEvent::User + 2 ){
             FileProgress *fe = ( FileProgress* )e;
             CurrentFileProgress->setValue( fe->progress() );
@@ -62,13 +62,13 @@ void KPar2GUI::customEvent( QCustomEvent *e )
             }else if( de->info() == "Damaged" ){
                 FileDisplay->lastItem()->setPixmap( 1, QPixmap( uic_findImage( "damaged.png" ) ) );
             }else{ //Missing
-                new QListViewItem( FileDisplay, FileDisplay->lastItem(), de->info() );
+                FileDisplay->ensureItemVisible( new QListViewItem( FileDisplay, FileDisplay->lastItem(), de->info() ) );
                 FileDisplay->lastItem()->setPixmap( 1, QPixmap( uic_findImage( "missing.png" ) ) );
             }
 
         }else if( e->type() ==  QEvent::User + 7 ){
             Finished *fe = ( Finished* )e;
-            new QListViewItem( FileDisplay, FileDisplay->lastItem(), fe->info() );
+            FileDisplay->ensureItemVisible( new QListViewItem( FileDisplay, FileDisplay->lastItem(), fe->info() ) );
         }
 }
 
