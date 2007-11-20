@@ -1,16 +1,25 @@
 <?xml version = '1.0' encoding = 'UTF-8'?>
 <!DOCTYPE KDevPrjSession>
 <KDevPrjSession>
- <DocsAndViews NumberOfDocuments="3" >
+ <DocsAndViews NumberOfDocuments="6" >
   <Doc0 NumberOfViews="1" URL="file:///home/lawrence/Projects/kpar2/src/CMakeLists.txt" >
-   <View0 Encoding="" line="12" Type="Source" />
+   <View0 Encoding="" line="26" Type="Source" />
   </Doc0>
-  <Doc1 NumberOfViews="1" URL="file:///home/lawrence/Projects/kpar2/CMakeLists.txt" >
-   <View0 Encoding="" line="9" Type="Source" />
+  <Doc1 NumberOfViews="1" URL="file:///home/lawrence/Projects/kpar2/src/kpar2.desktop" >
+   <View0 Encoding="" line="10" Type="Source" />
   </Doc1>
-  <Doc2 NumberOfViews="1" URL="file:///home/lawrence/Projects/kpar2/cmake/Findlibsigc.cmake" >
-   <View0 Encoding="" line="16" Type="Source" />
+  <Doc2 NumberOfViews="1" URL="file:///home/lawrence/Projects/kpar2/src/x-par2.desktop" >
+   <View0 Encoding="" line="0" Type="Source" />
   </Doc2>
+  <Doc3 NumberOfViews="1" URL="file:///home/lawrence/Projects/kpar2/src/kpar2.cpp" >
+   <View0 Encoding="" line="0" Type="Source" />
+  </Doc3>
+  <Doc4 NumberOfViews="1" URL="file:///home/lawrence/Projects/kpar2/src/main.cpp" >
+   <View0 Encoding="" line="27" Type="Source" />
+  </Doc4>
+  <Doc5 NumberOfViews="1" URL="file:///home/lawrence/Projects/kpar2/src/kpar2_part.desktop" >
+   <View0 Encoding="" line="0" Type="Source" />
+  </Doc5>
  </DocsAndViews>
  <pluginList>
   <kdevdebugger>
