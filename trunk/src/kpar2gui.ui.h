@@ -11,6 +11,8 @@
 *****************************************************************************/
 
 #include <parheaders.h>
+#include <kpixmap.h>
+#include <qimage.h>
 #include "kpar2customevents.h"
 #include "kpar2guisettings.h"
 
@@ -54,7 +56,19 @@ void KPar2GUI::customEvent( QCustomEvent *e )
             RepairFilesButton->setEnabled( ee->enable() );
         }else if( e->type() ==  QEvent::User + 6 ){
             Done *de = ( Done* )e;
-            FileDisplay->lastItem()->setText( 1, de->info() );
+
+            if( de->info() == "Found" ){
+                FileDisplay->lastItem()->setText( 1, "Found" );
+//                 FileDisplay->lastItem()->setPixmap( 1, KIcon( "apply" ) );
+            }else if( de->info() == "Damaged" ){
+                FileDisplay->lastItem()->setText( 1, "Damaged" );
+//                 FileDisplay->lastItem()->setPixmap( 1, KPixmap( QImage ( "reload" ) ) );
+            }else{ //Missing
+                new QListViewItem( FileDisplay, FileDisplay->lastItem(), de->info() );
+                FileDisplay->lastItem()->setText( 1, "Missing" );
+//                 FileDisplay->lastItem()->setPixmap( 1, KPixmap( QImage ( "cancel" ) ) );
+            }
+
         }else if( e->type() ==  QEvent::User + 7 ){
             Finished *fe = ( Finished* )e;
             new QListViewItem( FileDisplay, FileDisplay->lastItem(), fe->info() );

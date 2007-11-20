@@ -242,7 +242,7 @@ void KPar2Object::signal_done( std::string filename, int blocks_available, int b
         QApplication::postEvent( _gui, e );
     }else if( data == blocks_total ){
         files_to_repair++;
-        Done *e = new Done( QString( "%1\nMissing" ).arg( filename ) );
+        Done *e = new Done( QString( filename ) );
         QApplication::postEvent( _gui, e );
     }
 
