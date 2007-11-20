@@ -8,14 +8,14 @@
         <rect>
             <x>0</x>
             <y>0</y>
-            <width>480</width>
-            <height>360</height>
+            <width>470</width>
+            <height>465</height>
         </rect>
     </property>
     <property name="minimumSize">
         <size>
-            <width>480</width>
-            <height>360</height>
+            <width>470</width>
+            <height>465</height>
         </size>
     </property>
     <property name="caption">
@@ -27,36 +27,85 @@
         </property>
         <widget class="QSplitter">
             <property name="name">
-                <cstring>splitter4</cstring>
-            </property>
-            <property name="sizePolicy">
-                <sizepolicy>
-                    <hsizetype>7</hsizetype>
-                    <vsizetype>1</vsizetype>
-                    <horstretch>0</horstretch>
-                    <verstretch>0</verstretch>
-                </sizepolicy>
+                <cstring>Splitter</cstring>
             </property>
             <property name="orientation">
                 <enum>Vertical</enum>
             </property>
-            <widget class="KTextBrowser">
+            <widget class="KListView">
+                <column>
+                    <property name="text">
+                        <string>File</string>
+                    </property>
+                    <property name="clickable">
+                        <bool>true</bool>
+                    </property>
+                    <property name="resizable">
+                        <bool>true</bool>
+                    </property>
+                </column>
+                <column>
+                    <property name="text">
+                        <string>Status</string>
+                    </property>
+                    <property name="clickable">
+                        <bool>true</bool>
+                    </property>
+                    <property name="resizable">
+                        <bool>true</bool>
+                    </property>
+                </column>
                 <property name="name">
                     <cstring>FileDisplay</cstring>
                 </property>
                 <property name="enabled">
                     <bool>true</bool>
                 </property>
-                <property name="textFormat">
-                    <enum>LogText</enum>
+                <property name="minimumSize">
+                    <size>
+                        <width>450</width>
+                        <height>220</height>
+                    </size>
                 </property>
-                <property name="autoFormatting">
-                    <set>AutoAll</set>
+                <property name="itemsMovable">
+                    <bool>false</bool>
+                </property>
+                <property name="autoFormatting" stdset="0">
+                    <string>AutoAll</string>
+                </property>
+                <property name="textFormat" stdset="0">
+                    <string>LogText</string>
                 </property>
             </widget>
-            <widget class="QLayoutWidget">
+            <widget class="QFrame">
                 <property name="name">
-                    <cstring>layout8</cstring>
+                    <cstring>Frame</cstring>
+                </property>
+                <property name="sizePolicy">
+                    <sizepolicy>
+                        <hsizetype>5</hsizetype>
+                        <vsizetype>0</vsizetype>
+                        <horstretch>0</horstretch>
+                        <verstretch>0</verstretch>
+                    </sizepolicy>
+                </property>
+                <property name="minimumSize">
+                    <size>
+                        <width>450</width>
+                        <height>220</height>
+                    </size>
+                </property>
+                <property name="maximumSize">
+                    <size>
+                        <width>32767</width>
+                        <height>220</height>
+                    </size>
+                </property>
+                <property name="frameShape">
+                    <enum>StyledPanel</enum>
+                </property>
+                <property name="frameShadow">
+                    <enum>Raised</enum>
                 </property>
                 <vbox>
                     <property name="name">
@@ -109,23 +158,6 @@
                             </widget>
                         </vbox>
                     </widget>
-                    <spacer>
-                        <property name="name">
-                            <cstring>spacer3</cstring>
-                        </property>
-                        <property name="orientation">
-                            <enum>Vertical</enum>
-                        </property>
-                        <property name="sizeType">
-                            <enum>Expanding</enum>
-                        </property>
-                        <property name="sizeHint">
-                            <size>
-                                <width>20</width>
-                                <height>16</height>
-                            </size>
-                        </property>
-                    </spacer>
                     <widget class="QLayoutWidget">
                         <property name="name">
                             <cstring>layout8</cstring>
@@ -304,7 +336,7 @@
 </functions>
 <layoutdefaults spacing="6" margin="11"/>
 <includehints>
-    <includehint>ktextbrowser.h</includehint>
+    <includehint>klistview.h</includehint>
     <includehint>kprogress.h</includehint>
     <includehint>kprogress.h</includehint>
     <includehint>kpushbutton.h</includehint>

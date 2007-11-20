@@ -128,12 +128,16 @@ bool KPar2Object::checkParity( const QString& par2file )
             }
 
         }else{
+            Finished *f;
 
-            if( !_gui->autoRepair() ){
-                EnableRepair *e = new EnableRepair( false );
-                QApplication::postEvent( _gui, e );
-            }
+            if( files_to_repair == 0 )
+                f = new Finished( QString( "All files are correct, repair is not required." ) );
+            else
+                f = new Finished( QString( "Repair not possible!" ) );
 
+            QApplication::postEvent( _gui, f );
+            EnableRepair *e = new EnableRepair( false );
+            QApplication::postEvent( _gui, e );
         }
 
         processed_files = 0;
@@ -169,7 +173,6 @@ bool KPar2Object::repairFiles( const QString& par2file )
         if( par2repairer->Process( *cmdline, true ) == eSuccess ){
             result = true;
             files_to_repair = 0;
-
         }
 
     }else{

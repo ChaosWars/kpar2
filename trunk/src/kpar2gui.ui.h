@@ -16,6 +16,8 @@
 
 void KPar2GUI::init()
 {
+    FileDisplay->setSortColumn( -1 );
+    FileDisplay->setColumnWidthMode( 0, QListView::Maximum );
     connect( CheckParityButton, SIGNAL( clicked() ), this, SIGNAL( checkParity() ) );
     connect( RepairFilesButton, SIGNAL( clicked() ), this, SIGNAL( repairFiles() ) );
     connect( this, SIGNAL( fileProgress( int ) ), CurrentFileProgress, SLOT( setValue( int ) ) );
@@ -32,13 +34,13 @@ void KPar2GUI::customEvent( QCustomEvent *e )
 {
         if( e->type() ==  QEvent::User ){
             HeaderInfo *he = ( HeaderInfo* )e;
-            FileDisplay->append( "There are " + QString::number( he->headers()->recoverable_files ) + " recoverable files and " +  QString::number( he->headers()->other_files ) + " other files." );
-            FileDisplay->append( "The block size used was " + QString::number( he->headers()->block_size ) );
-            FileDisplay->append( "There are a total of " + QString::number( he->headers()->data_blocks ) + " data blocks." );
-            FileDisplay->append( "The total size of the data files is " + QString::number( he->headers()->data_size ) + " bytes" );
+            new QListViewItem( FileDisplay, FileDisplay->lastItem(), "There are " + QString::number( he->headers()->recoverable_files ) + " recoverable files and " +  QString::number( he->headers()->other_files ) + " other files." );
+            new QListViewItem( FileDisplay, FileDisplay->lastItem(), "The block size used was " + QString::number( he->headers()->block_size ) );
+            new QListViewItem( FileDisplay, FileDisplay->lastItem(), "There are a total of " + QString::number( he->headers()->data_blocks ) + " data blocks." );
+            new QListViewItem( FileDisplay, FileDisplay->lastItem(), "The total size of the data files is " + QString::number( he->headers()->data_size ) + " bytes." );
         }else if( e->type() ==  QEvent::User + 1 ){
             FileLoaded *fe = ( FileLoaded* )e;
-            FileDisplay->append( fe->file() );
+            new QListViewItem( FileDisplay, FileDisplay->lastItem(), fe->file() );
         }else if( e->type() ==  QEvent::User + 2 ){
             FileProgress *fe = ( FileProgress* )e;
             CurrentFileProgress->setValue( fe->progress() );
@@ -53,7 +55,10 @@ void KPar2GUI::customEvent( QCustomEvent *e )
             RepairFilesButton->setEnabled( ee->enable() );
         }else if( e->type() ==  QEvent::User + 6 ){
             Done *de = ( Done* )e;
-            FileDisplay->append( de->info() );
+            FileDisplay->lastItem()->setText( 1, de->info() );
+        }else if( e->type() ==  QEvent::User + 7 ){
+            Finished *fe = ( Finished* )e;
+            new QListViewItem( FileDisplay, FileDisplay->lastItem(), fe->info() );
         }
 }
 

@@ -101,4 +101,15 @@ class Done : public QCustomEvent
         QString i;
 };
 
+class Finished : public QCustomEvent
+{
+    public:
+        Finished( const QString& info ) : QCustomEvent( QEvent::User + 7 ), i( info ){}
+        ~Finished(){}
+        QString info() const{ return i; }
+
+    private:
+        QString i;
+};
+
 #endif // _KPAR2_CUSTOMEVENTS_H_
