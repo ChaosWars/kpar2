@@ -58,17 +58,14 @@
                 <property name="name">
                     <cstring>FileDisplay</cstring>
                 </property>
-                <property name="enabled">
-                    <bool>true</bool>
-                </property>
                 <property name="minimumSize">
                     <size>
                         <width>450</width>
                         <height>220</height>
                     </size>
                 </property>
-                <property name="itemsMovable">
-                    <bool>false</bool>
+                <property name="selectionMode" stdset="0">
+                    <enum>NoSelection</enum>
                 </property>
                 <property name="autoFormatting" stdset="0">
                     <string>AutoAll</string>
