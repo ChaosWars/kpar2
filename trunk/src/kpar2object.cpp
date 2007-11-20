@@ -20,6 +20,7 @@
 
 #include <par2cmdline.h>
 #include <par2repairer.h>
+#include <klistview.h>
 #include "kpar2object.h"
 #include "kpar2gui.h"
 #include "kpar2customevents.h"
@@ -43,6 +44,7 @@ KPar2Object::~KPar2Object()
 
 bool KPar2Object::loadPAR2Files( const QString& par2file )
 {
+    _gui->gui()->clear();
     bool result = false;
 
     if( !par2file.isEmpty() ){
@@ -112,6 +114,9 @@ bool KPar2Object::checkParity( const QString& par2file )
     bool result = false;
 
     if( !par2file.isEmpty() ){
+        Finished *f = new Finished( "Checking parity..." );
+        QApplication::postEvent( _gui, f );
+
         EnableCheckParity *c = new EnableCheckParity( false );
         QApplication::postEvent( _gui, c );
         operation = verify;
@@ -158,6 +163,8 @@ bool KPar2Object::repairFiles( const QString& par2file )
     bool result = false;
 
     if( !par2file.isEmpty() ){
+        Finished *f = new Finished( "Repairing..." );
+        QApplication::postEvent( _gui, f );
 
         FileProgress *f1 = new FileProgress( 0 );
         QApplication::postEvent( _gui, f1 );

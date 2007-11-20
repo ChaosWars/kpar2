@@ -331,6 +331,7 @@
     <function access="private" specifier="non virtual">destroy()</function>
     <function returnType="bool">autoCheck()</function>
     <function returnType="bool">autoRepair()</function>
+    <function returnType="KListView *">gui()</function>
 </functions>
 <layoutdefaults spacing="6" margin="11"/>
 <includehints>

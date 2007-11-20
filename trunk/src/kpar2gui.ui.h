@@ -16,6 +16,10 @@
 #include "kpar2guisettings.h"
 #include "kpar2gui_images.h"
 
+static QPixmap ok( uic_findImage( "ok.png" ) );
+static QPixmap damaged( uic_findImage( "damaged.png" ) );
+static QPixmap missing( uic_findImage( "missing.png" ) );
+
 void KPar2GUI::init()
 {
     FileDisplay->setSortColumn( -1 );
@@ -58,12 +62,12 @@ void KPar2GUI::customEvent( QCustomEvent *e )
             Done *de = ( Done* )e;
 
             if( de->info() == "Found" ){
-                FileDisplay->lastItem()->setPixmap( 1, QPixmap( uic_findImage( "ok.png" ) ) );
+                FileDisplay->lastItem()->setPixmap( 1, ok );
             }else if( de->info() == "Damaged" ){
-                FileDisplay->lastItem()->setPixmap( 1, QPixmap( uic_findImage( "damaged.png" ) ) );
+                FileDisplay->lastItem()->setPixmap( 1, damaged );
             }else{ //Missing
                 FileDisplay->ensureItemVisible( new QListViewItem( FileDisplay, FileDisplay->lastItem(), de->info() ) );
-                FileDisplay->lastItem()->setPixmap( 1, QPixmap( uic_findImage( "missing.png" ) ) );
+                FileDisplay->lastItem()->setPixmap( 1, missing );
             }
 
         }else if( e->type() ==  QEvent::User + 7 ){
@@ -93,4 +97,9 @@ bool KPar2GUI::autoCheck()
 bool KPar2GUI::autoRepair()
 {
     return kcfg_AutoRepair->isChecked();
+}
+
+KListView* KPar2GUI::gui()
+{
+	return FileDisplay;
 }
