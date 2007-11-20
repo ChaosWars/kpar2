@@ -112,6 +112,8 @@ bool KPar2Object::checkParity( const QString& par2file )
     bool result = false;
 
     if( !par2file.isEmpty() ){
+        EnableCheckParity *c = new EnableCheckParity( false );
+        QApplication::postEvent( _gui, c );
         operation = verify;
         const char *program = "par2verify";
         char *argv[] = {const_cast<char*>( program ), const_cast<char*>( par2file.latin1() )};
@@ -123,11 +125,6 @@ bool KPar2Object::checkParity( const QString& par2file )
             if( !_gui->autoRepair() ){
                 EnableRepair *e = new EnableRepair( true );
                 QApplication::postEvent( _gui, e );
-            }
-
-            if( !_gui->autoCheck() ){
-                EnableCheckParity *c = new EnableCheckParity( false );
-                QApplication::postEvent( _gui, c );
             }
 
         }else{
@@ -161,6 +158,9 @@ bool KPar2Object::repairFiles( const QString& par2file )
         TotalProgress *t = new TotalProgress( 0 );
         QApplication::postEvent( _gui, t );
 
+        EnableRepair *e = new EnableRepair( false );
+        QApplication::postEvent( _gui, e );
+
         operation = repair;
         const char *program = "par2repair";
         char *argv[] = {const_cast<char*>( program ), const_cast<char*>( par2file.latin1() )};
@@ -169,11 +169,6 @@ bool KPar2Object::repairFiles( const QString& par2file )
         if( par2repairer->Process( *cmdline, true ) == eSuccess ){
             result = true;
             files_to_repair = 0;
-
-            if( !_gui->autoRepair() ){
-                EnableRepair *e = new EnableRepair( false );
-                QApplication::postEvent( _gui, e );
-            }
 
         }
 
