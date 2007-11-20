@@ -7,6 +7,5 @@ Type=Application
 DocPath=kpar2/kpar2.html
 Comment=A PAR2 verification and repair application
 MimeType=application/x-par2
-Categories=Qt;KDE;Application;Utilities;X-KDE-Utilities-Desktop
-OnlyShowIn=KDE
+Categories=Qt;KDE;Application;Utilities;X-KDE-Utilities-File
 Terminal=false
