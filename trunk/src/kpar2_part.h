@@ -45,8 +45,8 @@ class KPar2Part : public KParts::ReadOnlyPart
     /**
      * Default constructor
      */
-        KPar2Part(QWidget *parentWidget, const char *widgetName,
-                      QObject *parent, const char *name);
+        KPar2Part( QWidget *parentWidget, const char *widgetName,
+                      QObject *parent, const char *name );
 
     /**
          * Destructor

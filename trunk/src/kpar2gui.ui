@@ -22,6 +22,9 @@
     <property name="caption">
         <string>KPar2</string>
     </property>
+    <property name="focusPolicy">
+        <enum>ClickFocus</enum>
+    </property>
     <vbox>
         <property name="name">
             <cstring>unnamed</cstring>

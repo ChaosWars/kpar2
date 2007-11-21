@@ -99,9 +99,9 @@ KPar2PartFactory::~KPar2PartFactory()
     s_instance = 0L;
 }
 
-KParts::Part* KPar2PartFactory::createPartObject( QWidget *parentWidget, const char *widgetName,
-        QObject *parent, const char *name,
-        const char *classname, const QStringList &args )
+KParts::Part* KPar2PartFactory::createPartObject(   QWidget *parentWidget, const char *widgetName,
+                                                    QObject *parent, const char *name,
+                                                    const char *classname, const QStringList &args )
 {
     // Create an instance of our Part
     KPar2Part* obj = new KPar2Part( parentWidget, widgetName, parent, name );
@@ -112,7 +112,7 @@ KInstance* KPar2PartFactory::instance()
 {
     if( !s_instance )
     {
-        s_about = new KAboutData("kpar2part", I18N_NOOP("KPar2Part"), "0.1");
+        s_about = new KAboutData("kpar2", I18N_NOOP("KPar2"), "0.2.2");
         s_about->addAuthor("Lawrence Lee", 0, "valher@facticius.net");
         s_instance = new KInstance(s_about);
     }

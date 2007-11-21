@@ -1,18 +1,6 @@
 [Desktop Entry]
 Encoding=UTF-8
-Name=KPar2Part
-Name[br]=PerzhKPar2
-Name[ca]=Part per a KPar2
-Name[el]=ΤμήμαKPar2
-Name[et]=KPar2 komponent
-Name[fa]=جزء KPar2
-Name[gl]=KPar2 Part
-Name[ja]=KPar2 パート
-Name[ne]=KPar2भाग
-Name[pt_BR]=Parte KPar2
-Name[sv]=KPar2-del
-Name[ta]=KPar2பாகம்
-Name[tr]=KPar2 Bileşeni
+Name=KPar2
 MimeType=application/x-par2
 ServiceTypes=KParts/ReadOnlyPart
 X-KDE-Library=libkpar2part
