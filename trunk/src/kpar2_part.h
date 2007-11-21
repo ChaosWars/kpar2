@@ -36,7 +36,7 @@ class KPar2Thread;
  *
  * @short Main Part
  * @author Lawrence Lee <valher@facticius.net>
- * @version 0.1
+ * @version 0.2.2
  */
 class KPar2Part : public KParts::ReadOnlyPart
 {
@@ -58,6 +58,7 @@ class KPar2Part : public KParts::ReadOnlyPart
      * This must be implemented by each part
      */
         virtual bool openFile();
+        virtual bool openURL( const KURL & url );
 
     protected slots:
         void fileOpen();

@@ -27,7 +27,7 @@
 #include <klocale.h>
 #include <qfile.h>
 #include <qtimer.h>
-#include <ktextbrowser.h>
+#include <kio/netaccess.h>
 #include "kpar2_part.h"
 #include "kpar2gui.h"
 
@@ -64,6 +64,12 @@ bool KPar2Part::openFile()
     QFile file( m_file );
     kpar2thread->loadPAR2Files( m_file.latin1() );
     return true;
+}
+
+bool KPar2Part::openURL( const KURL & url )
+{
+    m_file = KIO::NetAccess::mostLocalURL( url, 0 ).path();
+    return openFile();
 }
 
 void KPar2Part::fileOpen()
