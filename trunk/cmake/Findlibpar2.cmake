@@ -1,6 +1,6 @@
-FIND_PATH( LIBPAR2_INCLUDE_DIR libpar2.h /usr/include/libpar2 /usr/local/include/libpar2 )
-FIND_PATH( LIBPAR2_LIB_INCLUDE_DIR config.h /usr/lib/libpar2/include )
-FIND_LIBRARY( LIBPAR2_LIBRARY NAMES par2 PATHS /usr/lib /usr/local/lib )
+FIND_PATH( LIBPAR2_INCLUDE_DIR libpar2/libpar2.h /usr/include/ /usr/local/include/ )
+FIND_PATH( LIBPAR2_LIB_INCLUDE_DIR config.h /usr/lib/libpar2/include /usr/lib64/libpar2/include /usr/local/lib/libpar2/include /usr/lib64/libpar2/include )
+FIND_LIBRARY( LIBPAR2_LIBRARY NAMES par2 PATHS /usr/lib /usr/lib64 /usr/local/lib /usr/local/lib64 )
 SET( LIBPAR2_INCLUDE_DIRS ${LIBPAR2_INCLUDE_DIR} ${LIBPAR2_LIB_INCLUDE_DIR} )
 
 IF( LIBPAR2_INCLUDE_DIRS AND LIBPAR2_LIBRARY )

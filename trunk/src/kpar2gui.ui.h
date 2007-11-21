@@ -10,7 +10,7 @@
 ** destructor.
 *****************************************************************************/
 
-#include <parheaders.h>
+#include <libpar2/parheaders.h>
 #include <qpixmap.h>
 #include "kpar2customevents.h"
 #include "kpar2guisettings.h"

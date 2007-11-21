@@ -18,8 +18,8 @@
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
 
-#include <par2cmdline.h>
-#include <par2repairer.h>
+#include <libpar2/par2cmdline.h>
+#include <libpar2/par2repairer.h>
 #include <klistview.h>
 #include "kpar2object.h"
 #include "kpar2gui.h"
