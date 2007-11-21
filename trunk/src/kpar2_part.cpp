@@ -45,13 +45,13 @@ KPar2Part::KPar2Part( QWidget *parentWidget, const char *widgetName,
     setWidget(m_widget);
 
     // create our actions
-    KStdAction::open(this, SLOT(fileOpen()), actionCollection());
+    KStdAction::open( this, SLOT(fileOpen()), actionCollection() );
 
     // Set up the PAR2 thread
     kpar2thread = new KPar2Thread( m_widget );
 
     // set our XML-UI resource file
-    setXMLFile("kpar2_part.rc");
+    setXMLFile( "kpar2_part.rc" );
 }
 
 KPar2Part::~KPar2Part()
