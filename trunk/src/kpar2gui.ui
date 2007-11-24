@@ -72,12 +72,6 @@
                 <property name="selectionMode" stdset="0">
                     <enum>NoSelection</enum>
                 </property>
-                <property name="autoFormatting" stdset="0">
-                    <string>AutoAll</string>
-                </property>
-                <property name="textFormat" stdset="0">
-                    <string>LogText</string>
-                </property>
             </widget>
             <widget class="QFrame">
                 <property name="name">
