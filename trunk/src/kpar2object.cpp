@@ -106,6 +106,9 @@ bool KPar2Object::loadPAR2Files( const QString& par2file )
         FileProgress *f2 = new FileProgress( 0 );
         QApplication::postEvent( _gui, f2 );
 
+        StatusMessage *m1 = new StatusMessage( "PAR2 files loaded." );
+        QApplication::postEvent( _gui, m1 );
+
     }else{
         qDebug( "Empty string passed as file to load, aborting!" );
     }
@@ -118,7 +121,7 @@ bool KPar2Object::checkParity( const QString& par2file )
     bool result = false;
 
     if( !par2file.isEmpty() ){
-        StatusMessage *m = new StatusMessage( "Checking parity..." );
+        StatusMessage *m = new StatusMessage( "Verifying parity..." );
         QApplication::postEvent( _gui, m );
 
         EnableCheckParity *c = new EnableCheckParity( false );
@@ -167,6 +170,9 @@ bool KPar2Object::checkParity( const QString& par2file )
 
         processed_files = 0;
 
+        StatusMessage *m = new StatusMessage( "Parity verified." );
+        QApplication::postEvent( _gui, m );
+
     }else{
         qDebug( "Empty string passed as file to load, aborting!" );
     }
@@ -180,7 +186,7 @@ bool KPar2Object::repairFiles( const QString& par2file )
     bool result = false;
 
     if( !par2file.isEmpty() ){
-        StatusMessage *m = new StatusMessage( "Repairing..." );
+        StatusMessage *m = new StatusMessage( "Repairing files..." );
         QApplication::postEvent( _gui, m );
 
         FileProgress *f1 = new FileProgress( 0 );
@@ -201,6 +207,11 @@ bool KPar2Object::repairFiles( const QString& par2file )
             result = true;
             files_damaged = 0;
             files_missing = 0;
+            StatusMessage *m1 = new StatusMessage( "Repair succeeded." );
+            QApplication::postEvent( _gui, m );
+        }else{
+            StatusMessage *m1 = new StatusMessage( "Repairing failed!" );
+            QApplication::postEvent( _gui, m );
         }
 
     }else{
