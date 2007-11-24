@@ -12,13 +12,15 @@
 
 #include <libpar2/parheaders.h>
 #include <qpixmap.h>
+#include <kstatusbar.h>
+#include <kparts/mainwindow.h>
+#include <kiconloader.h>
 #include "kpar2customevents.h"
 #include "kpar2guisettings.h"
-#include "kpar2gui_images.h"
 
-static QPixmap ok( uic_findImage( "ok.png" ) );
-static QPixmap damaged( uic_findImage( "damaged.png" ) );
-static QPixmap missing( uic_findImage( "missing.png" ) );
+static QPixmap ok( KGlobal::iconLoader()->loadIcon( "button_ok.png", KIcon::Toolbar ) );
+static QPixmap damaged( KGlobal::iconLoader()->loadIcon( "button_cancel.png", KIcon::Toolbar ) );
+static QPixmap missing( KGlobal::iconLoader()->loadIcon( "messagebox_critical.png", KIcon::Toolbar ) );
 
 void KPar2GUI::init()
 {
@@ -73,6 +75,9 @@ void KPar2GUI::customEvent( QCustomEvent *e )
         }else if( e->type() ==  QEvent::User + 7 ){
             Finished *fe = ( Finished* )e;
             FileDisplay->ensureItemVisible( new QListViewItem( FileDisplay, FileDisplay->lastItem(), fe->info() ) );
+        }else if( e->type() ==  QEvent::User + 8 ){
+            StatusMessage *m = ( StatusMessage* )e;
+            static_cast< KParts::MainWindow* >( parent() )->statusBar()->message( m->message() );
         }
 }
 

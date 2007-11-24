@@ -112,4 +112,15 @@ class Finished : public QCustomEvent
         QString i;
 };
 
+class StatusMessage : public QCustomEvent
+{
+    public:
+        StatusMessage( const QString& message ) : QCustomEvent( QEvent::User + 8 ), m( message ){}
+        ~StatusMessage(){}
+        QString message() const{ return m; }
+
+    private:
+        QString m;
+};
+
 #endif // _KPAR2_CUSTOMEVENTS_H_

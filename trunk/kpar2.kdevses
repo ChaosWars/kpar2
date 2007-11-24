@@ -1,13 +1,46 @@
 <?xml version = '1.0' encoding = 'UTF-8'?>
 <!DOCTYPE KDevPrjSession>
 <KDevPrjSession>
- <DocsAndViews NumberOfDocuments="2" >
-  <Doc0 NumberOfViews="1" URL="file:///home/lawrence/Projects/kpar2/src/kpar2object.cpp" >
+ <DocsAndViews NumberOfDocuments="13" >
+  <Doc0 NumberOfViews="1" URL="file:///home/lawrence/Projects/kpar2/src/kpar2_part.cpp" >
    <View0 Encoding="" Type="Source" />
   </Doc0>
-  <Doc1 NumberOfViews="1" URL="file:///home/lawrence/Projects/kpar2/src/kpar2gui.ui.h" >
-   <View0 Encoding="" line="0" Type="Source" />
+  <Doc1 NumberOfViews="1" URL="file:///home/lawrence/Projects/kpar2/src/main.cpp" >
+   <View0 Encoding="" Type="Source" />
   </Doc1>
+  <Doc2 NumberOfViews="1" URL="file:///home/lawrence/Projects/kpar2/src/kpar2.cpp" >
+   <View0 Encoding="" Type="Source" />
+  </Doc2>
+  <Doc3 NumberOfViews="1" URL="file:///home/lawrence/Projects/kpar2/src/kpar2gui.ui.h" >
+   <View0 Encoding="" Type="Source" />
+  </Doc3>
+  <Doc4 NumberOfViews="1" URL="file:///home/lawrence/Projects/kpar2/src/kpar2gui_images.h" >
+   <View0 Encoding="" Type="Source" />
+  </Doc4>
+  <Doc5 NumberOfViews="1" URL="file:///home/lawrence/Projects/kpar2/src/kpar2_part.rc" >
+   <View0 Encoding="" Type="Source" />
+  </Doc5>
+  <Doc6 NumberOfViews="1" URL="file:///home/lawrence/Projects/kpar2/src/kpar2_shell.rc" >
+   <View0 Encoding="" Type="Source" />
+  </Doc6>
+  <Doc7 NumberOfViews="1" URL="file:///home/lawrence/Projects/kpar2/src/x-par2.desktop" >
+   <View0 Encoding="" Type="Source" />
+  </Doc7>
+  <Doc8 NumberOfViews="1" URL="file:///home/lawrence/Projects/kpar2/src/kpar2_part.desktop" >
+   <View0 Encoding="" Type="Source" />
+  </Doc8>
+  <Doc9 NumberOfViews="1" URL="file:///home/lawrence/Projects/kpar2/src/kpar2.desktop" >
+   <View0 Encoding="" Type="Source" />
+  </Doc9>
+  <Doc10 NumberOfViews="1" URL="file:///home/lawrence/Projects/kpar2/src/CMakeLists.txt" >
+   <View0 Encoding="" Type="Source" />
+  </Doc10>
+  <Doc11 NumberOfViews="1" URL="file:///home/lawrence/Projects/kpar2/src/kpar2guisettings.kcfgc" >
+   <View0 Encoding="" Type="Source" />
+  </Doc11>
+  <Doc12 NumberOfViews="1" URL="file:///home/lawrence/Projects/kpar2/src/kpar2guisettings.kcfg" >
+   <View0 Encoding="" line="0" Type="Source" />
+  </Doc12>
  </DocsAndViews>
  <pluginList>
   <kdevdebugger>

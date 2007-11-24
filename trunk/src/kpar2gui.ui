@@ -1,5 +1,6 @@
 <!DOCTYPE UI><UI version="3.3" stdsetdef="1">
 <class>KPar2GUI</class>
+<comment>Version 0.2.3</comment>
 <author>Lawrence Lee</author>
 <widget class="QWidget">
     <property name="name">

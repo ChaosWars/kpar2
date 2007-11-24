@@ -53,7 +53,8 @@ class KPar2Object : public QObject
         Operation operation;
         int total_files;
         int processed_files;
-        int files_to_repair;
+        int files_damaged;
+        int files_missing;
         void signal_filename( std::string str );
         void signal_progress( double value );
         void signal_headers( ParHeaders* headers );

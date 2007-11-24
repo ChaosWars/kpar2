@@ -27,7 +27,7 @@
 static const char description[] =
     I18N_NOOP( "PAR2 verification and repair application for KDE3" );
 
-static const char version[] = "0.2.2";
+static const char version[] = "0.2.3";
 
 static KCmdLineOptions options[] =
 {

@@ -31,7 +31,8 @@ KPar2Object::KPar2Object( KPar2GUI *gui )
     operation = noop;
     total_files = 0;
     processed_files = 0;
-    files_to_repair = 0;
+    files_damaged = 0;
+    files_missing = 0;
     par2repairer = NULL;
     cmdline = NULL;
 }
@@ -48,6 +49,9 @@ bool KPar2Object::loadPAR2Files( const QString& par2file )
     bool result = false;
 
     if( !par2file.isEmpty() ){
+        StatusMessage *m = new StatusMessage( "Loading PAR2 files..." );
+        QApplication::postEvent( _gui, m );
+
         total_files = 0;
         processed_files = 0;
 
@@ -114,8 +118,8 @@ bool KPar2Object::checkParity( const QString& par2file )
     bool result = false;
 
     if( !par2file.isEmpty() ){
-        Finished *f = new Finished( "Checking parity..." );
-        QApplication::postEvent( _gui, f );
+        StatusMessage *m = new StatusMessage( "Checking parity..." );
+        QApplication::postEvent( _gui, m );
 
         EnableCheckParity *c = new EnableCheckParity( false );
         QApplication::postEvent( _gui, c );
@@ -127,8 +131,14 @@ bool KPar2Object::checkParity( const QString& par2file )
         if( par2repairer->Process( *cmdline, false ) == eRepairPossible ){
             result = true;
 
-            Finished *f = new Finished( "Repair is possible" );
-            QApplication::postEvent( _gui, f );
+            Finished *f1 = new Finished( QString( "%1 files are damaged." ).arg( files_damaged ) );
+            QApplication::postEvent( _gui, f1 );
+
+            Finished *f2 = new Finished( QString( "%1 files are missing." ).arg( files_missing ) );
+            QApplication::postEvent( _gui, f2 );
+
+            Finished *f3 = new Finished( "Repair is possible." );
+            QApplication::postEvent( _gui, f3 );
 
             if( !_gui->autoRepair() ){
                 EnableRepair *e = new EnableRepair( true );
@@ -136,14 +146,21 @@ bool KPar2Object::checkParity( const QString& par2file )
             }
 
         }else{
-            Finished *f;
 
-            if( files_to_repair == 0 )
-                f = new Finished( QString( "All files are correct, repair is not required." ) );
-            else
-                f = new Finished( QString( "Repair not possible!" ) );
+            if( files_missing + files_damaged == 0 ){
+                Finished *f = new Finished( QString( "All files are correct, repair is not required." ) );
+                QApplication::postEvent( _gui, f );
+            }else{
+                Finished *f1 = new Finished( QString( "%1 files are damaged." ).arg( files_damaged ) );
+                QApplication::postEvent( _gui, f1 );
 
-            QApplication::postEvent( _gui, f );
+                Finished *f2 = new Finished( QString( "%1 files are missing." ).arg( files_missing ) );
+                QApplication::postEvent( _gui, f2 );
+
+                Finished *f3 = new Finished( QString( "Repair not possible!" ) );
+                QApplication::postEvent( _gui, f3 );
+            }
+
             EnableRepair *e = new EnableRepair( false );
             QApplication::postEvent( _gui, e );
         }
@@ -163,8 +180,8 @@ bool KPar2Object::repairFiles( const QString& par2file )
     bool result = false;
 
     if( !par2file.isEmpty() ){
-        Finished *f = new Finished( "Repairing..." );
-        QApplication::postEvent( _gui, f );
+        StatusMessage *m = new StatusMessage( "Repairing..." );
+        QApplication::postEvent( _gui, m );
 
         FileProgress *f1 = new FileProgress( 0 );
         QApplication::postEvent( _gui, f1 );
@@ -182,7 +199,8 @@ bool KPar2Object::repairFiles( const QString& par2file )
 
         if( par2repairer->Process( *cmdline, true ) == eSuccess ){
             result = true;
-            files_to_repair = 0;
+            files_damaged = 0;
+            files_missing = 0;
         }
 
     }else{
@@ -203,32 +221,6 @@ void KPar2Object::signal_progress( double value )
     double current_progress = value/10.0;
     FileProgress *e = new FileProgress( static_cast<int>( current_progress ) );
     QApplication::postEvent( _gui, e );
-
-    if( operation == verify ){
-
-        if( processed_files > 0 ){
-
-            if( total_files > 0 ){
-                int progress = static_cast<int>( ( static_cast<double>( processed_files )/ static_cast<double>( total_files ) ) * 100.00 );
-                TotalProgress *e = new TotalProgress( progress );
-                QApplication::postEvent( _gui, e );
-            }
-
-        }
-
-    }else if( operation == repair ){
-
-        if( processed_files > 0 ){
-
-            if( total_files > 0 ){
-                int progress = static_cast<int>( ( static_cast<double>( processed_files )/ static_cast<double>( files_to_repair ) ) * 100.00 );
-                TotalProgress *e = new TotalProgress( progress );
-                QApplication::postEvent( _gui, e );
-            }
-
-        }
-
-    }
 }
 
 void KPar2Object::signal_headers( ParHeaders* headers )
@@ -243,15 +235,33 @@ void KPar2Object::signal_done( std::string filename, int blocks_available, int b
     processed_files++;
     int data = blocks_total - blocks_available;
 
+    if( operation == verify ){
+
+        if( total_files > 0 ){
+            int progress = static_cast<int>( ( static_cast<double>( processed_files )/ static_cast<double>( total_files ) ) * 100.00 );
+            TotalProgress *e = new TotalProgress( progress );
+            QApplication::postEvent( _gui, e );
+        }
+
+    }else if( operation == repair ){
+
+        if( total_files > 0 ){
+            int progress = static_cast<int>( ( static_cast<double>( processed_files )/ static_cast<double>( files_damaged + files_missing ) ) * 100.00 );
+            TotalProgress *e = new TotalProgress( progress );
+            QApplication::postEvent( _gui, e );
+        }
+
+    }
+
     if( data == 0 ){
         Done *e = new Done( QString( "Found" ) );
         QApplication::postEvent( _gui, e );
     }else if( data < blocks_total ){
-        files_to_repair++;
+        files_damaged++;
         Done *e = new Done( QString( "Damaged" ) );
         QApplication::postEvent( _gui, e );
     }else if( data == blocks_total ){
-        files_to_repair++;
+        files_missing++;
         Done *e = new Done( QString( filename ) );
         QApplication::postEvent( _gui, e );
     }
