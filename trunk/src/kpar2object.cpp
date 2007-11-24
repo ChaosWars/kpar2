@@ -49,7 +49,7 @@ bool KPar2Object::loadPAR2Files( const QString& par2file )
     bool result = false;
 
     if( !par2file.isEmpty() ){
-        StatusMessage *m = new StatusMessage( "Loading PAR2 files..." );
+        StatusMessage *m = new StatusMessage( "Loading parity files..." );
         QApplication::postEvent( _gui, m );
 
         total_files = 0;
@@ -106,7 +106,7 @@ bool KPar2Object::loadPAR2Files( const QString& par2file )
         FileProgress *f2 = new FileProgress( 0 );
         QApplication::postEvent( _gui, f2 );
 
-        StatusMessage *m1 = new StatusMessage( "PAR2 files loaded." );
+        StatusMessage *m1 = new StatusMessage( "Parity files loaded." );
         QApplication::postEvent( _gui, m1 );
 
     }else{
@@ -121,7 +121,7 @@ bool KPar2Object::checkParity( const QString& par2file )
     bool result = false;
 
     if( !par2file.isEmpty() ){
-        StatusMessage *m = new StatusMessage( "Verifying parity..." );
+        StatusMessage *m = new StatusMessage( "Verifying source files..." );
         QApplication::postEvent( _gui, m );
 
         EnableCheckParity *c = new EnableCheckParity( false );
@@ -134,13 +134,13 @@ bool KPar2Object::checkParity( const QString& par2file )
         if( par2repairer->Process( *cmdline, false ) == eRepairPossible ){
             result = true;
 
-            Finished *f1 = new Finished( QString( "%1 files are damaged." ).arg( files_damaged ) );
+            Finished *f1 = new Finished( QString( "%1 %2 damaged." ).arg( files_damaged ).arg( ( files_damaged == 1 ) ? "file is" : "files are" ) );
             QApplication::postEvent( _gui, f1 );
 
-            Finished *f2 = new Finished( QString( "%1 files are missing." ).arg( files_missing ) );
+            Finished *f2 = new Finished( QString( "%1 %2 missing." ).arg( files_missing ).arg( ( files_missing == 1 ) ? "file is" : "files are" ) );
             QApplication::postEvent( _gui, f2 );
 
-            Finished *f3 = new Finished( "Repair is possible." );
+            Finished *f3 = new Finished( "Repair is required." );
             QApplication::postEvent( _gui, f3 );
 
             if( !_gui->autoRepair() ){
@@ -154,13 +154,13 @@ bool KPar2Object::checkParity( const QString& par2file )
                 Finished *f = new Finished( QString( "All files are correct, repair is not required." ) );
                 QApplication::postEvent( _gui, f );
             }else{
-                Finished *f1 = new Finished( QString( "%1 files are damaged." ).arg( files_damaged ) );
+                Finished *f1 = new Finished( QString( "%1 %2 damaged." ).arg( files_damaged ).arg( ( files_damaged == 1 ) ? "file is" : "files are" ) );
                 QApplication::postEvent( _gui, f1 );
 
-                Finished *f2 = new Finished( QString( "%1 files are missing." ).arg( files_missing ) );
+                Finished *f2 = new Finished( QString( "%1 f%2 missing." ).arg( files_missing ).arg( ( files_missing == 1 ) ? "file is" : "files are" ) );
                 QApplication::postEvent( _gui, f2 );
 
-                Finished *f3 = new Finished( QString( "Repair not possible!" ) );
+                Finished *f3 = new Finished( QString( "Repair is not possible" ) );
                 QApplication::postEvent( _gui, f3 );
             }
 
@@ -170,7 +170,7 @@ bool KPar2Object::checkParity( const QString& par2file )
 
         processed_files = 0;
 
-        StatusMessage *m1 = new StatusMessage( "Parity verified." );
+        StatusMessage *m1 = new StatusMessage( "Source files verified." );
         QApplication::postEvent( _gui, m1 );
 
     }else{
@@ -207,10 +207,10 @@ bool KPar2Object::repairFiles( const QString& par2file )
             result = true;
             files_damaged = 0;
             files_missing = 0;
-            StatusMessage *m1 = new StatusMessage( "Repair succeeded." );
+            StatusMessage *m1 = new StatusMessage( "Repair complete." );
             QApplication::postEvent( _gui, m1 );
         }else{
-            StatusMessage *m1 = new StatusMessage( "Repairing failed!" );
+            StatusMessage *m1 = new StatusMessage( "Repairing failed." );
             QApplication::postEvent( _gui, m1 );
         }
 
