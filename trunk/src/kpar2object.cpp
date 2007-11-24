@@ -157,7 +157,7 @@ bool KPar2Object::checkParity( const QString& par2file )
                 Finished *f1 = new Finished( QString( "%1 %2 damaged." ).arg( files_damaged ).arg( ( files_damaged == 1 ) ? "file is" : "files are" ) );
                 QApplication::postEvent( _gui, f1 );
 
-                Finished *f2 = new Finished( QString( "%1 f%2 missing." ).arg( files_missing ).arg( ( files_missing == 1 ) ? "file is" : "files are" ) );
+                Finished *f2 = new Finished( QString( "%1 %2 missing." ).arg( files_missing ).arg( ( files_missing == 1 ) ? "file is" : "files are" ) );
                 QApplication::postEvent( _gui, f2 );
 
                 Finished *f3 = new Finished( QString( "Repair is not possible" ) );
