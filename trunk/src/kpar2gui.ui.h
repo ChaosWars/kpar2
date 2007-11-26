@@ -50,10 +50,30 @@ void KPar2GUI::customEvent( QCustomEvent *e )
             FileDisplay->ensureItemVisible( new QListViewItem( FileDisplay, FileDisplay->lastItem(), fe->file() ) );
         }else if( e->type() ==  QEvent::User + 2 ){
             FileProgress *fe = ( FileProgress* )e;
-            CurrentFileProgress->setValue( fe->progress() );
+
+            if( fe->progress() < 0 ){
+                CurrentFileProgress->setEnabled( false );
+            }else{
+
+                if( !CurrentFileProgress->isEnabled() )
+                    CurrentFileProgress->setEnabled( true );
+
+                CurrentFileProgress->setValue( fe->progress() );
+            }
         }else if( e->type() ==  QEvent::User + 3 ){
             TotalProgress *fe = ( TotalProgress* )e;
-            TotalFileProgress->setValue( fe->progress() );
+
+            if( fe->progress() < 0 ){
+                TotalFileProgress->setEnabled( false );
+            }else{
+
+                if( !TotalFileProgress->isEnabled() )
+                    TotalFileProgress->setEnabled( true );
+
+                TotalFileProgress->setValue( fe->progress() );
+
+            }
+
         }else if( e->type() ==  QEvent::User + 4 ){
             EnableCheckParity *ee = ( EnableCheckParity* )e;
             CheckParityButton->setEnabled( ee->enable() );

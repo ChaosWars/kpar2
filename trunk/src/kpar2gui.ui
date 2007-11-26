@@ -72,6 +72,9 @@
                 <property name="selectionMode" stdset="0">
                     <enum>NoSelection</enum>
                 </property>
+                <property name="fullWidth">
+                    <bool>true</bool>
+                </property>
             </widget>
             <widget class="QFrame">
                 <property name="name">
@@ -130,6 +133,9 @@
                                 <property name="name">
                                     <cstring>CurrentFileProgress</cstring>
                                 </property>
+                                <property name="enabled">
+                                    <bool>false</bool>
+                                </property>
                                 <property name="sizePolicy">
                                     <sizepolicy>
                                         <hsizetype>7</hsizetype>
@@ -142,6 +148,9 @@
                             <widget class="KProgress">
                                 <property name="name">
                                     <cstring>TotalFileProgress</cstring>
+                                </property>
+                                <property name="enabled">
+                                    <bool>false</bool>
                                 </property>
                                 <property name="sizePolicy">
                                     <sizepolicy>

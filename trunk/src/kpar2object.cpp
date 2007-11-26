@@ -58,7 +58,7 @@ bool KPar2Object::loadPAR2Files( const QString& par2file )
         FileProgress *f1 = new FileProgress( 0 );
         QApplication::postEvent( _gui, f1 );
 
-        TotalProgress *t = new TotalProgress( 0 );
+        TotalProgress *t = new TotalProgress( -1 );
         QApplication::postEvent( _gui, t );
 
         operation = load;
