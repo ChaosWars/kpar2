@@ -3,6 +3,8 @@ CMakeLists.txt
 cmake/Findlibpar2.cmake
 src
 src/CMakeLists.txt
+src/icons
+src/icons/CMakeLists.txt
 src/kpar2.cpp
 src/kpar2.h
 src/kpar2_part.cpp
