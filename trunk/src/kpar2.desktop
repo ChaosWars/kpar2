@@ -2,7 +2,7 @@
 Encoding=UTF-8
 Name=KPar2
 Exec=kpar2 %i %m -caption "%c"
-Icon=KPar2
+Icon=kpar2
 Type=Application
 DocPath=kpar2/kpar2.html
 Comment=A PAR2 verification and repair application
