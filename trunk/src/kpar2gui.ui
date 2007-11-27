@@ -10,18 +10,21 @@
         <rect>
             <x>0</x>
             <y>0</y>
-            <width>470</width>
+            <width>550</width>
             <height>550</height>
         </rect>
     </property>
     <property name="minimumSize">
         <size>
-            <width>470</width>
+            <width>550</width>
             <height>550</height>
         </size>
     </property>
     <property name="caption">
         <string>KPar2</string>
+    </property>
+    <property name="icon">
+        <pixmap>image0</pixmap>
     </property>
     <property name="focusPolicy">
         <enum>ClickFocus</enum>
@@ -67,6 +70,9 @@
             </property>
             <property name="fullWidth">
                 <bool>true</bool>
+            </property>
+            <property name="whatsThis" stdset="0">
+                <string>List of loaded parity files, verified source files and status messages</string>
             </property>
         </widget>
         <widget class="QFrame">
@@ -153,6 +159,9 @@
                                             <verstretch>0</verstretch>
                                         </sizepolicy>
                                     </property>
+                                    <property name="whatsThis" stdset="0">
+                                        <string>Progress of the current operation</string>
+                                    </property>
                                 </widget>
                             </vbox>
                         </widget>
@@ -186,6 +195,9 @@
                                             <horstretch>0</horstretch>
                                             <verstretch>0</verstretch>
                                         </sizepolicy>
+                                    </property>
+                                    <property name="whatsThis" stdset="0">
+                                        <string>Overall progress of the queued operations</string>
                                     </property>
                                 </widget>
                             </vbox>
@@ -252,6 +264,9 @@
                                             <property name="default">
                                                 <bool>true</bool>
                                             </property>
+                                            <property name="whatsThis" stdset="0">
+                                                <string>Button to start the parity verification progress of the source files</string>
+                                            </property>
                                         </widget>
                                         <widget class="KPushButton">
                                             <property name="name">
@@ -265,6 +280,9 @@
                                             </property>
                                             <property name="accel">
                                                 <string>Alt+R</string>
+                                            </property>
+                                            <property name="whatsThis" stdset="0">
+                                                <string>Button to start repairing damaged or missing source files</string>
                                             </property>
                                         </widget>
                                     </hbox>
@@ -317,6 +335,9 @@
                                     <property name="accel">
                                         <string>Alt+E</string>
                                     </property>
+                                    <property name="whatsThis" stdset="0">
+                                        <string>Automatically start the parity varification progress of the source files</string>
+                                    </property>
                                 </widget>
                                 <widget class="QCheckBox">
                                     <property name="name">
@@ -328,6 +349,9 @@
                                     <property name="accel">
                                         <string>Alt+P</string>
                                     </property>
+                                    <property name="whatsThis" stdset="0">
+                                        <string>Automatically repair damaged or missing source files</string>
+                                    </property>
                                 </widget>
                             </vbox>
                         </widget>
@@ -337,6 +361,11 @@
         </widget>
     </vbox>
 </widget>
+<images>
+    <image name="image0">
+        <data format="PNG" length="3327">89504e470d0a1a0a0000000d49484452000000300000003008060000005702f98700000cc6494441546881ed995b6c1cd779c77fe732b3575e76b9bc49a44489126551562c5f2a5bb6635588dd1a8911a3055a20e84b510469fd500479ea050e501441fb50f8a52f79685e82b80de0006d1ad8451dc3719538ad2358b26246a22953b225d914afbbcbbdcfeccc9c3eccec852b529265f7a1800f30fb0dcf993df3ff7ff7b384cfc7e7e3f3f1ff7a884ff2f0dffef9c9a79465ef410804a2fdedd6bd686d2944782f3af3a2f5d935d77eaebd465bd66b95c5bf7ae1a7a76f8749df29f86f3ff758e2d493cffcc3c8c4cc7d5a81255b2b66ab34e03915aac5ebb4e8753ee95199004c48aa6b48a9592ffbeff0c24f1ff8cc08f4a5fb26fafa07ef79a3f814d3398fa3431b0441106934d46ceb92cd02cb97dfc404fe0e966a9ba063a9b6082d104fef3bfafc738f67bff3dd37f39f0981dcc8d8e3a9b8881daabc4a7a33a0ea3a74d4d9050c81103ef17892c077e9768d10648b8de8b28ad8ea5242d03798d6e974ea09e0c79f0981b1f1dda7dcd2470cd6e6a02a28c156ed8a0e1921406b85b0125dc07b896e05dca6d89a6b9639f6c08953f0eaa727f0fc9f3e1a1fcc641e2558c78ec5b704ec4dc0b6b846cf335d44b725df15d4c23864b3b9479e7feeb1d877befb4be7531188c7638773837dbb45a3744baddf0cb6875c37c85b5a22fc4e9fb28ef4f70f8c00ad8c7077040edf7bffa3891831436207e06cd5deb6c0b70fde2d96ea262104433a991cdf35f9c8a72690191a3e1553be0862b1084457feeeb146074487dc7673ed5ad2bd4def9c96626474fc8bc08fee9ac05f7ce34139d89f3a6569013abe0d08b853adb7796c2d063bcf0b8fecd0d06ffff5d71f967ff7bd5f05774520154b3fb867623c63cbf2d6bd3b6ffdbf1b26607c34b7379e4c1c002e6df7c86d09cccc7ee164229914785b15607a9e135bd67a56cdf60f0a4c3861b6db311cc944bcefc0ccec31f8afbb23d0a8554e5c58b8de06d6d31884f32632462fd05677213a6d46e8573d0f1ad3f94e0f17dff7c46661fd04f0d25d11c866734e75e92cb5cdb548519ddd4df77d0ff6dbcd8713b77341c1d0ee432462d6ddd78120f06bdab6914a8289dc2332b989b4676829d544fc0cd5a6c631319a228deb2b46f5c76819d2717d49d54f10970de2cabf350f039ed72cefb47c5b02bee795b51d4329dd6501d3314444a02d2382d5a1dfe7f1c74e3238d0cfd56b57597ced6fb0b54f606033fd085ffaca1fb3b676838f3fbcc8f2876719611125b68903a9705db774d704dc66b36a592994d2b4c3b30b74285a3ede2191cd0c323e3a8294a17a9552280d2bcd3d7cf50ffe8ce1a10c5393e31c3e740ffff24fe7b1a4ecb26c676f29b5711a8d3bb680ec920210d56acdd1d6084aab2d2ed4ce34c6e007e0f882b80e6e8a1163c004014a298acd24f79ffa1386b28300343d8f977ff2cfecd61f2245a8a0de7708a54dbd51afde0981241007541701b9ba5690ca9ad9d185fcc070b93ec5d8f409ae2ebcccfefecd68bb280d1981310181d0c4f7ff1ef7ceceb62d75fae73f23befe06b6adba1242278ec2ec266936fdda9d109080dd02de929ba572536b1ba5f5b6aef3fe6686279ef90683fd698a87eee5ad5fbc42ad5663d095a1f685c1f30dcbea01befe3b5f460881313077f12285f91fd1674b022b8b15ef47ea1841e0e3bb559c6a1e5bd61142082f081a7742c0edd53e204be592afb48d52aaad99167880e194c3eada2a037d693203fd7cf999af7161e1121f2daf85040ca4fb327ce5ab5f8bc01b56f305de7cfd271c9df91213d3c7e8cf0c61db092c5b638ca1d9f4683a353ebeb6c8faf215fcd874fae4498bd3a74fdf444075ddfb403f6045f30a90f71d1a3ef4c463bff5945bcd23a4400a89940211c9b46db8747595fdf73c841082f373e7d998ff3712d929a6f64e21806ca69fbe540a2104f98d2267cefc9ae3c71f677472063b9e420885c1e0fb415b31dab2c9e6c619df73484cec3bf6b4eb5a35cbea3b7bf9f2c52da9aa3788eb40a2a57d40f881f1a5943bba104056de6069659df2e63afed57fe5c090c74751813502cad53aa9449c72a1cc5bff7d96bd7b2770dc26a25a2716b3d15aa3b542ca9672b696c25dbb46079f7df6e97f6c349c11c7497efbf4e9efef48a0060c77bb52d30b9a0881526a4bf6f17c43a901f9469c0d39c9bd83035c7efb25ee19ec6c6b4c984d16163fa0562d53dfac914ca668345c94520441401098b65bb6701b63f03c1fc771a9d71b542a354aa52a070e4c7f736e6efe87c0c59d08388007c488e2c071fd26884e1d88e2606e3dcbe8a1df657a688807fbd37c78fd2376250b91a5a0d5381803960c589eff0ff2ce01660f1f4408504aa2948ea48a2ed906ef791ebeefe3fb2149dff7b16dab2f9b1d3c7e2b0206d804065a04ca55d70571930bc95886a93d13482130181af50a195ba1546b9ba80e445add9f6db0f2411921245a6b2ccbc2b62d62311bdbb6504ab52da09444ca3097f87e80ebba282509028310c4bb014b6e1eadb2ad015da9b96e6030a18674545135ca2bf0dec23c1b8522cda687d2364628945691b56867213020257b2686711c07a52496a5b16d4d2c1612b16d1d490bcbb288c57474afd15a23a5a2582cf2f0c30fb4bc6347022e508d08a85abde90781314ae93638a5140f4e3a4cb8af53b8f02267fee73572b91c1b8d44b41e11c084560094541cdc3fcac6468166b389d6aa0dee765229c5caca2a2323b94008b37e3b0b00ac7559c0f3fcc0281d026b49ad3583298b9971cda0ff3e4a2aeaa9fb6878a115368a251616aff0ce3b6ff1f107bf269db4f9f92fce70ecd82cabab79d6d60a789e1fc5806cbb8d94a21d174240bd5ee7dab52552a914524af9d24b3fb6bb81eed4cc15802690acd45cdff77d94a522b7d89a420363a8987ee2319ba35f38ced9336566fbaf707fe6122a7f89110dd363f0515e7375a9ca3bef5ce0e0c17dacae6eb0be9e67686890e1e12cb158582c212c64b55a8395950dcae52a5a4b3ccfe3dd77e749265349ba8e193b1130c0323053a935fda6e78bde2cd492d7d60c23d34fa094424ac1238f3dcda54bf354d71710ce0a426a4c6c8c8191190ececc532894387ffe02a3a3c3b86e9385852b148b9bd4eb758ac502c9648a4c26433a9d229bcd904e2729972bacacac61db16478f1e912fbfdc39efddaa9d5e060e566aaef13c5f74ba513a850cc352c566f6f030c64071b3cc95f7df253d30ccfd279e251eb39052d26838fce6c2796667a75858b84e2e3744a954c1f78328982d4aa512b55a0321140303e1bcebbaacad3588c76d76ef1ea7542a71e0c0a47b272e046151cb1bc384015f29adbb5da795528feff33873fe0de2fdbb88d72ef0f0b847be7289c52b8623878f608ce1ddb9734cc9b7b9b83cceecec61f2f922478f1ec2f37caad51a8d8683e7f9181310d61c896559a45209128938b55a9da5a515f6efdf635e7cf187f53b2500700d9802d15451856abb5044a23fa9f8e2be228e9b273d22018b5db6e6f2d2463b0399fac7f48f58fceaedf77872683f2323398ac512b95c96c9c9b176fa6cb510beefe3384d6ab506376eace2382ebb778f71eedc9c585bcb673e098175a00c3495b61298a0eb4cdc3978249421118b662282ca59e6fad20acd6693942cd1707d867339ce9dfb0d535313f4f5a5999f7f9f73e71ca40c411b639032d4be655961279b4e2104cccf2f522894d8b367224e786e7180e076047ce0aa1fe084ed74a7c9ea76a56e322d797c5f40b1fa3302df27316c58db6870df7d0ff2dee21aa55285cdcd3296a5a9d71bacaf6fb0b2b2caf2f20a7d7d692627271819196660a08ff575877abd4122112793e9279dded3070c12664a673b0282aef30070a3e9f90e2a8e3041d74337ff6ba9fb9899b60ce914386e9342b142ad11a063156666a628976b643203542a35924987fefe34bb768d52afcfa0b522994c60db618b914a25514ab2b4b4c29123871a2fbcf0f72b846d7f1d68ea6d00abdefbb977e7bebfb9599e0c8cd1c6181504288351c6a0c0486350c61815f5932a6ca29118211aaeab8b9b556b6d6333766de96cfa0fffe89ba3e3e323a97abdc1be7d13a452098c09cf02cda6871002cb0af52a04e4f39b140a25a6a7a782575f7de597afbffe9feb84cda60d48d10378a74bf75caa4baa6d88b7cf138407a43e200b4c4e4f1f3cfaad6ffde5a313137bc7aad59a30c660db617327a5885c53100406c769128bd940e0bcf2cabf9ff9c10fbef79aebbae70893cb0a50ec25207a64ef7db7657602dcfe4523f2314518740384678dbd5a5b074e9e7cf2f0430f9dd89fc98ce48ac5925a5d5d65656595743a8c81d1d16120a82d2ece5f7bedb557e6ae5c79ff227001b84a58a30a405d74bdacf7e5b267ed935cf448199168596237b00f98d0daca8d8d4d8cc5e3c9b4ef07b652ca80a9e7f36b1bf9fcea8d08ec87c022b0046c1076cc0dc0effd51affba5b702b6dddfbd7bf48e962bc680146126c94556c901e9683d88c0158055425759273ca754e91cbaba8e4db71f3b01ecd5f69decd922dc1d4bad1f126404cc8bae66747911b18076da0bc7ff02a8e0977cbaea25cf0000000049454e44ae426082</data>
+    </image>
+</images>
 <tabstops>
     <tabstop>CheckParityButton</tabstop>
     <tabstop>RepairFilesButton</tabstop>
