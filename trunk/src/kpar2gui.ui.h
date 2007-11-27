@@ -52,6 +52,7 @@ void KPar2GUI::customEvent( QCustomEvent *e )
             FileProgress *fe = ( FileProgress* )e;
 
             if( fe->progress() < 0 ){
+                CurrentFileProgress->setValue( 0 );
                 CurrentFileProgress->setEnabled( false );
             }else{
 
@@ -64,6 +65,7 @@ void KPar2GUI::customEvent( QCustomEvent *e )
             TotalProgress *fe = ( TotalProgress* )e;
 
             if( fe->progress() < 0 ){
+                TotalFileProgress->setValue( 0 );
                 TotalFileProgress->setEnabled( false );
             }else{
 
