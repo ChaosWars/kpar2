@@ -192,7 +192,7 @@ bool KPar2Object::repairFiles( const QString& par2file )
         FileProgress *f1 = new FileProgress( 0 );
         QApplication::postEvent( _gui, f1 );
 
-        TotalProgress *t = new TotalProgress( 0 );
+        TotalProgress *t = new TotalProgress( -1 );
         QApplication::postEvent( _gui, t );
 
         EnableRepair *e = new EnableRepair( false );
