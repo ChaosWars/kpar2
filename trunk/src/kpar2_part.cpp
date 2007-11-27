@@ -68,6 +68,7 @@ bool KPar2Part::openFile()
 
 bool KPar2Part::openURL( const KURL & url )
 {
+    emit setWindowCaption( url.prettyURL() );
     m_file = KIO::NetAccess::mostLocalURL( url, 0 ).path();
     return openFile();
 }
