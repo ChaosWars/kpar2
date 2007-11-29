@@ -41,7 +41,7 @@ KPar2::KPar2()
     setupActions();
 
     // and a status bar
-    statusBar()->show();
+//     statusBar()->show();
 
     // this routine will find and load our Part.  it finds the Part by
     // name which is a bad idea usually.. but it's alright in this
@@ -89,11 +89,9 @@ void KPar2::load( const KURL& url )
 
 void KPar2::setupActions()
 {
+    setStandardToolBarMenuEnabled( true );
+    createStandardStatusBarAction();
     KStdAction::quit( kapp, SLOT( quit() ), actionCollection() );
-
-    m_toolbarAction = KStdAction::showToolbar( this, SLOT( optionsShowToolbar() ), actionCollection() );
-    m_statusbarAction = KStdAction::showStatusbar( this, SLOT( optionsShowStatusbar() ), actionCollection() );
-
     KStdAction::keyBindings( this, SLOT( optionsConfigureKeys()), actionCollection() );
     KStdAction::configureToolbars( this, SLOT( optionsConfigureToolbars()), actionCollection() );
 }
@@ -111,26 +109,6 @@ void KPar2::readProperties( KConfig* )
     // config file.  this function is automatically called whenever
     // the app is being restored.  read in here whatever you wrote
     // in 'saveProperties'
-}
-
-void KPar2::optionsShowToolbar()
-{
-    // this is all very cut and paste code for showing/hiding the
-    // toolbar
-    if ( m_toolbarAction->isChecked() )
-        toolBar()->show();
-    else
-        toolBar()->hide();
-}
-
-void KPar2::optionsShowStatusbar()
-{
-    // this is all very cut and paste code for showing/hiding the
-    // statusbar
-    if ( m_statusbarAction->isChecked() )
-        statusBar()->show();
-    else
-        statusBar()->hide();
 }
 
 void KPar2::optionsConfigureKeys()

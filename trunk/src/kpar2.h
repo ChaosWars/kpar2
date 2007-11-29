@@ -72,8 +72,6 @@ class KPar2 : public KParts::MainWindow
         void readProperties(KConfig *);
 
     private slots:
-        void optionsShowToolbar();
-        void optionsShowStatusbar();
         void optionsConfigureKeys();
         void optionsConfigureToolbars();
         void applyNewToolbarConfig();
@@ -84,8 +82,6 @@ class KPar2 : public KParts::MainWindow
 
     private:
         KParts::ReadOnlyPart *m_part;
-        KToggleAction *m_toolbarAction;
-        KToggleAction *m_statusbarAction;
 };
 
 #endif // _KPAR2_H_

@@ -121,11 +121,18 @@ bool KPar2Object::checkParity( const QString& par2file )
     bool result = false;
 
     if( !par2file.isEmpty() ){
+        FileProgress *f1 = new FileProgress( 0 );
+        QApplication::postEvent( _gui, f1 );
+
+        TotalProgress *t = new TotalProgress( 0 );
+        QApplication::postEvent( _gui, t );
+
         StatusMessage *m = new StatusMessage( "Verifying source files..." );
         QApplication::postEvent( _gui, m );
 
         EnableCheckParity *c = new EnableCheckParity( false );
         QApplication::postEvent( _gui, c );
+
         operation = verify;
         const char *program = "par2verify";
         char *argv[] = {const_cast<char*>( program ), const_cast<char*>( par2file.latin1() )};
@@ -210,7 +217,7 @@ bool KPar2Object::repairFiles( const QString& par2file )
             StatusMessage *m1 = new StatusMessage( "Repair complete." );
             QApplication::postEvent( _gui, m1 );
         }else{
-            StatusMessage *m1 = new StatusMessage( "Repairing failed." );
+            StatusMessage *m1 = new StatusMessage( "Repair failed." );
             QApplication::postEvent( _gui, m1 );
         }
 

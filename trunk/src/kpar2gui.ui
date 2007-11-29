@@ -262,7 +262,7 @@
                                                 <bool>true</bool>
                                             </property>
                                             <property name="whatsThis" stdset="0">
-                                                <string>Button to start the parity verification progress of the source files</string>
+                                                <string>Verify the parity of the source files</string>
                                             </property>
                                         </widget>
                                         <widget class="KPushButton">
@@ -279,7 +279,7 @@
                                                 <string>Alt+R</string>
                                             </property>
                                             <property name="whatsThis" stdset="0">
-                                                <string>Button to start repairing damaged or missing source files</string>
+                                                <string>Repair damaged or missing source files</string>
                                             </property>
                                         </widget>
                                     </hbox>
@@ -333,7 +333,7 @@
                                         <string>Alt+E</string>
                                     </property>
                                     <property name="whatsThis" stdset="0">
-                                        <string>Automatically start the parity varification progress of the source files</string>
+                                        <string>Automatically verify the parity of the source files</string>
                                     </property>
                                 </widget>
                                 <widget class="QCheckBox">

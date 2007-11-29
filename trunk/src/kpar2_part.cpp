@@ -119,7 +119,7 @@ KInstance* KPar2PartFactory::instance()
 {
     if( !s_instance )
     {
-        s_about = new KAboutData("kpar2", I18N_NOOP("KPar2"), "0.2.5");
+        s_about = new KAboutData("kpar2", I18N_NOOP("KPar2"), "0.2.6");
         s_about->addAuthor("Lawrence Lee", 0, "valher@facticius.net");
         s_instance = new KInstance(s_about);
     }
