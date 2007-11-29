@@ -44,7 +44,7 @@ void KPar2GUI::customEvent( QCustomEvent *e )
             FileDisplay->ensureItemVisible( new QListViewItem( FileDisplay, FileDisplay->lastItem(), "There are " + QString::number( he->headers()->recoverable_files ) + " recoverable files and " +  QString::number( he->headers()->other_files ) + " other files." ) );
             FileDisplay->ensureItemVisible( new QListViewItem( FileDisplay, FileDisplay->lastItem(), "The block size used was " + QString::number( he->headers()->block_size ) ) );
             FileDisplay->ensureItemVisible( new QListViewItem( FileDisplay, FileDisplay->lastItem(), "There are a total of " + QString::number( he->headers()->data_blocks ) + " data blocks." ) );
-            FileDisplay->ensureItemVisible(  new QListViewItem( FileDisplay, FileDisplay->lastItem(), "The total size of the data files is " + QString::number( he->headers()->data_size ) + " bytes." ) );
+            FileDisplay->ensureItemVisible(  new QListViewItem( FileDisplay, FileDisplay->lastItem(), "The total size of the data files is " + QString::number( abs( he->headers()->data_size ) ) + " bytes." ) );
         }else if( e->type() ==  QEvent::User + 1 ){
             FileLoaded *fe = ( FileLoaded* )e;
             FileDisplay->ensureItemVisible( new QListViewItem( FileDisplay, FileDisplay->lastItem(), fe->file() ) );
