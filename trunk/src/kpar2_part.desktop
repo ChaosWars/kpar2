@@ -8,3 +8,4 @@ X-KDE-Library=libkpar2part
 Type=Service
 ServiceTypes=KParts/ReadOnlyPart,Browser/View
 Terminal=false
+MultipleArgs=false
