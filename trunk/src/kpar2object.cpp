@@ -20,13 +20,27 @@
 
 #include <libpar2/par2cmdline.h>
 #include <libpar2/par2repairer.h>
-#include <klistview.h>
 #include "kpar2object.h"
+
+#ifdef COMPILE_FOR_KDE4
+
+#include <KDE/KListView>
+#include "kpar2gui4.h"
+
+KPar2Object::KPar2Object( KPar2GUI4 *gui )
+{
+
+#else
+
+#include <klistview.h>
 #include "kpar2gui.h"
 #include "kpar2customevents.h"
 
 KPar2Object::KPar2Object( KPar2GUI *gui )
 {
+
+#endif
+
     _gui = gui;
     operation = noop;
     total_files = 0;

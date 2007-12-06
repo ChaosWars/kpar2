@@ -19,6 +19,22 @@
  ***************************************************************************/
 
 #include "kpar2.h"
+
+#ifdef COMPILE_FOR_KDE4
+
+#include <KDE/KFileDialog>
+#include <KDE/KConfig>
+#include <KDE/KUrl>
+#include <KDE/KEditToolbar>
+#include <KDe/KAction>
+#include <KDE/KStdAction>
+#include <KDe/KLibLoader>
+#include <KDE/KMessageBox>
+#include <KDE/KStatusBar>
+#include <KDE/KLocale>
+
+#else
+
 #include <kkeydialog.h>
 #include <kfiledialog.h>
 #include <kconfig.h>
@@ -30,6 +46,8 @@
 #include <kmessagebox.h>
 #include <kstatusbar.h>
 #include <klocale.h>
+
+#endif
 
 KPar2::KPar2()
     : KParts::MainWindow( 0L, "KPar2" )

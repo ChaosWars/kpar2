@@ -17,12 +17,23 @@
  *   Free Software Foundation, Inc.,                                       *
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
-
 #include "kpar2.h"
+
+#ifdef COMPILE_FOR_KDE4
+
+#include <KDE/KApplication>
+#include <KDE/KAboutData>
+#include <KDE/KCmdLineArgs>
+#include <KDE/KLocale>
+
+#else
+
 #include <kapplication.h>
 #include <kaboutdata.h>
 #include <kcmdlineargs.h>
 #include <klocale.h>
+
+#endif
 
 static const char description[] =
     I18N_NOOP( "PAR2 verification and repair application for KDE3" );

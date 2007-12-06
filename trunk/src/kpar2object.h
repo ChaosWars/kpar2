@@ -23,7 +23,16 @@
 
 #include <qobject.h>
 
+#ifdef COMPILE_FOR_KDE4
+
+class KPar2GUI4;
+
+#else
+
 class KPar2GUI;
+
+#endif
+
 class ParHeaders;
 class Par2Repairer;
 class CommandLine;

@@ -19,6 +19,23 @@
  ***************************************************************************/
 
 #include "kpar2thread.h"
+#include "kpar2_part.h"
+#include "kpar2gui.h"
+
+#ifdef COMPILE_FOR_KDE4
+
+#include <KDE/KInstance>
+#include <KDE/KAction>
+#include <KDE/KStdAction>
+#include <KDE/KFileDialog>
+#include <KDE/KGlobal>
+#include <KDE/KLocale>
+#include <QFile>
+#include <QTimer>
+#include <KDE/KIO/NetAccess>
+
+#else
+
 #include <kinstance.h>
 #include <kaction.h>
 #include <kstdaction.h>
@@ -28,8 +45,8 @@
 #include <qfile.h>
 #include <qtimer.h>
 #include <kio/netaccess.h>
-#include "kpar2_part.h"
-#include "kpar2gui.h"
+
+#endif
 
 KPar2Part::KPar2Part( QWidget *parentWidget, const char *widgetName,
                               QObject *parent, const char *name )
@@ -87,8 +104,18 @@ void KPar2Part::fileOpen()
 
 // It's usually safe to leave the factory code alone.. with the
 // notable exception of the KAboutData data
+
+#ifdef COMPILE_FOR_KDE4
+
+#include <KDE/KAboutData>
+#include <KDE/KLocale>
+
+#else
+
 #include <kaboutdata.h>
 #include <klocale.h>
+
+#endif
 
     KInstance*  KPar2PartFactory::s_instance = 0L;
     KAboutData* KPar2PartFactory::s_about = 0L;

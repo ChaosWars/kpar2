@@ -21,6 +21,7 @@
 static QPixmap ok( KGlobal::iconLoader()->loadIcon( "button_ok.png", KIcon::Toolbar ) );
 static QPixmap damaged( KGlobal::iconLoader()->loadIcon( "button_cancel.png", KIcon::Toolbar ) );
 static QPixmap missing( KGlobal::iconLoader()->loadIcon( "messagebox_critical.png", KIcon::Toolbar ) );
+static QPixmap info( KGlobal::iconLoader()->loadIcon( "info.png", KIcon::Toolbar ) );
 
 void KPar2GUI::init()
 {
@@ -52,6 +53,7 @@ void KPar2GUI::customEvent( QCustomEvent *e )
                             "The total size of the data files is " + \
                             QString::number( abs( he->headers()->data_size ) ) + " bytes." );
 
+            i->setPixmap( 1, info );
             FileDisplay->ensureItemVisible( i );
         }else if( e->type() ==  QEvent::User + 1 ){
             FileLoaded *fe = ( FileLoaded* )e;
