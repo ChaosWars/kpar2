@@ -76,7 +76,6 @@ class KPar2Part : public KParts::ReadOnlyPart
         void loadPAR2Files( const QString& file );
 
     private:
-//         void setupMainWidget();
         KPar2Thread *kpar2thread;
         KPar2GUI *m_widget;
 };
