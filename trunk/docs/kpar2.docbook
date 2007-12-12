@@ -2,8 +2,8 @@
 <!DOCTYPE book PUBLIC "-//KDE//DTD DocBook XML V4.2-Based Variant V1.1//EN" "dtd/kdex.dtd" [
   <!-- Define an entity for your application if it is not part of KDE
        CVS -->
-  <!ENTITY kmyapplication "<application>KMyApp</application>">
-  <!ENTITY kappname "&kmyapplication;"><!-- replace kmyapplication here
+  <!ENTITY kpar2 "<application>KPar2</application>">
+  <!ENTITY kappname "&kpar2;"><!-- replace kmyapplication here
                                             do *not* replace kappname-->
   <!ENTITY package "kde-module"><!-- kdebase, kdeadmin, etc.  Leave
                                      this unchanged if your
@@ -52,7 +52,7 @@ thanks ;-).
 as Authors, publish date, the abstract, and Keywords -->
 
 <bookinfo>
-<title>The &kmyapplication; Handbook</title>
+<title>The &kpar2; Handbook</title>
 
 <authorgroup>
 <author>
@@ -63,19 +63,19 @@ as Authors, publish date, the abstract, and Keywords -->
 and use `&George.N.Ugnacious; &George.N.Ugnacious.mail;' in the author element.
  -->
 <personname>
-<firstname>George</firstname>
-<othername>N.</othername>
-<surname>Ugnacious</surname>
+<firstname>Lawrence</firstname>
+<othername>C.</othername>
+<surname>Lee</surname>
 </personname>
-<email>gnu@kde.org</email>
+<email>valheru@facticius.net</email>
 </author>
 </authorgroup>
 
 <!-- TRANS:ROLES_OF_TRANSLATORS -->
 
 <copyright>
-<year>2002</year>
-<holder>George N. Ugnacious</holder>
+<year>2007</year>
+<holder>Lawrence C. Lee</holder>
 </copyright>
 <!-- Translators: put here the copyright notice of the translation -->
 <!-- Put here the FDL notice.  Read the explanation in fdl-notice.docbook
@@ -89,15 +89,15 @@ Please respect the format of the date (YYYY-MM-DD) and of the version
 (V.MM.LL), it could be used by automation scripts.
 Do NOT change these in the translation. -->
 
-<date>2003-01-10</date>
-<releaseinfo>1.01.00</releaseinfo>
+<date>2007-12-12</date>
+<releaseinfo>0.03.00</releaseinfo>
 
 <!-- Abstract about this handbook -->
 
 <abstract>
 <para>
-&kmyapplication; is an application specially designed to do nothing you would
-ever want.
+&kpar2;is an application for the verification and repair of source files
+using parity *.par2 and *.PAR2 files.
 </para>
 </abstract>
 
@@ -108,9 +108,10 @@ Please at least include KDE, the KDE package it is in, the name
 <keywordset>
 <keyword>KDE</keyword>
 <keyword>kdeutils</keyword>
-<keyword>Kapp</keyword>
-<keyword>nothing</keyword>
-<keyword>nothing else</keyword>
+<keyword>KPar2</keyword>
+<keyword>par2</keyword>
+<keyword>newsgroup</keyword>
+<keyword>recovery</keyword>
 </keywordset>
 
 </bookinfo>
@@ -133,13 +134,14 @@ problems. Basically a long version of the abstract.  Don't include a
 revision history. (see installation appendix comment) -->
 
 <para>
-&kmyapplication; is a program that lets you do absolutely nothing. Please report
-any problems or feature requests to the &kde; mailing lists.
+&kpar2; is an application for the verification and repair of source files
+using parity *.par2 and *.PAR2 files. Please report any problems or feature
+requests to valheru@facticius.net.
 </para>
 </chapter>
 
-<chapter id="using-kapp">
-<title>Using &kmyapplication;</title>
+<chapter id="using-kpar2">
+<title>Using &kpar2;</title>
 
 <!-- This chapter should tell the user how to use your app. You should use as
 many sections (Chapter, Sect1, Sect3, etc...) as is necessary to fully document
@@ -151,13 +153,10 @@ your application. -->
 patent issues. -->
 
 <screenshot>
-<screeninfo>Here's a screenshot of &kmyapplication;</screeninfo>
+<screeninfo>Here's a screenshot of &kpar2;</screeninfo>
 	<mediaobject>
 	  <imageobject>
 	    <imagedata fileref="screenshot.png" format="PNG"/>
-	  </imageobject>
-	  <imageobject>
-	    <imagedata fileref="screenshot.eps" format="EPS"/>
 	  </imageobject>
 	  <textobject>
 	    <phrase>Screenshot</phrase>
@@ -168,7 +167,7 @@ patent issues. -->
 
 
 <sect1 id="kapp-features">
-<title>More &kmyapplication; features</title>
+<title>More &kpar2; features</title>
 
 <para>It slices! It dices! and it comes with a free toaster!</para>
 <para>
@@ -176,14 +175,11 @@ The Squiggle Tool <guiicon><inlinemediaobject>
 	  <imageobject>
 	    <imagedata fileref="squiggle.png" format="PNG"/>
 	  </imageobject>
-	  <imageobject>
-	    <imagedata fileref="squiggle.eps" format="EPS"/>
-	  </imageobject>
 	  <textobject>
 	    <phrase>Squiggle</phrase>
 	  </textobject>
 </inlinemediaobject></guiicon> is used to draw squiggly lines all over
-the &kmyapplication; main window. It's not a bug, it's a feature!
+the &kpar2; main window. It's not a bug, it's a feature!
 </para>
 
 </sect1>
@@ -198,8 +194,8 @@ Also include any keys that have a special function but have no equivalent in the
 menus or toolbars. This may not be necessary for small apps or apps with no tool
 or menu bars. -->
 
-<sect1 id="kapp-mainwindow">
-<title>The main &kmyapplication; window</title>
+<sect1 id="kpar2-mainwindow">
+<title>The main &kpar2; window</title>
 
 <sect2>
 <title>The File Menu</title>
@@ -208,22 +204,12 @@ or menu bars. -->
 <varlistentry>
 <term><menuchoice>
 <shortcut>
-<keycombo action="simul">&Ctrl;<keycap>N</keycap></keycombo>
+<keycombo action="simul">&Ctrl;<keycap>O</keycap></keycombo>
 </shortcut>
 <guimenu>File</guimenu>
 <guimenuitem>New</guimenuitem>
 </menuchoice></term>
-<listitem><para><action>Creates a new document</action></para></listitem>
-</varlistentry>
-<varlistentry>
-<term><menuchoice>
-<shortcut>
-<keycombo action="simul">&Ctrl;<keycap>S</keycap></keycombo>
-</shortcut>
-<guimenu>File</guimenu>
-<guimenuitem>Save</guimenuitem>
-</menuchoice></term>
-<listitem><para><action>Saves the document</action></para></listitem>
+<listitem><para><action>Opens a new document</action></para></listitem>
 </varlistentry>
 <varlistentry>
 <term><menuchoice>
@@ -233,7 +219,7 @@ or menu bars. -->
 <guimenu>File</guimenu>
 <guimenuitem>Quit</guimenuitem>
 </menuchoice></term>
-<listitem><para><action>Quits</action> &kmyapplication;</para></listitem>
+<listitem><para><action>Quits</action> &kpar2;</para></listitem>
 </varlistentry>
 </variablelist>
 </para>
@@ -256,15 +242,14 @@ or menu bars. -->
 </chapter>
 
 <chapter id="developers">
-<title>Developer's Guide to &kmyapplication;</title>
+<title>Developer's Guide to &kpar2;</title>
 
 <!-- (OPTIONAL) A Programming/Scripting reference chapter should be
 used for apps that use plugins or that provide their own scripting hooks
 and/or development libraries. -->
 
 <para>
-Programming &kmyapplication; plugins is a joy to behold. Just read through the next
-66 pages of API's to learn how!
+Programming using the &kpar2; kpart is standard.
 </para>
 
 <!-- Use refentries to describe APIs.  Refentries are fairly complicated and you
@@ -418,7 +403,7 @@ application work. -->
 <qandaset id="faqlist">
 <qandaentry>
 <question>
-<para>My Mouse doesn't work. How do I quit &kmyapplication;?</para>
+<para>My Mouse doesn't work. How do I quit &kpar2;?</para>
 </question>
 <answer>
 <para>You silly goose! Check out the <link linkend="commands">Commands
@@ -447,10 +432,10 @@ distribution. -->
 <title>Credits and License</title>
 
 <para>
-&kmyapplication;
+&kpar2;
 </para>
 <para>
-Program copyright 1997 John Q. Hacker <email>jqh@kde.org</email>
+Program copyright 2007 Lawrence C. Lee<email>valheru@facticius.net</email>
 </para>
 <para>
 Contributors:
@@ -463,7 +448,7 @@ Contributors:
 </para>
 
 <para>
-Documentation Copyright &copy; 1999 George N. Ugnacious <email>gnu@kde.org</email>
+Documentation Copyright &copy; 2007 Lawrence C. Lee<email>valheru@facticius.net</email>
 </para>
 
 <!-- TRANS:CREDIT_FOR_TRANSLATORS -->
@@ -477,23 +462,22 @@ Documentation Copyright &copy; 1999 George N. Ugnacious <email>gnu@kde.org</emai
      regardless of what license the application uses) -->
 
 &underGPL;        	 <!-- GPL License -->
-&underBSDLicense;        <!-- BSD License -->
-&underArtisticLicense;   <!-- BSD Artistic License -->
-&underX11License;        <!-- X11 License  -->
 
 </chapter>
 
 <appendix id="installation">
 <title>Installation</title>
 
-<sect1 id="getting-kapp">
-<title>How to obtain &kmyapplication;</title>
+<sect1 id="getting-kpar2">
+<title>How to obtain &kpar2;</title>
 
 <!-- This first entity contains boiler plate for applications that are
 part of KDE CVS.  You should remove it if you are releasing your
 application -->
 
-&install.intro.documentation;
+<para>
+&kpar2; can be found on <ulink url="http://kpar2.googlecode.com">The &kpar2; home page</ulink>.
+</para>
 
 </sect1>
 
@@ -512,23 +496,20 @@ information here.
 -->
 
 <para>
-In order to successfully use &kmyapplication;, you need &kde; 1.1. Foobar.lib is
-required in order to support the advanced &kmyapplication; features. &kmyapplication; uses
-about 5 megs of memory to run, but this may vary depending on your
-platform and configuration.
+In order to successfully use &kpar2;, you need &kde; 3.5.8., libpar2 and sigc++-v2.
 </para>
-
 <para>
-All required libraries as well as &kmyapplication; itself can be found
-on <ulink url="ftp://ftp.kapp.org">The &kmyapplication; home page</ulink>.
+Libpar2 can be obained from <ulink url="http://parchive.sourceforge.net">the libpar2 homepage</ulink>.
+</para>
+<para>
+Sigc++-v2 can be obtained from <ulink url="http://libsigc.sourceforge.net/">the sigc++ homepage</ulink>.
 </para>
 
 <!-- For a list of updates, you may refer to the application web site
 or the ChangeLog file, or ... -->
-<para>
-You can find a list of changes at <ulink
-url="http://apps.kde.org/kapp">http://apps.kde.org/kapp</ulink>.
-</para>
+<!-- para>
+You can find a list of changes at <ulink url="http://apps.kde.org/kapp">http://apps.kde.org/kapp</ulink>.
+</para -->
 </sect1>
 
 <sect1 id="compilation">
@@ -538,15 +519,21 @@ url="http://apps.kde.org/kapp">http://apps.kde.org/kapp</ulink>.
 <!-- compilation instructions.  If your application requires any -->
 <!-- special handling, remove it, and replace with your own text. -->
 
-&install.compile.documentation;
+<para>
+In order to compile and install KPar2 on your system, type the following in the base directory of the KPar2 distribution:
+</para>
+<screen>
+%cmake . -DCMAKE_INSTALL_PREFIX=$KDEDIR
+%make
+%make install
+</screen>
 
 </sect1>
 
 <sect1 id="configuration">
 <title>Configuration</title>
 
-<para>Don't forget to tell your system to start the <filename>dtd</filename>
-dicer-toaster daemon first, or &kmyapplication; won't work !</para>
+<para>&kpar2; needs very little configuration.</para>
 
 </sect1>
 

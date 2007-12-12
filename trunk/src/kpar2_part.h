@@ -45,7 +45,7 @@ class KPar2Thread;
  *
  * @short Main Part
  * @author Lawrence Lee <valher@facticius.net>
- * @version 0.2.2
+ * @version 0.3
  */
 class KPar2Part : public KParts::ReadOnlyPart
 {

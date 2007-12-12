@@ -45,7 +45,7 @@ class KToggleAction;
  *
  * @short Application Shell
  * @author Lawrence Lee <valher@facticius.net>
- * @version 0.2.3
+ * @version 0.3
  */
 class KPar2 : public KParts::MainWindow
 {
