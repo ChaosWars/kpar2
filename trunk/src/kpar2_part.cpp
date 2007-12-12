@@ -4,7 +4,7 @@
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
  *   it under the terms of the GNU General Public License as published by  *
- *   the Free Software Foundation; either version 3 of the License, or     *
+ *   the Free Software Foundation; either version 2 of the License, or     *
  *   (at your option) any later version.                                   *
  *                                                                         *
  *   This program is distributed in the hope that it will be useful,       *
@@ -146,7 +146,7 @@ KInstance* KPar2PartFactory::instance()
 {
     if( !s_instance )
     {
-        s_about = new KAboutData("kpar2", I18N_NOOP("KPar2"), "0.2.6");
+        s_about = new KAboutData("kpar2", I18N_NOOP("KPar2"), "0.3");
         s_about->addAuthor("Lawrence Lee", 0, "valher@facticius.net");
         s_instance = new KInstance(s_about);
     }

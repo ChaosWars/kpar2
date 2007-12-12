@@ -1,6 +1,7 @@
 [Desktop Entry]
 Encoding=UTF-8
 Name=KPar2
+GenericName=A PAR2 verification and repair application
 Exec=kpar2 %i %m -caption "%c"
 Icon=kpar2
 Type=Application
