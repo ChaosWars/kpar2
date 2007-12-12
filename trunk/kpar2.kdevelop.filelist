@@ -1,6 +1,8 @@
 # KDevelop Custom Project File List
 CMakeLists.txt
 cmake/Findlibpar2.cmake
+docs
+docs/CMakeLists.txt
 src
 src/CMakeLists.txt
 src/icons
