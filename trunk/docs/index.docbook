@@ -170,10 +170,7 @@ KPar2 will automatically open and proceed to load the recovery files. Once loade
 KPar2 will proceed to verify and if neccessary repair any files that need repairing
 if the "Automatically check" and "Automatically repair" checkboxes are checked.
 If they are not enabled, then the user will have to command KPar2 to carry out these steps.
-
 </para>
-
-</sect1>
 </chapter>
 
 <chapter id="commands">
@@ -246,7 +243,6 @@ must do some complicated configuration on other programs in order for your
 application work. -->
 
 &reporting.bugs;
-&updating.documentation;
 
 <qandaset id="faqlist">
 <qandaentry>
