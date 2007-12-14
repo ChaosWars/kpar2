@@ -164,22 +164,13 @@ patent issues. -->
 	</mediaobject>
 </screenshot>
 </para>
-
-
-<sect1 id="kapp-features">
-<title>More &kpar2; features</title>
-
-<para>It slices! It dices! and it comes with a free toaster!</para>
 <para>
-The Squiggle Tool <guiicon><inlinemediaobject>
-	  <imageobject>
-	    <imagedata fileref="kpar2.png" format="PNG"/>
-	  </imageobject>
-	  <textobject>
-	    <phrase>Squiggle</phrase>
-	  </textobject>
-</inlinemediaobject></guiicon> is used to draw squiggly lines all over
-the &kpar2; main window. It's not a bug, it's a feature!
+You can double click on any *.par2 or *.PAR2 file that you wish to load into KPar2.
+KPar2 will automatically open and proceed to load the recovery files. Once loaded,
+KPar2 will proceed to verify and if neccessary repair any files that need repairing
+if the "Automatically check" and "Automatically repair" checkboxes are checked.
+If they are not enabled, then the user will have to command KPar2 to carry out these steps.
+
 </para>
 
 </sect1>
@@ -207,9 +198,9 @@ or menu bars. -->
 <keycombo action="simul">&Ctrl;<keycap>O</keycap></keycombo>
 </shortcut>
 <guimenu>File</guimenu>
-<guimenuitem>New</guimenuitem>
+<guimenuitem>Open</guimenuitem>
 </menuchoice></term>
-<listitem><para><action>Opens a new document</action></para></listitem>
+<listitem><para><action>Loads a *.par2 or *.PAR2 recovery file</action></para></listitem>
 </varlistentry>
 <varlistentry>
 <term><menuchoice>
@@ -373,7 +364,9 @@ In order to compile and install KPar2 on your system, type the following in the 
 <sect1 id="configuration">
 <title>Configuration</title>
 
-<para>&kpar2; needs very little configuration.</para>
+<para>&kpar2; needs very little configuration.
+The only options are the "Automatically check" and "Automatically repair" checkboxes, which are self-explanatory.
+</para>
 
 </sect1>
 
