@@ -1,17 +1,7 @@
 <?xml version = '1.0' encoding = 'UTF-8'?>
 <!DOCTYPE KDevPrjSession>
 <KDevPrjSession>
- <DocsAndViews NumberOfDocuments="3" >
-  <Doc0 NumberOfViews="1" URL="file:///home/lawrence/Projects/kpar2/docs/CMakeLists.txt" >
-   <View0 Encoding="UTF-8" Type="Source" />
-  </Doc0>
-  <Doc1 NumberOfViews="1" URL="file:///home/lawrence/Projects/kpar2/docs/kpar2.docbook" >
-   <View0 Encoding="UTF-8" line="527" Type="Source" />
-  </Doc1>
-  <Doc2 NumberOfViews="1" URL="file:///home/lawrence/Projects/kpar2/src/kpar2.cpp" >
-   <View0 Encoding="" line="0" Type="Source" />
-  </Doc2>
- </DocsAndViews>
+ <DocsAndViews NumberOfDocuments="0" />
  <pluginList>
   <kdevdebugger>
    <breakpointList/>
