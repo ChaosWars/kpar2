@@ -108,7 +108,7 @@ void KPar2Part::fileOpen()
     // button is clicked
     KURL file_name = KFileDialog::getOpenURL( QString::null, "*.par2 *.PAR2 | PAR2 Files" );
 
-    if (file_name.isEmpty() == false){
+    if( !file_name.isEmpty() ){
         openURL( file_name );
     }
 }
