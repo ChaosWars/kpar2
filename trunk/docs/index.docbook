@@ -4,6 +4,7 @@
        CVS -->
   <!ENTITY Lawrence.C.Lee "<personname><firstname>Lawrence</firstname><othername>C.</othername><surname>Lee</surname></personname>">
   <!ENTITY Lawrence.C.Lee.email "<email>valheru@facticius.net</email>">
+  <!ENTITY homepage "<ulink>http://kpar2.googlecode.com</ulink>">
   <!ENTITY kpar2 "<application>KPar2</application>">
   <!ENTITY kappname "&kpar2;"><!-- replace kmyapplication here
                                             do *not* replace kappname-->
@@ -94,7 +95,7 @@ Do NOT change these in the translation. -->
 
 <abstract>
 <para>
-&kpar2;is an application for the verification and repair of source files
+&kpar2; is an application for the verification and repair of source files
 using parity *.par2 and *.PAR2 files.
 </para>
 </abstract>
@@ -134,7 +135,7 @@ revision history. (see installation appendix comment) -->
 <para>
 &kpar2; is an application for the verification and repair of source files
 using parity *.par2 and *.PAR2 files. Please report any problems or feature
-requests to &Lawrence.C.Lee;
+requests as an issue on &homepage;
 </para>
 </chapter>
 

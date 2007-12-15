@@ -36,7 +36,7 @@
 #endif
 
 static const char description[] =
-    I18N_NOOP( "PAR2 verification and repair application for KDE3" );
+    I18N_NOOP( "PAR2 verification and repair application for KDE" );
 
 static const char version[] = "0.3";
 
@@ -49,7 +49,7 @@ static KCmdLineOptions options[] =
 int main(int argc, char **argv)
 {
     KAboutData about( "kpar2", I18N_NOOP("KPar2"), version, description,
-                     KAboutData::License_GPL, "(C) 2007 Lawrence Lee", 0, 0, "valheru@facticius.net" );
+                      KAboutData::License_GPL, "(C) 2007 Lawrence Lee", 0, "http://kpar2.googlecode.com" );
     about.addAuthor( "Lawrence Lee", 0, "valheru@facticius.net" );
     KCmdLineArgs::init( argc, argv, &about );
     KCmdLineArgs::addCmdLineOptions( options );
