@@ -48,8 +48,8 @@ class Settings : public KConfigDialog
         bool settingsChanged;
 
     private slots:
-        void autoCheckToggled( bool on );
-        void autoRepairToggled( bool on );
+        void autoCheckToggled( bool );
+        void autoRepairToggled( bool );
 
     signals:
         void loadSettings();

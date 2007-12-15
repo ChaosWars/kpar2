@@ -106,7 +106,7 @@ void KPar2Part::fileOpen()
     // this slot is called whenever the File->Open menu is selected,
     // the Open shortcut is pressed (usually CTRL+O) or the Open toolbar
     // button is clicked
-    QString file_name = KFileDialog::getOpenFileName( QDir::homeDirPath(), "*.par2 *.PAR2 | PAR2 Files", 0, NULL );
+    KURL file_name = KFileDialog::getOpenURL( QString::null, "*.par2 *.PAR2 | PAR2 Files" );
 
     if (file_name.isEmpty() == false){
         openURL( file_name );

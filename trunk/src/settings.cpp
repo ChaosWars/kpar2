@@ -46,13 +46,13 @@ Settings::~Settings()
 {
 }
 
-void Settings::autoCheckToggled( bool on )
+void Settings::autoCheckToggled( bool )
 {
     settingsChanged = true;
     enableButton( Apply, true );
 }
 
-void Settings::autoRepairToggled( bool on )
+void Settings::autoRepairToggled( bool )
 {
     settingsChanged = true;
     enableButton( Apply, true );
