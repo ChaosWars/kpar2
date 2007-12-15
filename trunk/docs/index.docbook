@@ -134,8 +134,7 @@ revision history. (see installation appendix comment) -->
 
 <para>
 &kpar2; is an application for the verification and repair of source files
-using parity *.par2 and *.PAR2 files. Please report any problems or feature
-requests as an issue on &homepage;
+using parity files. Please report any problems or feature requests as an issue on &homepage;
 </para>
 </chapter>
 
@@ -165,8 +164,19 @@ patent issues. -->
 </para>
 <para>
 You can double click on any *.par2 or *.PAR2 file that you wish to load into KPar2.
-KPar2 will automatically open and proceed to load the recovery files. Once loaded,
-KPar2 will proceed to verify and if neccessary repair any files that need repairing
+KPar2 will automatically open and proceed to load the recovery files.
+Alternatively, you can open any PAR file via
+<variablelist>
+<varlistentry>
+<term><menuchoice>
+<guimenu>File</guimenu>
+<guimenuitem>Open</guimenuitem>
+</menuchoice></term>
+</varlistentry>
+</variablelist>
+
+
+Once loaded, KPar2 will proceed to verify and if neccessary repair any files that need repairing
 if the "Automatically check" and "Automatically repair" options are enabled.
 If they are not enabled, then the user will have to command KPar2 to carry out these steps
 using the buttons in the main window.
@@ -212,6 +222,24 @@ or menu bars. -->
 </variablelist>
 </para>
 
+</sect2>
+
+<sect2>
+<title>The Settings Menu</title>
+<para>
+<variablelist>
+<varlistentry>
+<term><menuchoice>
+<shortcut>
+<keycombo action="simul">&Ctrl;<keycap>C</keycap></keycombo>
+</shortcut>
+<guimenu>Settings</guimenu>
+<guimenuitem>Configure KPar2</guimenuitem>
+</menuchoice></term>
+<listitem><para><action>Opens the configuration dialog for KPar2</action></para></listitem>
+</varlistentry>
+</variablelist>
+</para>
 </sect2>
 
 <sect2>
@@ -303,7 +331,7 @@ part of KDE CVS.  You should remove it if you are releasing your
 application -->
 
 <para>
-&kpar2; can be found on <ulink url="http://kpar2.googlecode.com">The &kpar2; home page</ulink>.
+&kpar2; can be found on <ulink url="http://kpar2.googlecode.com">the &kpar2; home page</ulink>.
 </para>
 
 </sect1>
