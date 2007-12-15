@@ -2,6 +2,8 @@
 <!DOCTYPE book PUBLIC "-//KDE//DTD DocBook XML V4.2-Based Variant V1.1//EN" "dtd/kdex.dtd" [
   <!-- Define an entity for your application if it is not part of KDE
        CVS -->
+  <!ENTITY Lawrence.C.Lee "<personname><firstname>Lawrence</firstname><othername>C.</othername><surname>Lee</surname></personname>">
+  <!ENTITY Lawrence.C.Lee.email "<email>valheru@facticius.net</email>">
   <!ENTITY kpar2 "<application>KPar2</application>">
   <!ENTITY kappname "&kpar2;"><!-- replace kmyapplication here
                                             do *not* replace kappname-->
@@ -62,12 +64,8 @@ as Authors, publish date, the abstract, and Keywords -->
 <!ENTITY George.N.Ugnacious.mail "<email>gnu@kde.org</email>">
 and use `&George.N.Ugnacious; &George.N.Ugnacious.mail;' in the author element.
  -->
-<personname>
-<firstname>Lawrence</firstname>
-<othername>C.</othername>
-<surname>Lee</surname>
-</personname>
-<email>valheru@facticius.net</email>
+&Lawrence.C.Lee;
+&Lawrence.C.Lee.email;
 </author>
 </authorgroup>
 
@@ -136,7 +134,7 @@ revision history. (see installation appendix comment) -->
 <para>
 &kpar2; is an application for the verification and repair of source files
 using parity *.par2 and *.PAR2 files. Please report any problems or feature
-requests to valheru@facticius.net.
+requests to &Lawrence.C.Lee;
 </para>
 </chapter>
 
@@ -168,8 +166,9 @@ patent issues. -->
 You can double click on any *.par2 or *.PAR2 file that you wish to load into KPar2.
 KPar2 will automatically open and proceed to load the recovery files. Once loaded,
 KPar2 will proceed to verify and if neccessary repair any files that need repairing
-if the "Automatically check" and "Automatically repair" checkboxes are checked.
-If they are not enabled, then the user will have to command KPar2 to carry out these steps.
+if the "Automatically check" and "Automatically repair" options are enabled.
+If they are not enabled, then the user will have to command KPar2 to carry out these steps
+using the buttons in the main window.
 </para>
 </chapter>
 
@@ -271,11 +270,11 @@ distribution. -->
 &kpar2;
 </para>
 <para>
-Program copyright 2007 Lawrence C. Lee<email>valheru@facticius.net</email>
+Program copyright 2007 &Lawrence.C.Lee; &Lawrence.C.Lee.email;
 </para>
 
 <para>
-Documentation Copyright &copy; 2007 Lawrence C. Lee<email>valheru@facticius.net</email>
+Documentation Copyright &copy; 2007 &Lawrence.C.Lee; &Lawrence.C.Lee.email;
 </para>
 
 <!-- TRANS:CREDIT_FOR_TRANSLATORS -->
@@ -360,8 +359,22 @@ In order to compile and install KPar2 on your system, type the following in the 
 <sect1 id="configuration">
 <title>Configuration</title>
 
-<para>&kpar2; needs very little configuration.
-The only options are the "Automatically check" and "Automatically repair" checkboxes, which are self-explanatory.
+<para>
+<screenshot>
+<screeninfo>Here's a screenshot of &kpar2;'s settings dialog</screeninfo>
+	<mediaobject>
+	  <imageobject>
+	    <imagedata fileref="kpar2_settings.png" format="PNG"/>
+	  </imageobject>
+	  <textobject>
+	    <phrase>Screenshot</phrase>
+	  </textobject>
+	</mediaobject>
+</screenshot>
+</para>
+
+<para>&kpar2; allows the user to configure it to automatically verify the source files once the parity files are loaded.
+Additionally, &kpar2; can be configured to automatically repair any damaged source files if possible.
 </para>
 
 </sect1>
