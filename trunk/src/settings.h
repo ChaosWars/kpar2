@@ -23,9 +23,6 @@
 #include <kconfigdialog.h>
 
 class KPar2Settings;
-class QGroupBox;
-class QCheckBox;
-class QGridLayout;
 class QVBoxLayout;
 class GeneralSettings;
 
@@ -46,6 +43,7 @@ class Settings : public KConfigDialog
     private:
         KPar2Settings *m_config;
         QWidget *settingsPage;
+        QVBoxLayout *settingsPageLayout;
         GeneralSettings *generalSettings;
         bool settingsChanged;
 

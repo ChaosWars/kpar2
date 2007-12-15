@@ -31,7 +31,9 @@ Settings::Settings( QWidget *parent, const char *name, KPar2Settings *config )
     m_config = config;
     //Set up settings page
     settingsPage = new QWidget( 0, "SettingsPage" );
+    settingsPageLayout = new QVBoxLayout( settingsPage );
     generalSettings = new GeneralSettings( settingsPage );
+    settingsPageLayout->addWidget( generalSettings );
     generalSettings->setAutoCheck( m_config->autoCheck() );
     generalSettings->setAutoRepair( m_config->autoRepair() );
     connect( generalSettings, SIGNAL( autoCheckToggled( bool ) ), this, SLOT( autoCheckToggled( bool ) ) );
