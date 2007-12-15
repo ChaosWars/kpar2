@@ -17,61 +17,44 @@
  *   Free Software Foundation, Inc.,                                       *
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
+#ifndef SETTINGS_H
+#define SETTINGS_H
 
-#ifndef _KPAR2OBJECT_H_
-#define _KPAR2OBJECT_H_
+#include <kconfigdialog.h>
 
-#include <qobject.h>
-
-#ifdef COMPILE_FOR_KDE4
-
-class KPar2GUI4;
-
-#else
-
-class KPar2GUI;
-
-#endif
-
-class ParHeaders;
-class Par2Repairer;
-class CommandLine;
 class KPar2Settings;
+class QGroupBox;
+class QCheckBox;
+class QGridLayout;
+class QVBoxLayout;
+class GeneralSettings;
 
-typedef enum _Operation{
-    load = 0,
-    verify = 1,
-    repair = 2,
-    noop = 3
-} Operation;
-
-class KPar2Object : public QObject
+/**
+	@author Lawrence Lee <valheru@facticius.net>
+*/
+class Settings : public KConfigDialog
 {
     Q_OBJECT
 
     public:
-        KPar2Object( KPar2GUI *gui );
-        ~KPar2Object();
-        bool loadPAR2Files( const QString& par2file );
-        bool checkParity( const QString& par2file );
-        bool repairFiles( const QString& par2file );
+        Settings( QWidget *parent = 0, const char *name = 0, KPar2Settings *config = 0 );
+        ~Settings();
+
+    protected slots:
+        virtual void updateSettings();
 
     private:
-        KPar2GUI *m_gui;
-        KPar2Settings *config;
-        Par2Repairer *par2repairer;
-        CommandLine *cmdline;
-        Operation operation;
-        bool autoCheck;
-        bool autoRepair;
-        int total_files;
-        int processed_files;
-        int files_damaged;
-        int files_missing;
-        void signal_filename( std::string str );
-        void signal_progress( double value );
-        void signal_headers( ParHeaders* headers );
-        void signal_done( std::string filename, int blocks_available, int blocks_total );
+        KPar2Settings *m_config;
+        QWidget *settingsPage;
+        GeneralSettings *generalSettings;
+        bool settingsChanged;
+
+    private slots:
+        void autoCheckToggled( bool on );
+        void autoRepairToggled( bool on );
+
+    signals:
+        void loadSettings();
 };
 
-#endif // _KPAR2OBJECT_H_
+#endif

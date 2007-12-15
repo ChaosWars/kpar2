@@ -10,14 +10,14 @@
         <rect>
             <x>0</x>
             <y>0</y>
-            <width>550</width>
-            <height>550</height>
+            <width>470</width>
+            <height>485</height>
         </rect>
     </property>
     <property name="minimumSize">
         <size>
-            <width>550</width>
-            <height>550</height>
+            <width>470</width>
+            <height>485</height>
         </size>
     </property>
     <property name="caption">
@@ -87,13 +87,13 @@
             <property name="minimumSize">
                 <size>
                     <width>450</width>
-                    <height>262</height>
+                    <height>200</height>
                 </size>
             </property>
             <property name="maximumSize">
                 <size>
                     <width>32767</width>
-                    <height>262</height>
+                    <height>200</height>
                 </size>
             </property>
             <property name="frameShape">
@@ -102,11 +102,11 @@
             <property name="frameShadow">
                 <enum>Raised</enum>
             </property>
-            <vbox>
+            <grid>
                 <property name="name">
                     <cstring>unnamed</cstring>
                 </property>
-                <widget class="QGroupBox">
+                <widget class="QGroupBox" row="0" column="0" rowspan="1" colspan="2">
                     <property name="name">
                         <cstring>ProgressBox</cstring>
                     </property>
@@ -201,168 +201,80 @@
                         </widget>
                     </vbox>
                 </widget>
-                <widget class="QLayoutWidget">
+                <widget class="QLayoutWidget" row="1" column="0">
                     <property name="name">
-                        <cstring>layout8</cstring>
+                        <cstring>layout1</cstring>
                     </property>
                     <hbox>
                         <property name="name">
                             <cstring>unnamed</cstring>
                         </property>
-                        <widget class="QLayoutWidget">
+                        <widget class="KPushButton">
                             <property name="name">
-                                <cstring>layout7</cstring>
+                                <cstring>CheckParityButton</cstring>
                             </property>
-                            <vbox>
-                                <property name="name">
-                                    <cstring>unnamed</cstring>
-                                </property>
-                                <spacer>
-                                    <property name="name">
-                                        <cstring>spacer4</cstring>
-                                    </property>
-                                    <property name="orientation">
-                                        <enum>Vertical</enum>
-                                    </property>
-                                    <property name="sizeType">
-                                        <enum>Expanding</enum>
-                                    </property>
-                                    <property name="sizeHint">
-                                        <size>
-                                            <width>20</width>
-                                            <height>30</height>
-                                        </size>
-                                    </property>
-                                </spacer>
-                                <widget class="QLayoutWidget">
-                                    <property name="name">
-                                        <cstring>layout1</cstring>
-                                    </property>
-                                    <hbox>
-                                        <property name="name">
-                                            <cstring>unnamed</cstring>
-                                        </property>
-                                        <widget class="KPushButton">
-                                            <property name="name">
-                                                <cstring>CheckParityButton</cstring>
-                                            </property>
-                                            <property name="enabled">
-                                                <bool>false</bool>
-                                            </property>
-                                            <property name="text">
-                                                <string>Check parity</string>
-                                            </property>
-                                            <property name="accel">
-                                                <string></string>
-                                            </property>
-                                            <property name="autoDefault">
-                                                <bool>true</bool>
-                                            </property>
-                                            <property name="default">
-                                                <bool>true</bool>
-                                            </property>
-                                            <property name="whatsThis" stdset="0">
-                                                <string>Verify the parity of the source files</string>
-                                            </property>
-                                        </widget>
-                                        <widget class="KPushButton">
-                                            <property name="name">
-                                                <cstring>RepairFilesButton</cstring>
-                                            </property>
-                                            <property name="enabled">
-                                                <bool>false</bool>
-                                            </property>
-                                            <property name="text">
-                                                <string>Repair files</string>
-                                            </property>
-                                            <property name="accel">
-                                                <string>Alt+R</string>
-                                            </property>
-                                            <property name="whatsThis" stdset="0">
-                                                <string>Repair damaged or missing source files</string>
-                                            </property>
-                                        </widget>
-                                    </hbox>
-                                </widget>
-                            </vbox>
+                            <property name="enabled">
+                                <bool>false</bool>
+                            </property>
+                            <property name="text">
+                                <string>Check parity</string>
+                            </property>
+                            <property name="accel">
+                                <string></string>
+                            </property>
+                            <property name="autoDefault">
+                                <bool>true</bool>
+                            </property>
+                            <property name="default">
+                                <bool>true</bool>
+                            </property>
+                            <property name="whatsThis" stdset="0">
+                                <string>Verify the parity of the source files</string>
+                            </property>
                         </widget>
-                        <spacer>
+                        <widget class="KPushButton">
                             <property name="name">
-                                <cstring>spacer5</cstring>
+                                <cstring>RepairFilesButton</cstring>
                             </property>
-                            <property name="orientation">
-                                <enum>Horizontal</enum>
+                            <property name="enabled">
+                                <bool>false</bool>
                             </property>
-                            <property name="sizeType">
-                                <enum>Expanding</enum>
+                            <property name="text">
+                                <string>Repair files</string>
                             </property>
-                            <property name="sizeHint">
-                                <size>
-                                    <width>38</width>
-                                    <height>20</height>
-                                </size>
+                            <property name="accel">
+                                <string>Alt+R</string>
                             </property>
-                        </spacer>
-                        <widget class="QButtonGroup">
-                            <property name="name">
-                                <cstring>RepairOptions</cstring>
+                            <property name="whatsThis" stdset="0">
+                                <string>Repair damaged or missing source files</string>
                             </property>
-                            <property name="sizePolicy">
-                                <sizepolicy>
-                                    <hsizetype>0</hsizetype>
-                                    <vsizetype>0</vsizetype>
-                                    <horstretch>0</horstretch>
-                                    <verstretch>0</verstretch>
-                                </sizepolicy>
-                            </property>
-                            <property name="title">
-                                <string>Repair options</string>
-                            </property>
-                            <vbox>
-                                <property name="name">
-                                    <cstring>unnamed</cstring>
-                                </property>
-                                <widget class="QCheckBox">
-                                    <property name="name">
-                                        <cstring>kcfg_AutoCheck</cstring>
-                                    </property>
-                                    <property name="text">
-                                        <string>Auto check</string>
-                                    </property>
-                                    <property name="accel">
-                                        <string>Alt+E</string>
-                                    </property>
-                                    <property name="whatsThis" stdset="0">
-                                        <string>Automatically verify the parity of the source files</string>
-                                    </property>
-                                </widget>
-                                <widget class="QCheckBox">
-                                    <property name="name">
-                                        <cstring>kcfg_AutoRepair</cstring>
-                                    </property>
-                                    <property name="text">
-                                        <string>Auto repair</string>
-                                    </property>
-                                    <property name="accel">
-                                        <string>Alt+P</string>
-                                    </property>
-                                    <property name="whatsThis" stdset="0">
-                                        <string>Automatically repair damaged or missing source files</string>
-                                    </property>
-                                </widget>
-                            </vbox>
                         </widget>
                     </hbox>
                 </widget>
-            </vbox>
+                <spacer row="1" column="1">
+                    <property name="name">
+                        <cstring>spacer5</cstring>
+                    </property>
+                    <property name="orientation">
+                        <enum>Horizontal</enum>
+                    </property>
+                    <property name="sizeType">
+                        <enum>Expanding</enum>
+                    </property>
+                    <property name="sizeHint">
+                        <size>
+                            <width>200</width>
+                            <height>20</height>
+                        </size>
+                    </property>
+                </spacer>
+            </grid>
         </widget>
     </vbox>
 </widget>
 <tabstops>
     <tabstop>CheckParityButton</tabstop>
     <tabstop>RepairFilesButton</tabstop>
-    <tabstop>kcfg_AutoCheck</tabstop>
-    <tabstop>kcfg_AutoRepair</tabstop>
     <tabstop>FileDisplay</tabstop>
 </tabstops>
 <includes>
@@ -370,6 +282,7 @@
 </includes>
 <forwards>
     <forward>class ParHeaders</forward>
+    <forward>class KPar2Settings</forward>
 </forwards>
 <signals>
     <signal>checkParity()</signal>
@@ -379,14 +292,9 @@
 </signals>
 <slots>
     <slot>customEvent( QCustomEvent * e )</slot>
-    <slot>saveSettings()</slot>
-    <slot>readConfig()</slot>
 </slots>
 <functions>
     <function access="private" specifier="non virtual">init()</function>
-    <function access="private" specifier="non virtual">destroy()</function>
-    <function returnType="bool">autoCheck()</function>
-    <function returnType="bool">autoRepair()</function>
     <function returnType="KListView *">gui()</function>
 </functions>
 <layoutdefaults spacing="6" margin="11"/>

@@ -21,6 +21,8 @@
 #include "kpar2thread.h"
 #include "kpar2_part.h"
 #include "kpar2gui.h"
+#include "kpar2settings.h"
+#include "settings.h"
 
 #ifdef COMPILE_FOR_KDE4
 
@@ -67,12 +69,21 @@ KPar2Part::KPar2Part( QWidget *parentWidget, const char *widgetName,
     // Set up the PAR2 thread
     kpar2thread = new KPar2Thread( m_widget );
 
+    new KAction( i18n( "&Configure KPar2" ), "configure", 0,
+                 this, SLOT( configureSettings() ),
+                 actionCollection(), "configure_settings" );
+
+    config = KPar2Settings::self();
+    readSettings();
+
     // set our XML-UI resource file
     setXMLFile( "kpar2_part.rc" );
+
 }
 
 KPar2Part::~KPar2Part()
 {
+    saveSettings();
 }
 
 bool KPar2Part::openFile()
@@ -100,6 +111,25 @@ void KPar2Part::fileOpen()
     if (file_name.isEmpty() == false){
         openURL( file_name );
     }
+}
+
+void KPar2Part::configureSettings()
+{
+    if( KConfigDialog::showDialog( "settings" ) )
+        return;
+
+    settings = new Settings( m_widget, "settings", config );
+    connect( settings, SIGNAL( settingsChanged() ), this, SLOT( readSettings() ) );
+    settings->show();
+}
+
+void KPar2Part::saveSettings()
+{
+    config->writeConfig();
+}
+
+void KPar2Part::readSettings()
+{
 }
 
 // It's usually safe to leave the factory code alone.. with the

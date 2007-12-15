@@ -38,6 +38,8 @@ class QPainter;
 class KURL;
 class KPar2GUI;
 class KPar2Thread;
+class KPar2Settings;
+class Settings;
 
 /**
  * This is a "Part".  It that does all the real work in a KPart
@@ -71,6 +73,9 @@ class KPar2Part : public KParts::ReadOnlyPart
 
     protected slots:
         void fileOpen();
+        void configureSettings();
+        void saveSettings();
+        void readSettings();
 
     signals:
         void loadPAR2Files( const QString& file );
@@ -78,6 +83,8 @@ class KPar2Part : public KParts::ReadOnlyPart
     private:
         KPar2Thread *kpar2thread;
         KPar2GUI *m_widget;
+        KPar2Settings *config;
+        Settings *settings;
 };
 
 class KInstance;

@@ -18,3 +18,5 @@ src/kpar2object.h
 src/kpar2thread.cpp
 src/kpar2thread.h
 src/main.cpp
+src/settings.cpp
+src/settings.h

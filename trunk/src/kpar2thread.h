@@ -26,7 +26,8 @@
 #include <qthread.h>
 
 class KPar2GUI;
-// class KPar2Object;
+class KPar2Object;
+class KPar2Settings;
 
 class KPar2Thread : public QObject, QThread
 {
@@ -45,7 +46,10 @@ class KPar2Thread : public QObject, QThread
         void run();
 
     private:
-        KPar2GUI *_gui;
+        KPar2Settings *config;
+        bool autoCheck;
+        bool autoRepair;
+        KPar2GUI *m_gui;
         KPar2Object *obj;
         QString par2file;
         Operation operation;

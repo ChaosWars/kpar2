@@ -17,15 +17,18 @@
  *   Free Software Foundation, Inc.,                                       *
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
-
-#include "kpar2thread.h"
 #include "kpar2gui.h"
+#include "kpar2thread.h"
+#include "kpar2settings.h"
 
 KPar2Thread::KPar2Thread( KPar2GUI *gui )
 {
     obj = NULL;
-    _gui = gui;
+    m_gui = gui;
+    config = KPar2Settings::self();
     operation = noop;
+    autoCheck = config->autoCheck();
+    autoRepair = config->autoRepair();
     connect( gui, SIGNAL( checkParity() ), this, SLOT( checkParity() ) );
     connect( gui, SIGNAL( repairFiles() ), this, SLOT( repairFiles() ) );
 }
@@ -38,17 +41,17 @@ KPar2Thread::~KPar2Thread()
 void KPar2Thread::run()
 {
     if( obj == NULL )
-        obj = new KPar2Object( _gui );
+        obj = new KPar2Object( m_gui );
 
     switch( operation ){
         case load:
             if( obj->loadPAR2Files( par2file ) ){
 
-                if( _gui->autoCheck() ){
+                if( autoCheck ){
 
                     if( obj->checkParity( par2file ) ){
 
-                        if( _gui->autoRepair() ){
+                        if( autoRepair ){
                             obj->repairFiles( par2file );
                         }
 
@@ -61,7 +64,7 @@ void KPar2Thread::run()
         case verify:
             if( obj->checkParity( par2file ) ){
 
-                if( _gui->autoRepair() ){
+                if( autoRepair ){
                     obj->repairFiles( par2file );
                 }
 
