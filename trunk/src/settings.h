@@ -22,6 +22,7 @@
 
 #include <kconfigdialog.h>
 
+class QShowEvent;
 class KPar2Settings;
 class QVBoxLayout;
 class GeneralSettings;
@@ -37,8 +38,12 @@ class Settings : public KConfigDialog
         Settings( QWidget *parent = 0, const char *name = 0, KPar2Settings *config = 0 );
         ~Settings();
 
+    protected:
+        virtual void showEvent( QShowEvent* );
+
     protected slots:
         virtual void updateSettings();
+        virtual void cancelled();
 
     private:
         KPar2Settings *m_config;
@@ -46,6 +51,7 @@ class Settings : public KConfigDialog
         QVBoxLayout *settingsPageLayout;
         GeneralSettings *generalSettings;
         bool settingsChanged;
+        void readSettings();
 
     private slots:
         void autoCheckToggled( bool );
