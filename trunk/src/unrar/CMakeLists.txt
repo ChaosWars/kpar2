@@ -42,3 +42,5 @@ SET( SRC filestr.cpp
         unpack.cpp
         cmddata.cpp )
 ADD_LIBRARY( unrar SHARED ${SRC} )
+INSTALL(TARGETS unrar
+        LIBRARY DESTINATION /usr/lib )
