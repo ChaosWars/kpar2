@@ -20,3 +20,5 @@ src/kpar2thread.h
 src/main.cpp
 src/settings.cpp
 src/settings.h
+src/unrar
+src/unrar/CMakeLists.txt
