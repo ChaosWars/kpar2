@@ -1,10 +1,13 @@
 <?xml version = '1.0' encoding = 'UTF-8'?>
 <!DOCTYPE KDevPrjSession>
 <KDevPrjSession>
- <DocsAndViews NumberOfDocuments="1" >
-  <Doc0 NumberOfViews="1" URL="file:///home/lawrence/Projects/kpar2/docs/index.docbook" >
-   <View0 Encoding="UTF-8" line="178" Type="Source" />
+ <DocsAndViews NumberOfDocuments="2" >
+  <Doc0 NumberOfViews="1" URL="file:///home/lawrence/Projects/kpar2/src/settings.cpp" >
+   <View0 Encoding="" line="87" Type="Source" />
   </Doc0>
+  <Doc1 NumberOfViews="1" URL="file:///home/lawrence/Projects/kpar2/src/settings.h" >
+   <View0 Encoding="" line="45" Type="Source" />
+  </Doc1>
  </DocsAndViews>
  <pluginList>
   <kdevdebugger>
