@@ -1,6 +1,9 @@
 ADD_DEFINITIONS( -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE -fexceptions )
 INCLUDE_DIRECTORIES( ${CMAKE_CURRENT_SOURCE_DIR} )
-SET( SRC rar.cpp
+SET( SRC filestr.cpp
+        scantree.cpp
+        dll.cpp
+        rar.cpp
         strlist.cpp
         strfn.cpp
         pathfn.cpp
