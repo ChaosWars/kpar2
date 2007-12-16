@@ -30,6 +30,7 @@ class KPar2GUI4;
 #else
 
 class KPar2GUI;
+class QCustomEvent;
 
 #endif
 
@@ -39,10 +40,10 @@ class CommandLine;
 class KPar2Settings;
 
 typedef enum _Operation{
-    load = 0,
-    verify = 1,
-    repair = 2,
-    noop = 3
+    noop = 0,
+    load = 1,
+    verify = 2,
+    repair = 3
 } Operation;
 
 class KPar2Object : public QObject
@@ -55,6 +56,12 @@ class KPar2Object : public QObject
         bool loadPAR2Files( const QString& par2file );
         bool checkParity( const QString& par2file );
         bool repairFiles( const QString& par2file );
+
+    public slots:
+        void readSettings();
+
+    protected:
+        void customEvent( QCustomEvent *e );
 
     private:
         KPar2GUI *m_gui;

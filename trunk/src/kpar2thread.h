@@ -41,6 +41,7 @@ class KPar2Thread : public QObject, QThread
         void loadPAR2Files( const QString& par2file );
         void checkParity();
         void repairFiles();
+        void readSettings();
 
     protected:
         void run();

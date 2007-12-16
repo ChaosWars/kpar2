@@ -43,8 +43,7 @@ KPar2Object::KPar2Object( KPar2GUI *gui )
 #endif
 
     config = KPar2Settings::self();
-    autoCheck = config->autoCheck();
-    autoRepair = config->autoRepair();
+    readSettings();
     m_gui = gui;
     operation = noop;
     total_files = 0;
@@ -67,6 +66,8 @@ bool KPar2Object::loadPAR2Files( const QString& par2file )
     bool result = false;
 
     if( !par2file.isEmpty() ){
+        operation = load;
+
         StatusMessage *m = new StatusMessage( "Loading parity files..." );
         QApplication::postEvent( m_gui, m );
 
@@ -79,7 +80,6 @@ bool KPar2Object::loadPAR2Files( const QString& par2file )
         TotalProgress *t = new TotalProgress( -1 );
         QApplication::postEvent( m_gui, t );
 
-        operation = load;
         const char *program = "par2verify";
         char *argv[] = { const_cast<char*>( program ), const_cast<char*>( par2file.latin1() ) };
 
@@ -127,6 +127,8 @@ bool KPar2Object::loadPAR2Files( const QString& par2file )
         StatusMessage *m1 = new StatusMessage( "Parity files loaded." );
         QApplication::postEvent( m_gui, m1 );
 
+        operation = noop;
+
     }else{
         qDebug( "Empty string passed as file to load, aborting!" );
     }
@@ -139,6 +141,8 @@ bool KPar2Object::checkParity( const QString& par2file )
     bool result = false;
 
     if( !par2file.isEmpty() ){
+        operation = verify;
+
         FileProgress *f1 = new FileProgress( 0 );
         QApplication::postEvent( m_gui, f1 );
 
@@ -151,7 +155,6 @@ bool KPar2Object::checkParity( const QString& par2file )
         EnableCheckParity *c = new EnableCheckParity( false );
         QApplication::postEvent( m_gui, c );
 
-        operation = verify;
         const char *program = "par2verify";
         char *argv[] = {const_cast<char*>( program ), const_cast<char*>( par2file.latin1() )};
         cmdline->Parse( 2, argv );
@@ -198,6 +201,8 @@ bool KPar2Object::checkParity( const QString& par2file )
         StatusMessage *m1 = new StatusMessage( "Source files verified." );
         QApplication::postEvent( m_gui, m1 );
 
+        operation = noop;
+
     }else{
         qDebug( "Empty string passed as file to load, aborting!" );
     }
@@ -211,6 +216,8 @@ bool KPar2Object::repairFiles( const QString& par2file )
     bool result = false;
 
     if( !par2file.isEmpty() ){
+        operation = repair;
+
         StatusMessage *m = new StatusMessage( "Repairing files..." );
         QApplication::postEvent( m_gui, m );
 
@@ -223,7 +230,6 @@ bool KPar2Object::repairFiles( const QString& par2file )
         EnableRepair *e = new EnableRepair( false );
         QApplication::postEvent( m_gui, e );
 
-        operation = repair;
         const char *program = "par2repair";
         char *argv[] = {const_cast<char*>( program ), const_cast<char*>( par2file.latin1() )};
         cmdline->Parse( 2, argv );
@@ -239,6 +245,8 @@ bool KPar2Object::repairFiles( const QString& par2file )
             QApplication::postEvent( m_gui, m1 );
         }
 
+        operation = noop;
+
     }else{
         qDebug( "Empty string passed as file to load, aborting!" );
     }
@@ -246,9 +254,22 @@ bool KPar2Object::repairFiles( const QString& par2file )
     return result;
 }
 
+void KPar2Object::readSettings()
+{
+    autoCheck = config->autoCheck();
+    autoRepair = config->autoRepair();
+}
+
+void KPar2Object::customEvent( QCustomEvent *e )
+{
+    if( e->type() ==  QEvent::User + 9 ){
+        readSettings();
+    }
+}
+
 void KPar2Object::signal_filename( std::string str )
 {
-    FileLoaded *e = new FileLoaded( str );
+    FileLoaded *e = new FileLoaded( str, operation );
     QApplication::postEvent( m_gui, e );
 }
 

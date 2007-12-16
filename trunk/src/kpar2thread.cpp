@@ -20,6 +20,7 @@
 #include "kpar2gui.h"
 #include "kpar2thread.h"
 #include "kpar2settings.h"
+#include "kpar2customevents.h"
 
 KPar2Thread::KPar2Thread( KPar2GUI *gui )
 {
@@ -27,8 +28,7 @@ KPar2Thread::KPar2Thread( KPar2GUI *gui )
     m_gui = gui;
     config = KPar2Settings::self();
     operation = noop;
-    autoCheck = config->autoCheck();
-    autoRepair = config->autoRepair();
+    readSettings();
     connect( gui, SIGNAL( checkParity() ), this, SLOT( checkParity() ) );
     connect( gui, SIGNAL( repairFiles() ), this, SLOT( repairFiles() ) );
 }
@@ -40,8 +40,9 @@ KPar2Thread::~KPar2Thread()
 
 void KPar2Thread::run()
 {
-    if( obj == NULL )
+    if( obj == NULL ){
         obj = new KPar2Object( m_gui );
+    }
 
     switch( operation ){
         case load:
@@ -77,6 +78,17 @@ void KPar2Thread::run()
             break;
     }
 
+}
+
+void KPar2Thread::readSettings()
+{
+    autoCheck = config->autoCheck();
+    autoRepair = config->autoRepair();
+
+    if( obj != NULL ){
+        LoadSettings *l = new LoadSettings();
+        QApplication::postEvent( obj, l );
+    }
 }
 
 void KPar2Thread::loadPAR2Files( const QString& file )

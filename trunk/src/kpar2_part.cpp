@@ -120,6 +120,7 @@ void KPar2Part::configureSettings()
 
     settings = new Settings( m_widget, "settings", config );
     connect( settings, SIGNAL( settingsChanged() ), this, SLOT( readSettings() ) );
+    connect( settings, SIGNAL( loadSettings() ), kpar2thread, SLOT( readSettings() ) );
     settings->show();
 }
 

@@ -23,6 +23,7 @@
 
 #include <qapplication.h>
 #include <qevent.h>
+#include "kpar2object.h"
 
 class HeaderInfo : public QCustomEvent
 {
@@ -38,12 +39,14 @@ class HeaderInfo : public QCustomEvent
 class FileLoaded : public QCustomEvent
 {
     public:
-        FileLoaded( const QString& filename ) : QCustomEvent( QEvent::User + 1 ), f( filename ){}
+        FileLoaded( const QString &filename, const Operation &op ) : QCustomEvent( QEvent::User + 1 ), f( filename ), m_op( op ){}
         ~FileLoaded(){}
         QString file() const{ return f; }
+        Operation operation() const{ return m_op; }
 
     private:
         QString f;
+        Operation m_op;
 };
 
 class FileProgress : public QCustomEvent
@@ -121,6 +124,13 @@ class StatusMessage : public QCustomEvent
 
     private:
         QString m;
+};
+
+class LoadSettings: public QCustomEvent
+{
+    public:
+        LoadSettings() : QCustomEvent( QEvent::User + 9 ){}
+        ~LoadSettings(){}
 };
 
 #endif // _KPAR2_CUSTOMEVENTS_H_

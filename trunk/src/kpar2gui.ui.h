@@ -50,7 +50,13 @@ void KPar2GUI::customEvent( QCustomEvent *e )
             FileDisplay->ensureItemVisible( i );
         }else if( e->type() ==  QEvent::User + 1 ){
             FileLoaded *fe = ( FileLoaded* )e;
-            FileDisplay->ensureItemVisible( new QListViewItem( FileDisplay, FileDisplay->lastItem(), fe->file() ) );
+            QListViewItem *i = new QListViewItem( FileDisplay, FileDisplay->lastItem(), fe->file() );
+
+            if( fe->operation() == load ){
+                i->setPixmap( 1, info );
+            }
+
+            FileDisplay->ensureItemVisible( i );
         }else if( e->type() ==  QEvent::User + 2 ){
             FileProgress *fe = ( FileProgress* )e;
 
