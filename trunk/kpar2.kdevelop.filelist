@@ -1,8 +1,8 @@
 # KDevelop Custom Project File List
 CMakeLists.txt
 cmake/Findlibpar2.cmake
-docs
-docs/CMakeLists.txt
+doc
+doc/CMakeLists.txt
 src
 src/CMakeLists.txt
 src/icons
@@ -20,5 +20,3 @@ src/kpar2thread.h
 src/main.cpp
 src/settings.cpp
 src/settings.h
-src/unrar
-src/unrar/CMakeLists.txt
