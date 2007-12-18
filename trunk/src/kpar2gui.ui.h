@@ -17,11 +17,11 @@
 #include <kiconloader.h>
 #include "kpar2customevents.h"
 
-static QPixmap ok( KGlobal::iconLoader()->loadIcon( "button_ok.png", KIcon::Toolbar ) );
-static QPixmap damaged( KGlobal::iconLoader()->loadIcon( "button_cancel.png", KIcon::Toolbar ) );
-static QPixmap missing( KGlobal::iconLoader()->loadIcon( "messagebox_critical.png", KIcon::Toolbar ) );
-static QPixmap warning( KGlobal::iconLoader()->loadIcon( "messagebox_warning.png", KIcon::Toolbar ) );
-static QPixmap info( KGlobal::iconLoader()->loadIcon( "info.png", KIcon::Toolbar ) );
+static QPixmap p_info( KGlobal::iconLoader()->loadIcon( "info.png", KIcon::Toolbar ) );
+static QPixmap p_ok( KGlobal::iconLoader()->loadIcon( "ok.png", KIcon::Toolbar ) );
+static QPixmap p_damaged( KGlobal::iconLoader()->loadIcon( "cancel.png", KIcon::Toolbar ) );
+static QPixmap p_error( KGlobal::iconLoader()->loadIcon( "messagebox_critical.png", KIcon::Toolbar ) );
+static QPixmap p_warning( KGlobal::iconLoader()->loadIcon( "messagebox_warning.png", KIcon::Toolbar ) );
 
 void KPar2GUI::init()
 {
@@ -47,14 +47,14 @@ void KPar2GUI::customEvent( QCustomEvent *e )
                             "The total size of the data files is " + \
                             QString::number( abs( he->headers()->data_size ) ) + " bytes." );
 
-            i->setPixmap( 1, info );
+            i->setPixmap( 1, p_info );
             FileDisplay->ensureItemVisible( i );
         }else if( e->type() ==  QEvent::User + 1 ){
             FileLoaded *fe = ( FileLoaded* )e;
             QListViewItem *i = new QListViewItem( FileDisplay, FileDisplay->lastItem(), fe->file() );
 
             if( fe->operation() == load ){
-                i->setPixmap( 1, info );
+                i->setPixmap( 1, p_info );
             }
 
             FileDisplay->ensureItemVisible( i );
@@ -96,30 +96,41 @@ void KPar2GUI::customEvent( QCustomEvent *e )
             Done *de = ( Done* )e;
 
             if( de->info() == "Found" ){
-                FileDisplay->lastItem()->setPixmap( 1, ok );
+                FileDisplay->lastItem()->setPixmap( 1, p_ok );
             }else if( de->info() == "Damaged" ){
-                FileDisplay->lastItem()->setPixmap( 1, damaged );
+                FileDisplay->lastItem()->setPixmap( 1, p_damaged );
             }else{ //Missing
                 FileDisplay->ensureItemVisible( new QListViewItem( FileDisplay, FileDisplay->lastItem(), de->info() ) );
-                FileDisplay->lastItem()->setPixmap( 1, missing );
+                FileDisplay->lastItem()->setPixmap( 1, p_error );
             }
 
         }else if( e->type() ==  QEvent::User + 7 ){
             Finished *fe = ( Finished* )e;
-            FileDisplay->ensureItemVisible( new QListViewItem( FileDisplay, FileDisplay->lastItem(), fe->info() ) );
-        }else if( e->type() ==  QEvent::User + 8 ){
-            StatusMessage *m = ( StatusMessage* )e;
-            QString message = m->message();
-            static_cast< KParts::MainWindow* >( parent() )->statusBar()->message( message );
+            QListViewItem *i = new QListViewItem( FileDisplay, FileDisplay->lastItem(), fe->info() );
+            i->setMultiLinesEnabled( true );
+            FileDisplay->ensureItemVisible( i );
+            FinishedStatus s = fe->status();
 
-            if( message == "Repair is required." ){
-                FileDisplay->lastItem()->setPixmap( 1, warning );
-            }else if( message == "Repair is not possible."){
-                FileDisplay->lastItem()->setPixmap( 1, missing );
-            }else if( message == "Source files verified." ){
-                FileDisplay->lastItem()->setPixmap( 1, info );
+            switch( s ){
+                case info:
+                    i->setPixmap( 1, p_info );
+                    break;
+                case ok:
+                    i->setPixmap( 1, p_ok );
+                    break;
+                case warning:
+                    i->setPixmap( 1, p_warning );
+                    break;
+                case error:
+                    i->setPixmap( 1, p_error );
+                    break;
+                default:
+                    break;
             }
 
+        }else if( e->type() ==  QEvent::User + 8 ){
+            StatusMessage *m = ( StatusMessage* )e;
+            static_cast< KParts::MainWindow* >( parent() )->statusBar()->message( m->message() );
         }
 }
 

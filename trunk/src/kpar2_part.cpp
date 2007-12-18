@@ -49,7 +49,7 @@ KPar2Part::KPar2Part( QWidget *parentWidget, const char *widgetName,
     setWidget(m_widget);
 
     // create our actions
-    KStdAction::open( this, SLOT( fileOpen() ), actionCollection() )->setText( "&Open PAR2 file" );
+    KStdAction::open( this, SLOT( fileOpen() ), actionCollection() )->setText( "&Open PAR2 File" );
 
     // Set up the PAR2 thread
     kpar2thread = new KPar2Thread( m_widget );

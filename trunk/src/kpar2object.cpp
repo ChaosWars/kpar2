@@ -24,7 +24,6 @@
 #include "kpar2settings.h"
 #include <klistview.h>
 #include "kpar2gui.h"
-#include "kpar2customevents.h"
 
 KPar2Object::KPar2Object( KPar2GUI *gui )
 {
@@ -148,13 +147,13 @@ bool KPar2Object::checkParity( const QString& par2file )
         if( par2repairer->Process( *cmdline, false ) == eRepairPossible ){
             result = true;
 
-            Finished *f1 = new Finished( QString( "%1 %2 damaged." ).arg( files_damaged ).arg( ( files_damaged == 1 ) ? "file is" : "files are" ) );
+            Finished *f1 = new Finished( QString( "%1 %2 damaged.\n%3 %4 missing." ).arg( files_damaged ).arg( ( files_damaged == 1 ) ? "file is" : "files are" ).arg( files_missing ).arg( ( files_missing == 1 ) ? "file is" : "files are" ), info );
             QApplication::postEvent( m_gui, f1 );
 
-            Finished *f2 = new Finished( QString( "%1 %2 missing." ).arg( files_missing ).arg( ( files_missing == 1 ) ? "file is" : "files are" ) );
-            QApplication::postEvent( m_gui, f2 );
+//             Finished *f2 = new Finished( QString( "%1 %2 missing." ).arg( files_missing ).arg( ( files_missing == 1 ) ? "file is" : "files are" ), missing );
+//             QApplication::postEvent( m_gui, f2 );
 
-            Finished *f3 = new Finished( "Repair is required." );
+            Finished *f3 = new Finished( "Repair is required.", warning );
             QApplication::postEvent( m_gui, f3 );
 
             if( autoRepair ){
@@ -165,16 +164,16 @@ bool KPar2Object::checkParity( const QString& par2file )
         }else{
 
             if( files_missing + files_damaged == 0 ){
-                Finished *f = new Finished( QString( "All files are correct, repair is not required." ) );
+                Finished *f = new Finished( "All files are correct, repair is not required." , ok );
                 QApplication::postEvent( m_gui, f );
             }else{
-                Finished *f1 = new Finished( QString( "%1 %2 damaged." ).arg( files_damaged ).arg( ( files_damaged == 1 ) ? "file is" : "files are" ) );
+                Finished *f1 = new Finished( QString( "%1 %2 damaged.\n%3 %4 missing." ).arg( files_damaged ).arg( ( files_damaged == 1 ) ? "file is" : "files are" ).arg( files_missing ).arg( ( files_missing == 1 ) ? "file is" : "files are" ), info );
                 QApplication::postEvent( m_gui, f1 );
 
-                Finished *f2 = new Finished( QString( "%1 %2 missing." ).arg( files_missing ).arg( ( files_missing == 1 ) ? "file is" : "files are" ) );
-                QApplication::postEvent( m_gui, f2 );
+//                 Finished *f2 = new Finished( QString( "%1 %2 missing." ).arg( files_missing ).arg( ( files_missing == 1 ) ? "file is" : "files are" ), missing );
+//                 QApplication::postEvent( m_gui, f2 );
 
-                Finished *f3 = new Finished( QString( "Repair is not possible." ) );
+                Finished *f3 = new Finished( "Repair is not possible.", error );
                 QApplication::postEvent( m_gui, f3 );
             }
 

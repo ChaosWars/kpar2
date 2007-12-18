@@ -22,6 +22,7 @@
 #define _KPAR2OBJECT_H_
 
 #include <qobject.h>
+#include "kpar2customevents.h"
 
 class KPar2GUI;
 class QCustomEvent;
@@ -29,13 +30,6 @@ class ParHeaders;
 class Par2Repairer;
 class CommandLine;
 class KPar2Settings;
-
-typedef enum _Operation{
-    noop = 0,
-    load = 1,
-    verify = 2,
-    repair = 3
-} Operation;
 
 class KPar2Object : public QObject
 {

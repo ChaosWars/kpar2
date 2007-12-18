@@ -92,15 +92,103 @@ Alternatively, you can open any PAR file via
 <varlistentry>
 <term><menuchoice>
 <guimenu>File</guimenu>
-<guimenuitem>Open</guimenuitem>
+<guimenuitem>Open PAR2 File</guimenuitem>
 </menuchoice></term>
 </varlistentry>
 </variablelist>
 
+<para>
+<screenshot>
+<screeninfo>&kpar2; after loading PAR2 files</screeninfo>
+	<mediaobject>
+	  <imageobject>
+	    <imagedata fileref="kpar2_loaded.png" format="PNG"/>
+	  </imageobject>
+	  <textobject>
+	    <phrase>Screenshot</phrase>
+	  </textobject>
+	</mediaobject>
+</screenshot>
+</para>
+
+<para>
 Once loaded, KPar2 will proceed to verify and if neccessary repair any files that need repairing
 if the "Automatically check" and "Automatically repair" options are enabled.
 If they are not enabled, then the user will have to command KPar2 to carry out these steps
 using the buttons in the main window.
+</para>
+
+<para>
+<screenshot>
+<screeninfo>&kpar2; verifying source files</screeninfo>
+	<mediaobject>
+	  <imageobject>
+	    <imagedata fileref="kpar2_checking.png" format="PNG"/>
+	  </imageobject>
+	  <textobject>
+	    <phrase>Screenshot</phrase>
+	  </textobject>
+	</mediaobject>
+</screenshot>
+</para>
+
+<para>
+If all source files pass verification &kpar2; will report that all source files are correct.
+</para>
+
+<para>
+<screenshot>
+<screeninfo>&kpar2; has verified the source files</screeninfo>
+	<mediaobject>
+	  <imageobject>
+	    <imagedata fileref="kpar2_all_correct.png" format="PNG"/>
+	  </imageobject>
+	  <textobject>
+	    <phrase>Screenshot</phrase>
+	  </textobject>
+	</mediaobject>
+</screenshot>
+</para>
+
+<para>
+However, if there are damaged or missing source files then &kpar2; can repair them if possible.
+</para>
+
+<para>
+<screenshot>
+<screeninfo>&kpar2; after repairing damaged and missing source files</screeninfo>
+	<mediaobject>
+	  <imageobject>
+	    <imagedata fileref="kpar2_repaired.png" format="PNG"/>
+	  </imageobject>
+	  <textobject>
+	    <phrase>Screenshot</phrase>
+	  </textobject>
+	</mediaobject>
+</screenshot>
+</para>
+
+<para>
+However, it is possible that there are either too many damaged and/or missing source files,
+or not enough parity files to carry out a repair. In this case, &kpar2; will report that it
+is unable to carry out a repair of the source files. Your only recourse in this case will be
+to either redownload the damaged and missing files, or download more parity files.
+</para>
+
+<para>
+<screenshot>
+<screeninfo>&kpar2; is unable to repair the source files</screeninfo>
+	<mediaobject>
+	  <imageobject>
+	    <imagedata fileref="kpar2_repair_not_possible.png" format="PNG"/>
+	  </imageobject>
+	  <textobject>
+	    <phrase>Screenshot</phrase>
+	  </textobject>
+	</mediaobject>
+</screenshot>
+</para>
+
 </para>
 
 </chapter>
@@ -125,7 +213,7 @@ using the buttons in the main window.
 <keycombo action="simul">&Ctrl;<keycap>O</keycap></keycombo>
 </shortcut>
 <guimenu>File</guimenu>
-<guimenuitem>Open</guimenuitem>
+<guimenuitem>Open PAR2 File</guimenuitem>
 </menuchoice></term>
 <listitem><para><action>Loads a *.par2 or *.PAR2 recovery file</action></para></listitem>
 </varlistentry>

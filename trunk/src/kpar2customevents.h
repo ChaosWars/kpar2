@@ -23,7 +23,22 @@
 
 #include <qapplication.h>
 #include <qevent.h>
-#include "kpar2object.h"
+
+class ParHeaders;
+
+typedef enum _Operation{
+    noop = 0,
+    load = 1,
+    verify = 2,
+    repair = 3
+} Operation;
+
+typedef enum _FinishedStatus{
+    info = 0,
+    ok = 1,
+    warning = 2,
+    error = 3
+} FinishedStatus;
 
 class HeaderInfo : public QCustomEvent
 {
@@ -107,12 +122,14 @@ class Done : public QCustomEvent
 class Finished : public QCustomEvent
 {
     public:
-        Finished( const QString& info ) : QCustomEvent( QEvent::User + 7 ), i( info ){}
+        Finished( const QString &info, const FinishedStatus &status ) : QCustomEvent( QEvent::User + 7 ), i( info ), s( status ){}
         ~Finished(){}
         QString info() const{ return i; }
+        FinishedStatus status() const{ return s; }
 
     private:
         QString i;
+        FinishedStatus s;
 };
 
 class StatusMessage : public QCustomEvent
