@@ -22,26 +22,12 @@
 #include <libpar2/par2repairer.h>
 #include "kpar2object.h"
 #include "kpar2settings.h"
-
-#ifdef COMPILE_FOR_KDE4
-
-#include <KDE/KListView>
-#include "kpar2gui4.h"
-
-KPar2Object::KPar2Object( KPar2GUI4 *gui )
-{
-
-#else
-
 #include <klistview.h>
 #include "kpar2gui.h"
 #include "kpar2customevents.h"
 
 KPar2Object::KPar2Object( KPar2GUI *gui )
 {
-
-#endif
-
     config = KPar2Settings::self();
     readSettings();
     m_gui = gui;
@@ -188,7 +174,7 @@ bool KPar2Object::checkParity( const QString& par2file )
                 Finished *f2 = new Finished( QString( "%1 %2 missing." ).arg( files_missing ).arg( ( files_missing == 1 ) ? "file is" : "files are" ) );
                 QApplication::postEvent( m_gui, f2 );
 
-                Finished *f3 = new Finished( QString( "Repair is not possible" ) );
+                Finished *f3 = new Finished( QString( "Repair is not possible." ) );
                 QApplication::postEvent( m_gui, f3 );
             }
 

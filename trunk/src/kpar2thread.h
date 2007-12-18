@@ -29,7 +29,7 @@ class KPar2GUI;
 class KPar2Object;
 class KPar2Settings;
 
-class KPar2Thread : public QObject, QThread
+class KPar2Thread : public QObject, public QThread
 {
     Q_OBJECT
 

@@ -21,17 +21,8 @@
 #ifndef _KPAR2PART_H_
 #define _KPAR2PART_H_
 
-#ifdef COMPILE_FOR_KDE4
-
-#include <KDE/KParts/Part>
-#include <KDE/KParts/Factory>
-
-#else
-
 #include <kparts/part.h>
 #include <kparts/factory.h>
-
-#endif
 
 class QWidget;
 class QPainter;
@@ -81,6 +72,7 @@ class KPar2Part : public KParts::ReadOnlyPart
         void loadPAR2Files( const QString& file );
 
     private:
+        QWidget *parent;
         KPar2Thread *kpar2thread;
         KPar2GUI *m_widget;
         KPar2Settings *config;

@@ -23,21 +23,8 @@
 #include "kpar2gui.h"
 #include "kpar2settings.h"
 #include "settings.h"
-
-#ifdef COMPILE_FOR_KDE4
-
-#include <KDE/KInstance>
-#include <KDE/KAction>
-#include <KDE/KStdAction>
-#include <KDE/KFileDialog>
-#include <KDE/KGlobal>
-#include <KDE/KLocale>
-#include <QFile>
-#include <QTimer>
-#include <KDE/KIO/NetAccess>
-
-#else
-
+#include <kparts/mainwindow.h>
+#include <kstatusbar.h>
 #include <kinstance.h>
 #include <kaction.h>
 #include <kstdaction.h>
@@ -48,11 +35,9 @@
 #include <qtimer.h>
 #include <kio/netaccess.h>
 
-#endif
-
 KPar2Part::KPar2Part( QWidget *parentWidget, const char *widgetName,
                               QObject *parent, const char *name )
-    : KParts::ReadOnlyPart(parent, name)
+    : KParts::ReadOnlyPart(parent, name), parent( parentWidget )
 {
     // we need an instance
     setInstance( KPar2PartFactory::instance() );
@@ -64,7 +49,7 @@ KPar2Part::KPar2Part( QWidget *parentWidget, const char *widgetName,
     setWidget(m_widget);
 
     // create our actions
-    KStdAction::open( this, SLOT(fileOpen()), actionCollection() );
+    KStdAction::open( this, SLOT( fileOpen() ), actionCollection() );
 
     // Set up the PAR2 thread
     kpar2thread = new KPar2Thread( m_widget );
@@ -83,6 +68,9 @@ KPar2Part::KPar2Part( QWidget *parentWidget, const char *widgetName,
 
 KPar2Part::~KPar2Part()
 {
+    kpar2thread->terminate();
+    kpar2thread->wait();
+    static_cast< KParts::MainWindow* >( parent )->statusBar()->message( "" );
     saveSettings();
 }
 
@@ -135,24 +123,14 @@ void KPar2Part::readSettings()
 
 // It's usually safe to leave the factory code alone.. with the
 // notable exception of the KAboutData data
-
-#ifdef COMPILE_FOR_KDE4
-
-#include <KDE/KAboutData>
-#include <KDE/KLocale>
-
-#else
-
 #include <kaboutdata.h>
 #include <klocale.h>
 
-#endif
+KInstance*  KPar2PartFactory::s_instance = 0L;
+KAboutData* KPar2PartFactory::s_about = 0L;
 
-    KInstance*  KPar2PartFactory::s_instance = 0L;
-    KAboutData* KPar2PartFactory::s_about = 0L;
-
-    KPar2PartFactory::KPar2PartFactory()
-        : KParts::Factory()
+KPar2PartFactory::KPar2PartFactory()
+    : KParts::Factory()
 {
 }
 
@@ -177,7 +155,7 @@ KInstance* KPar2PartFactory::instance()
 {
     if( !s_instance )
     {
-        s_about = new KAboutData("kpar2", I18N_NOOP("KPar2"), "0.3");
+        s_about = new KAboutData("kpar2", I18N_NOOP("KPar2"), "0.3.1");
         s_about->addAuthor("Lawrence Lee", 0, "valher@facticius.net");
         s_instance = new KInstance(s_about);
     }

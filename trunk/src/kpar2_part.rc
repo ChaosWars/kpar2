@@ -4,6 +4,8 @@
   <Menu name="file">
     <Action name="file_open"/>
   </Menu>
+  <Separator/>
+  <Merge/>
   <Menu name="settings">
       <Action name="configure_settings"/>
   </Menu>

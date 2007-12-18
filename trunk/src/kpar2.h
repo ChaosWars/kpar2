@@ -25,17 +25,8 @@
 #include <config.h>
 #endif
 
-#ifdef COMPILE_FOR_KDE4
-
-#include <KDE/KApplication>
-#include <KDE/KParts/MainWindow>
-
-#else
-
 #include <kapplication.h>
 #include <kparts/mainwindow.h>
-
-#endif
 
 class KToggleAction;
 
@@ -51,33 +42,33 @@ class KPar2 : public KParts::MainWindow
 {
     Q_OBJECT
     public:
-    /**
-     * Default Constructor
-     */
+        /**
+         * Default Constructor
+         */
         KPar2();
 
-    /**
+        /**
          * Default Destructor
-     */
+         */
         virtual ~KPar2();
 
-    /**
-         * Use this method to load whatever file/URL you have
-     */
+        /**
+        * Use this method to load whatever file/URL you have
+        */
         void load(const KURL& url);
 
     protected:
-    /**
-     * This method is called when it is time for the app to save its
-     * properties for session management purposes.
-     */
+        /**
+         * This method is called when it is time for the app to save its
+         * properties for session management purposes.
+         */
         void saveProperties(KConfig *);
 
-    /**
+        /**
          * This method is called when this app is restored.  The KConfig
          * object points to the session management config file that was saved
          * with @ref saveProperties
-     */
+         */
         void readProperties(KConfig *);
 
     private slots:

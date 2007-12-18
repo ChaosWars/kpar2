@@ -20,6 +20,7 @@
 static QPixmap ok( KGlobal::iconLoader()->loadIcon( "button_ok.png", KIcon::Toolbar ) );
 static QPixmap damaged( KGlobal::iconLoader()->loadIcon( "button_cancel.png", KIcon::Toolbar ) );
 static QPixmap missing( KGlobal::iconLoader()->loadIcon( "messagebox_critical.png", KIcon::Toolbar ) );
+static QPixmap warning( KGlobal::iconLoader()->loadIcon( "messagebox_warning.png", KIcon::Toolbar ) );
 static QPixmap info( KGlobal::iconLoader()->loadIcon( "info.png", KIcon::Toolbar ) );
 
 void KPar2GUI::init()
@@ -108,7 +109,17 @@ void KPar2GUI::customEvent( QCustomEvent *e )
             FileDisplay->ensureItemVisible( new QListViewItem( FileDisplay, FileDisplay->lastItem(), fe->info() ) );
         }else if( e->type() ==  QEvent::User + 8 ){
             StatusMessage *m = ( StatusMessage* )e;
-            static_cast< KParts::MainWindow* >( parent() )->statusBar()->message( m->message() );
+            QString message = m->message();
+            static_cast< KParts::MainWindow* >( parent() )->statusBar()->message( message );
+
+            if( message == "Repair is required." ){
+                FileDisplay->lastItem()->setPixmap( 1, warning );
+            }else if( message == "Repair is not possible."){
+                FileDisplay->lastItem()->setPixmap( 1, missing );
+            }else if( message == "Source files verified." ){
+                FileDisplay->lastItem()->setPixmap( 1, info );
+            }
+
         }
 }
 
