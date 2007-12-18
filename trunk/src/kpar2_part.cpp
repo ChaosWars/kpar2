@@ -49,7 +49,7 @@ KPar2Part::KPar2Part( QWidget *parentWidget, const char *widgetName,
     setWidget(m_widget);
 
     // create our actions
-    KStdAction::open( this, SLOT( fileOpen() ), actionCollection() )->setText( "&Open PAR2 File" );
+    KStdAction::open( this, SLOT( fileOpen() ), actionCollection() )->setText( i18n( "&Open PAR2 File" ) );
 
     // Set up the PAR2 thread
     kpar2thread = new KPar2Thread( m_widget );
@@ -155,8 +155,8 @@ KInstance* KPar2PartFactory::instance()
 {
     if( !s_instance )
     {
-        s_about = new KAboutData("kpar2", I18N_NOOP("KPar2"), "0.3.1");
-        s_about->addAuthor("Lawrence Lee", 0, "valher@facticius.net");
+        s_about = new KAboutData( "kpar2", I18N_NOOP("KPar2"), "0.3.1" );
+        s_about->addAuthor( "Lawrence Lee", 0, "valher@facticius.net" );
         s_instance = new KInstance(s_about);
     }
     return s_instance;

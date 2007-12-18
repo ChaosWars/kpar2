@@ -15,6 +15,7 @@
 #include <kstatusbar.h>
 #include <kparts/mainwindow.h>
 #include <kiconloader.h>
+#include <klocale.h>
 #include "kpar2customevents.h"
 
 static QPixmap p_info( KGlobal::iconLoader()->loadIcon( "info.png", KIcon::Toolbar ) );
@@ -39,13 +40,13 @@ void KPar2GUI::customEvent( QCustomEvent *e )
             QListViewItem *i = new QListViewItem( FileDisplay, FileDisplay->lastItem() );
             i->setMultiLinesEnabled( true );
 
-            i->setText( 0, "There are " + QString::number( he->headers()->recoverable_files ) + \
-                            " recoverable files and " +  QString::number( he->headers()->other_files ) + \
-                            " other files.\n" + "The block size used was " + \
-                            QString::number( he->headers()->block_size ) + "\nThere are a total of " + \
-                            QString::number( he->headers()->data_blocks ) + " data blocks.\n" + \
-                            "The total size of the data files is " + \
-                            QString::number( abs( he->headers()->data_size ) ) + " bytes." );
+            i->setText( 0, i18n( "There are " + QString::number( he->headers()->recoverable_files ) + \
+                                " recoverable files and " +  QString::number( he->headers()->other_files ) + \
+                                " other files.\n" + "The block size used was " + \
+                                QString::number( he->headers()->block_size ) + "\nThere are a total of " + \
+                                QString::number( he->headers()->data_blocks ) + " data blocks.\n" + \
+                                "The total size of the data files is " + \
+                                QString::number( abs( he->headers()->data_size ) ) + " bytes." ) );
 
             i->setPixmap( 1, p_info );
             FileDisplay->ensureItemVisible( i );
@@ -95,9 +96,9 @@ void KPar2GUI::customEvent( QCustomEvent *e )
         }else if( e->type() ==  QEvent::User + 6 ){
             Done *de = ( Done* )e;
 
-            if( de->info() == "Found" ){
+            if( de->info() == i18n( "Found" ) ){
                 FileDisplay->lastItem()->setPixmap( 1, p_ok );
-            }else if( de->info() == "Damaged" ){
+            }else if( de->info() == i18n( "Damaged" ) ){
                 FileDisplay->lastItem()->setPixmap( 1, p_damaged );
             }else{ //Missing
                 FileDisplay->ensureItemVisible( new QListViewItem( FileDisplay, FileDisplay->lastItem(), de->info() ) );
