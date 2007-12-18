@@ -21,6 +21,7 @@
 #ifndef _KPAR2OBJECT_H_
 #define _KPAR2OBJECT_H_
 
+#include <sigc++/trackable.h>
 #include <qobject.h>
 #include "kpar2customevents.h"
 
@@ -31,7 +32,7 @@ class Par2Repairer;
 class CommandLine;
 class KPar2Settings;
 
-class KPar2Object : public QObject
+class KPar2Object : public QObject, public sigc::trackable
 {
     Q_OBJECT
 

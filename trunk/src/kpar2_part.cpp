@@ -69,7 +69,6 @@ KPar2Part::KPar2Part( QWidget *parentWidget, const char *widgetName,
 KPar2Part::~KPar2Part()
 {
     kpar2thread->terminate();
-    kpar2thread->wait();
     static_cast< KParts::MainWindow* >( parent )->statusBar()->message( "" );
     saveSettings();
 }

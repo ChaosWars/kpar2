@@ -22,6 +22,7 @@
 #include <libpar2/par2repairer.h>
 #include "kpar2object.h"
 #include "kpar2settings.h"
+#include <qapplication.h>
 #include <klistview.h>
 #include <klocale.h>
 #include "kpar2gui.h"
@@ -44,6 +45,7 @@ KPar2Object::~KPar2Object()
 {
     delete par2repairer;
     delete cmdline;
+    QApplication::sendPostedEvents();
 }
 
 bool KPar2Object::loadPAR2Files( const QString& par2file )
@@ -79,6 +81,7 @@ bool KPar2Object::loadPAR2Files( const QString& par2file )
         if( par2repairer == NULL ){
             par2repairer = new Par2Repairer();
         }else{
+            notify_callbacks();
             delete par2repairer;
             par2repairer = new Par2Repairer();
         }
