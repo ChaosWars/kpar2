@@ -7,7 +7,7 @@
     <projectmanagement>KDevCustomProject</projectmanagement>
     <primarylanguage>C++</primarylanguage>
     <ignoreparts/>
-    <projectdirectory>/home/lawrence/Projects/kpar2</projectdirectory>
+    <projectdirectory>/home/lawrence/Projects/kpar2/trunk</projectdirectory>
     <absoluteprojectpath>true</absoluteprojectpath>
     <secondaryLanguages>
       <language>C</language>
@@ -18,11 +18,11 @@
     <versioncontrol>kdevsubversion</versioncontrol>
   </general>
   <kdevcustomproject>
-    <filelistdirectory>/home/lawrence/Projects/kpar2</filelistdirectory>
+    <filelistdirectory>/home/lawrence/Projects/kpar2/trunk</filelistdirectory>
     <run>
       <mainprogram>/home/lawrence/Projects/kpar2-build/src/kpar2</mainprogram>
       <directoryradio>custom</directoryradio>
-      <customdirectory>/home/lawrence/Projects/kpar2</customdirectory>
+      <customdirectory>/home/lawrence/Projects/kpar2/trunk</customdirectory>
       <programargs/>
       <terminal>false</terminal>
       <autocompile>false</autocompile>
@@ -204,7 +204,7 @@
   </kdevdocumentation>
   <ctagspart>
     <customArguments/>
-    <customTagfilePath>/home/lawrence/Projects/kpar2/tags</customTagfilePath>
+    <customTagfilePath>/home/lawrence/Projects/kpar2/trunk/tags</customTagfilePath>
     <activeTagsFiles/>
   </ctagspart>
 </kdevelop>
