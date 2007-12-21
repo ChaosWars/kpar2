@@ -10,14 +10,14 @@
         <rect>
             <x>0</x>
             <y>0</y>
-            <width>490</width>
-            <height>490</height>
+            <width>425</width>
+            <height>625</height>
         </rect>
     </property>
     <property name="minimumSize">
         <size>
-            <width>490</width>
-            <height>490</height>
+            <width>425</width>
+            <height>625</height>
         </size>
     </property>
     <property name="caption">
@@ -58,8 +58,8 @@
             </property>
             <property name="minimumSize">
                 <size>
-                    <width>450</width>
-                    <height>262</height>
+                    <width>400</width>
+                    <height>400</height>
                 </size>
             </property>
             <property name="selectionMode" stdset="0">
@@ -86,7 +86,7 @@
             </property>
             <property name="minimumSize">
                 <size>
-                    <width>450</width>
+                    <width>400</width>
                     <height>200</height>
                 </size>
             </property>
@@ -289,6 +289,8 @@
         </widget>
     </vbox>
 </widget>
+<customwidgets>
+</customwidgets>
 <tabstops>
     <tabstop>CheckParityButton</tabstop>
     <tabstop>RepairFilesButton</tabstop>
@@ -314,7 +316,7 @@
     <function access="private" specifier="non virtual">init()</function>
     <function returnType="KListView *">gui()</function>
 </functions>
-<layoutdefaults spacing="6" margin="11"/>
+<layoutdefaults spacing="5" margin="10"/>
 <includehints>
     <includehint>klistview.h</includehint>
     <includehint>kprogress.h</includehint>
