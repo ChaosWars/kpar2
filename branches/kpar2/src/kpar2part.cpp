@@ -41,7 +41,7 @@ K_EXPORT_COMPONENT_FACTORY( kpar2part /*library name*/, KPar2PartFactory )
 
 KPar2Part::KPar2Part( QWidget* parentWidget,
                       QObject* parent,
-                      const QStringList &args )
+                      const QStringList& )
     : KParts::ReadOnlyPart( parent ), parent( parentWidget )
 {
     // this should be your custom internal widget
