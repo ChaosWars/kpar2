@@ -2,7 +2,7 @@
 <!DOCTYPE book PUBLIC "-//KDE//DTD DocBook XML V4.2-Based Variant V1.1//EN" "dtd/kdex.dtd" [
   <!ENTITY Lawrence.C.Lee "<personname><firstname>Lawrence</firstname><othername>C.</othername><surname>Lee</surname></personname>">
   <!ENTITY Lawrence.C.Lee.email "<email>valheru@facticius.net</email>">
-  <!ENTITY homepage "<ulink>http://kpar2.googlecode.com</ulink>">
+  <!ENTITY homepage "<ulink url='http://kpar2.googlecode.com'>http://kpar2.googlecode.com</ulink>">
   <!ENTITY kpar2 "<application>KPar2</application>">
   <!ENTITY kappname "&kpar2;">
   <!ENTITY package "kde-module">
@@ -17,10 +17,7 @@
 <title>The &kpar2; Handbook</title>
 
 <authorgroup>
-<author>
-&Lawrence.C.Lee;
-&Lawrence.C.Lee.email;
-</author>
+<author>&Lawrence.C.Lee; &Lawrence.C.Lee.email;</author>
 </authorgroup>
 
 <copyright>
@@ -89,13 +86,22 @@ KPar2 will automatically open and proceed to load the recovery files.
 Alternatively, you can open any PAR file via
 
 <variablelist>
-<varlistentry>
-<term><menuchoice>
-<guimenu>File</guimenu>
-<guimenuitem>Open PAR2 File</guimenuitem>
-</menuchoice></term>
-</varlistentry>
+  <varlistentry>
+    <term>
+      <menuchoice>
+        <guimenu>File</guimenu>
+          <guimenuitem>Open PAR2 File</guimenuitem>
+      </menuchoice>
+    </term>
+    <listitem>
+      <para>
+        <action>Open a PAR2 file</action>
+      </para>
+    </listitem>
+  </varlistentry>
 </variablelist>
+
+</para>
 
 <para>
 <screenshot>
@@ -189,8 +195,6 @@ to either redownload the damaged and missing files, or download more parity file
 </screenshot>
 </para>
 
-</para>
-
 </chapter>
 
 <chapter id="commands">
@@ -269,7 +273,7 @@ to either redownload the damaged and missing files, or download more parity file
 
 <title>Questions and Answers</title>
 
-&reporting.bugs;
+<para>&reporting.bugs;</para>
 
 </chapter>
 
