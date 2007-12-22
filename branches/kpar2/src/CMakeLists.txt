@@ -2,7 +2,7 @@ ADD_SUBDIRECTORY(icons)
 FIND_PACKAGE( libpar2 REQUIRED )
 FIND_PACKAGE( libsigc REQUIRED )
 
-INCLUDE_DIRECTORIES( ${KDE4_INCLUDE_DIRS}
+INCLUDE_DIRECTORIES( ${KDE4_INCLUDES}
                      ${CMAKE_CURRENT_BINARY_DIR}
                      ${CMAKE_CURRENT_SOURCE_DIR}
                      ${LIBSIGC_INCLUDE_DIRS}
@@ -12,8 +12,8 @@ IF( NOT KPAR2_BIN_INSTALL_DIR )
     SET( KPAR2_BIN_INSTALL_DIR ${KDE4_BIN_INSTALL_DIR} CACHE PATH "kpar2 binary install path" )
 ENDIF( NOT KPAR2_BIN_INSTALL_DIR )
 
-SET( KPART_SRC kpar2part.cpp kpar2thread.cpp kpar2object.cpp settings.cpp )
-SET( KPART_UI kpar2gui.ui generalsettings.ui )
+SET( KPART_SRC kpar2part.cpp generalsettingspage.cpp settings.cpp ) #kpar2thread.cpp kpar2object.cpp )
+SET( KPART_UI kpar2gui.ui generalsettingspage.ui )
 SET( SRC main.cpp kpar2.cpp )
 ADD_DEFINITIONS( ${QT_DEFINITIONS} ${KDE4_DEFINITIONS} )
 LINK_DIRECTORIES( ${KDE4_LIB_DIR} )

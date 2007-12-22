@@ -20,12 +20,12 @@
 #ifndef SETTINGS_H
 #define SETTINGS_H
 
-#include <kconfigdialog.h>
+#include <KDE/KConfigDialog>
 
 class QShowEvent;
 class KPar2Settings;
 class QVBoxLayout;
-class GeneralSettings;
+class GeneralSettingsPage;
 
 /**
 	@author Lawrence Lee <valheru@facticius.net>
@@ -47,9 +47,7 @@ class Settings : public KConfigDialog
 
     private:
         KPar2Settings *m_config;
-        QWidget *settingsPage;
-        QVBoxLayout *settingsPageLayout;
-        GeneralSettings *generalSettings;
+        GeneralSettingsPage *settingsPage;
         bool settingsChanged;
         void readSettings();
 

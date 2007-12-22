@@ -19,43 +19,41 @@
  ***************************************************************************/
 
 #include "kpar2.h"
-#include <kkeydialog.h>
-#include <kfiledialog.h>
-#include <kconfig.h>
-#include <kurl.h>
-#include <kedittoolbar.h>
-#include <kaction.h>
-#include <kstdaction.h>
-#include <klibloader.h>
-#include <kmessagebox.h>
-#include <kstatusbar.h>
-#include <klocale.h>
+#include <KDE/KFileDialog>
+#include <KDE/KConfig>
+#include <KDE/KUrl>
+#include <KDE/KEditToolBar>
+#include <KDE/KAction>
+#include <KDE/KStandardAction>
+#include <KDE/KActionCollection>
+#include <KDE/KPluginLoader>
+#include <KDE/KPluginFactory>
+#include <KDE/KMessageBox>
+#include <KDE/KStatusBar>
+#include <KDE/KLocale>
 
 KPar2::KPar2()
-    : KParts::MainWindow( 0L, "KPar2" )
 {
     // set the shell's ui resource file
-    setXMLFile("kpar2_shell.rc");
+    setXMLFile("kpar2/kpar2.rc");
 
     // then, setup our actions
     setupActions();
 
-    // this routine will find and load our Part.  it finds the Part by
-    // name which is a bad idea usually.. but it's alright in this
-    // case since our Part is made for this Shell
-    KLibFactory *factory = KLibLoader::self()->factory("libkpar2part");
+    KPluginLoader loader( "kpar2part" );
+    KPluginFactory *factory = loader.factory();
+
     if ( factory ){
         // now that the Part is loaded, we cast it to a Part to get
         // our hands on it
-        m_part = static_cast<KParts::ReadOnlyPart *>(factory->create(this,
-                "kpar2_part", "KParts::ReadOnlyPart" ));
+        m_part = factory->create< KParts::ReadOnlyPart >();
 
         if( m_part ){
             // tell the KParts::MainWindow that this is indeed the main widget
-            setCentralWidget(m_part->widget());
+            setCentralWidget( m_part->widget() );
 
             // and integrate the part's GUI with the shell's
-            createGUI(m_part);
+            createGUI( m_part );
         }
     }
     else
@@ -79,28 +77,28 @@ KPar2::~KPar2()
 {
 }
 
-void KPar2::load( const KURL& url )
+void KPar2::load( const KUrl& url )
 {
-    m_part->openURL( url );
+    m_part->openUrl( url );
 }
 
 void KPar2::setupActions()
 {
     setStandardToolBarMenuEnabled( true );
     createStandardStatusBarAction();
-    KStdAction::quit( kapp, SLOT( quit() ), actionCollection() );
-    KStdAction::keyBindings( this, SLOT( optionsConfigureKeys()), actionCollection() );
-    KStdAction::configureToolbars( this, SLOT( optionsConfigureToolbars()), actionCollection() );
+    KStandardAction::quit( kapp, SLOT( quit() ), actionCollection() );
+    KStandardAction::keyBindings( this, SLOT( optionsConfigureKeys()), actionCollection() );
+    KStandardAction::configureToolbars( this, SLOT( optionsConfigureToolbars()), actionCollection() );
 }
 
-void KPar2::saveProperties( KConfig* )
+void KPar2::saveProperties( KConfigGroup& )
 {
     // the 'config' object points to the session managed
     // config file.  anything you write here will be available
     // later when this app is restored
 }
 
-void KPar2::readProperties( KConfig* )
+void KPar2::readProperties( const KConfigGroup& )
 {
     // the 'config' object points to the session managed
     // config file.  this function is automatically called whenever
@@ -110,38 +108,22 @@ void KPar2::readProperties( KConfig* )
 
 void KPar2::optionsConfigureKeys()
 {
-    KKeyDialog::configure(actionCollection());
+//     KKeyDialog::configure(actionCollection());
 }
 
 void KPar2::optionsConfigureToolbars()
 {
-#if defined(KDE_MAKE_VERSION)
-# if KDE_VERSION >= KDE_MAKE_VERSION(3,1,0)
-    saveMainWindowSettings( KGlobal::config(), autoSaveGroup() );
-# else
-    saveMainWindowSettings( KGlobal::config() );
-# endif
-#else
-    saveMainWindowSettings( KGlobal::config() );
-#endif
+//     saveMainWindowSettings( KGlobal::config(), autoSaveGroup() );
 
     // use the standard toolbar editor
-    KEditToolbar dlg(factory());
+    KEditToolBar dlg(factory());
     connect( &dlg, SIGNAL( newToolbarConfig() ), this, SLOT( applyNewToolbarConfig() ) );
     dlg.exec();
 }
 
 void KPar2::applyNewToolbarConfig()
 {
-#if defined(KDE_MAKE_VERSION)
-# if KDE_VERSION >= KDE_MAKE_VERSION(3,1,0)
-    applyMainWindowSettings(KGlobal::config(), autoSaveGroup());
-# else
-    applyMainWindowSettings(KGlobal::config());
-# endif
-#else
-    applyMainWindowSettings(KGlobal::config());
-#endif
+//     applyMainWindowSettings(KGlobal::config(), autoSaveGroup());
 }
 
 #include "kpar2.moc"

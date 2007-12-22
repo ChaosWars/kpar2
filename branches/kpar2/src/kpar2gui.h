@@ -17,42 +17,16 @@
  *   Free Software Foundation, Inc.,                                       *
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
-#include "kpar2.h"
-#include <KDE/KApplication>
-#include <KDE/KAboutData>
-#include <KDE/KCmdLineArgs>
-#include <KDE/KLocale>
+#ifndef KPAR2GUIIMPL_H
+#define KPAR2GUIIMPL_H
 
-static const char description[] = "PAR2 verification and repair application for KDE";
+#include "ui_kpar2gui.h"
 
-static const char version[] = "0.3.2";
-
-int main(int argc, char **argv)
+class KPar2Gui : public QWidget, public Ui::KPar2Gui
 {
-	KCmdLineOptions options;
-	options.add( "+files", ki18n( "Documents to open. You can list multiple files here." ) );
-	KAboutData about( "KPar2", QByteArray(), ki18n( "KPar2" ), version, ki18n( description ),
-					  KAboutData::License_GPL, ki18n( "(C) 2007 Lawrence Lee" ), ki18n(""),
-							  "http://kpar2.googlecode.com", "valheru@facticius.net" );
-	about.addAuthor( ki18n( "Lawrence Lee" ), ki18n( "Lead programmer" ), "valheru@facticius.net", "www.facticius.net" );
-    KCmdLineArgs::init( argc, argv, &about );
-    KCmdLineArgs::addCmdLineOptions( options );
-    KApplication app;
-	KCmdLineArgs *args = KCmdLineArgs::parsedArgs();
+    public:
+        KPar2Gui();
+        ~KPar2Gui();
+};
 
-	if ( args->count() == 0 ){
-		KPar2 *widget = new KPar2();
-		widget->show();
-	}else{
-		int i = 0;
-		for (; i < args->count(); i++ )
-		{
-			KPar2 *widget = new KPar2();
-			widget->show();
-			widget->load( args->url( i ) );
-		}
-	}
-	args->clear();
-
-    return app.exec();
-}
+#endif // _KPAR2GUIIMPL_H

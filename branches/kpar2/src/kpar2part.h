@@ -21,12 +21,11 @@
 #ifndef _KPAR2PART_H_
 #define _KPAR2PART_H_
 
-#include <kparts/part.h>
-#include <kparts/factory.h>
+#include <KDE/KParts/ReadOnlyPart>
 
 class QWidget;
 class QPainter;
-class KURL;
+class KUrl;
 class KPar2GUI;
 class KPar2Thread;
 class KPar2Settings;
@@ -47,8 +46,9 @@ class KPar2Part : public KParts::ReadOnlyPart
     /**
      * Default constructor
      */
-        KPar2Part( QWidget *parentWidget, const char *widgetName,
-                      QObject *parent, const char *name );
+        KPar2Part( QWidget* parentWidget,
+                   QObject* parent,
+                   const QStringList& args = QStringList() );
 
     /**
          * Destructor
@@ -60,7 +60,7 @@ class KPar2Part : public KParts::ReadOnlyPart
      * This must be implemented by each part
      */
         virtual bool openFile();
-        virtual bool openURL( const KURL & url );
+        virtual bool openUrl( const KUrl & url );
 
     protected slots:
         void fileOpen();
@@ -73,29 +73,10 @@ class KPar2Part : public KParts::ReadOnlyPart
 
     private:
         QWidget *parent;
-        KPar2Thread *kpar2thread;
+//         KPar2Thread *kpar2thread;
         KPar2GUI *m_widget;
         KPar2Settings *config;
         Settings *settings;
-};
-
-class KInstance;
-class KAboutData;
-
-class KPar2PartFactory : public KParts::Factory
-{
-    Q_OBJECT
-    public:
-        KPar2PartFactory();
-        virtual ~KPar2PartFactory();
-        virtual KParts::Part* createPartObject( QWidget *parentWidget, const char *widgetName,
-                                                QObject *parent, const char *name,
-                                                const char *classname, const QStringList &args );
-        static KInstance* instance();
-
-    private:
-        static KInstance* s_instance;
-        static KAboutData* s_about;
 };
 
 #endif // _KPAR2PART_H_

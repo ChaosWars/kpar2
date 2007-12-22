@@ -17,26 +17,28 @@
  *   Free Software Foundation, Inc.,                                       *
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
-
-#include "kpar2thread.h"
-#include "kpar2_part.h"
+// #include "kpar2thread.h"
+#include "kpar2part.h"
 #include "kpar2gui.h"
 #include "kpar2settings.h"
 #include "settings.h"
-#include <kparts/mainwindow.h>
-#include <kstatusbar.h>
-#include <kinstance.h>
-#include <kaction.h>
-#include <kstdaction.h>
-#include <kfiledialog.h>
-#include <kglobal.h>
-#include <klocale.h>
-#include <qfile.h>
-#include <qtimer.h>
-#include <kio/netaccess.h>
+#include <KDE/KParts/MainWindow>
+#include <KDE/KStatusBar>
+#include <KDE/KAction>
+#include <KDE/KStandardAction>
+#include <KDE/KFileDialog>
+#include <KDE/KGlobal>
+#include <KDE/KLocale>
+#include <KDE/KIO/NetAccess>
+#include <QFile>
 
-KPar2Part::KPar2Part( QWidget *parentWidget, const char *widgetName,
-                              QObject *parent, const char *name )
+//Factory Code
+typedef KParts::GenericFactory< KPar2Part > KPar2PartFactory;
+K_EXPORT_COMPONENT_FACTORY( kpar2part /*library name*/, KPar2PartFactory )
+
+    KPar2Part::KPar2Part( QWidget* parentWidget,
+                          QObject* parent,
+                          const QStringList& args = QStringList() )
     : KParts::ReadOnlyPart(parent, name), parent( parentWidget )
 {
     // we need an instance
@@ -46,23 +48,23 @@ KPar2Part::KPar2Part( QWidget *parentWidget, const char *widgetName,
     m_widget = new KPar2GUI( parentWidget );
 
     // notify the part that this is our internal widget
-    setWidget(m_widget);
+    setWidget( m_widget );
 
     // create our actions
-    KStdAction::open( this, SLOT( fileOpen() ), actionCollection() )->setText( i18n( "&Open PAR2 File" ) );
+    KStandardAction::open( this, SLOT( fileOpen() ), actionCollection() )->setText( i18n( "&Open PAR2 File" ) );
 
     // Set up the PAR2 thread
-    kpar2thread = new KPar2Thread( m_widget );
+//     kpar2thread = new KPar2Thread( m_widget );
 
-    new KAction( i18n( "&Configure KPar2" ), "configure", 0,
-                 this, SLOT( configureSettings() ),
-                 actionCollection(), "configure_settings" );
+    configureAction = new KAction( KIcon( "configure" ), i18n( "&amp;Configure KPar2" ), actionCollection() );
+    actionCollection()->addAction( "configure_settings", configureAction );
+    connect( configureAction, SIGNAL( triggered( bool ) ), this, SLOT( configureSettings() ) );
 
     config = KPar2Settings::self();
     readSettings();
 
     // set our XML-UI resource file
-    setXMLFile( "kpar2_part.rc" );
+    setXMLFile( "kpar2/kpar2part.rc" );
 
 }
 
@@ -75,17 +77,14 @@ KPar2Part::~KPar2Part()
 
 bool KPar2Part::openFile()
 {
-    // m_file is always local so we can use QFile on it
-    QFile file( m_file );
-    kpar2thread->loadPAR2Files( m_file.latin1() );
-    return true;
+    return false;
 }
 
-bool KPar2Part::openURL( const KURL & url )
+bool KPar2Part::openUrl( const KUrl & url )
 {
+    QString m_file( KIO::NetAccess::mostLocalURL( url, 0 ).path() );
     emit setWindowCaption( url.prettyURL() );
-    m_file = KIO::NetAccess::mostLocalURL( url, 0 ).path();
-    return openFile();
+    return true;
 }
 
 void KPar2Part::fileOpen()
@@ -93,10 +92,10 @@ void KPar2Part::fileOpen()
     // this slot is called whenever the File->Open menu is selected,
     // the Open shortcut is pressed (usually CTRL+O) or the Open toolbar
     // button is clicked
-    KURL file_name = KFileDialog::getOpenURL( QString::null, "*.par2 *.PAR2 | PAR2 Files" );
+    KUrl file_name = KFileDialog::getOpenURL( QString::null, "*.par2 *.PAR2 | PAR2 Files" );
 
     if( !file_name.isEmpty() ){
-        openURL( file_name );
+        openUrl( file_name );
     }
 }
 
@@ -120,54 +119,4 @@ void KPar2Part::readSettings()
 {
 }
 
-// It's usually safe to leave the factory code alone.. with the
-// notable exception of the KAboutData data
-#include <kaboutdata.h>
-#include <klocale.h>
-
-KInstance*  KPar2PartFactory::s_instance = 0L;
-KAboutData* KPar2PartFactory::s_about = 0L;
-
-KPar2PartFactory::KPar2PartFactory()
-    : KParts::Factory()
-{
-}
-
-KPar2PartFactory::~KPar2PartFactory()
-{
-    delete s_instance;
-    delete s_about;
-
-    s_instance = 0L;
-}
-
-KParts::Part* KPar2PartFactory::createPartObject(   QWidget *parentWidget, const char *widgetName,
-                                                    QObject *parent, const char *name,
-                                                    const char *classname, const QStringList &args )
-{
-    // Create an instance of our Part
-    KPar2Part* obj = new KPar2Part( parentWidget, widgetName, parent, name );
-    return obj;
-}
-
-KInstance* KPar2PartFactory::instance()
-{
-    if( !s_instance )
-    {
-        s_about = new KAboutData( "kpar2", I18N_NOOP("KPar2"), "0.3.1" );
-        s_about->addAuthor( "Lawrence Lee", 0, "valher@facticius.net" );
-        s_instance = new KInstance(s_about);
-    }
-    return s_instance;
-}
-
-extern "C"
-{
-    void* init_libkpar2part()
-    {
-        KGlobal::locale()->insertCatalogue("kpar2");
-        return new KPar2PartFactory;
-    }
-};
-
-#include "kpar2_part.moc"
+#include "kpar2part.moc"

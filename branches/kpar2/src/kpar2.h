@@ -25,10 +25,8 @@
 #include <config.h>
 #endif
 
-#include <kapplication.h>
-#include <kparts/mainwindow.h>
-
-class KToggleAction;
+#include <KDE/KApplication>
+#include <KDE/KParts/MainWindow>
 
 /**
  * This is the application "Shell".  It has a menubar, toolbar, and
@@ -36,7 +34,7 @@ class KToggleAction;
  *
  * @short Application Shell
  * @author Lawrence Lee <valher@facticius.net>
- * @version 0.3
+ * @version 0.3.2
  */
 class KPar2 : public KParts::MainWindow
 {
@@ -55,21 +53,21 @@ class KPar2 : public KParts::MainWindow
         /**
         * Use this method to load whatever file/URL you have
         */
-        void load(const KURL& url);
+        void load(const KUrl& url);
 
     protected:
         /**
          * This method is called when it is time for the app to save its
          * properties for session management purposes.
          */
-        void saveProperties(KConfig *);
+        void saveProperties( KConfigGroup& );
 
         /**
          * This method is called when this app is restored.  The KConfig
          * object points to the session management config file that was saved
          * with @ref saveProperties
          */
-        void readProperties(KConfig *);
+        void readProperties( const KConfigGroup& );
 
     private slots:
         void optionsConfigureKeys();

@@ -17,27 +17,20 @@
  *   Free Software Foundation, Inc.,                                       *
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
-#include <klocale.h>
-#include <qgroupbox.h>
-#include <qcheckbox.h>
-#include <qlayout.h>
-#include <qevent.h>
+#include <KDE/KLocale>
+#include <QEvent>
 #include "settings.h"
 #include "kpar2settings.h"
-#include "generalsettings.h"
+#include "generalsettingspage.h"
 
 Settings::Settings( QWidget *parent, const char *name, KPar2Settings *config )
- : KConfigDialog( parent, name, config ), settingsChanged( false )
+ : KConfigDialog( parent, name, config ), m_config( config ), settingsChanged( false )
 {
-    m_config = config;
     //Set up settings page
-    settingsPage = new QWidget( 0, "SettingsPage" );
-    settingsPageLayout = new QVBoxLayout( settingsPage );
-    generalSettings = new GeneralSettings( settingsPage );
-    settingsPageLayout->addWidget( generalSettings );
+    settingsPage = new GeneralSettingsPage( 0, "SettingsPage" );
     readSettings();
-    connect( generalSettings, SIGNAL( autoCheckToggled( bool ) ), this, SLOT( autoCheckToggled( bool ) ) );
-    connect( generalSettings, SIGNAL( autoRepairToggled( bool ) ), this, SLOT( autoRepairToggled( bool ) ) );
+    connect( settingsPage, SIGNAL( autoCheckToggled( bool ) ), this, SLOT( autoCheckToggled( bool ) ) );
+    connect( settingsPage, SIGNAL( autoRepairToggled( bool ) ), this, SLOT( autoRepairToggled( bool ) ) );
     connect( this, SIGNAL( cancelClicked() ), this, SLOT( cancelled() ) );
     addPage( settingsPage, i18n( "General Settings" ), "configure" );
 }
@@ -57,27 +50,27 @@ void Settings::showEvent( QShowEvent* )
 
 void Settings::readSettings()
 {
-    generalSettings->setAutoCheck( m_config->autoCheck() );
-    generalSettings->setAutoRepair( m_config->autoRepair() );
+//     settingsPage->setAutoCheck( m_config->autoCheck() );
+//     settingsPage->setAutoRepair( m_config->autoRepair() );
 }
 
 void Settings::autoCheckToggled( bool )
 {
     settingsChanged = true;
-    enableButton( Apply, true );
+    enableButtonApply( true );
 }
 
 void Settings::autoRepairToggled( bool )
 {
     settingsChanged = true;
-    enableButton( Apply, true );
+    enableButtonApply( true );
 }
 
 void Settings::updateSettings()
 {
     if( settingsChanged ){
-        m_config->setAutoCheck( generalSettings->autoCheck() );
-        m_config->setAutoRepair( generalSettings->autoRepair() );
+//         m_config->setAutoCheck( settingsPage->autoCheck() );
+//         m_config->setAutoRepair( settingsPage->autoRepair() );
         m_config->writeConfig();
         settingsChanged = false;
         emit loadSettings();
@@ -87,7 +80,7 @@ void Settings::updateSettings()
 void Settings::cancelled()
 {
     settingsChanged = false;
-    enableButton( Apply, false );
+    enableButtonApply( false );
 }
 
 #include "settings.moc"
