@@ -12,7 +12,7 @@ IF( NOT KPAR2_BIN_INSTALL_DIR )
     SET( KPAR2_BIN_INSTALL_DIR ${KDE4_BIN_INSTALL_DIR} CACHE PATH "kpar2 binary install path" )
 ENDIF( NOT KPAR2_BIN_INSTALL_DIR )
 
-SET( KPART_SRC kpar2part.cpp generalsettingspage.cpp settings.cpp ) #kpar2thread.cpp kpar2object.cpp )
+SET( KPART_SRC kpar2part.cpp kpar2gui.cpp generalsettingspage.cpp settings.cpp ) #kpar2thread.cpp kpar2object.cpp )
 SET( KPART_UI kpar2gui.ui generalsettingspage.ui )
 SET( SRC main.cpp kpar2.cpp )
 ADD_DEFINITIONS( ${QT_DEFINITIONS} ${KDE4_DEFINITIONS} )

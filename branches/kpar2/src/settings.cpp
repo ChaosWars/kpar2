@@ -27,7 +27,7 @@ Settings::Settings( QWidget *parent, const char *name, KPar2Settings *config )
  : KConfigDialog( parent, name, config ), m_config( config ), settingsChanged( false )
 {
     //Set up settings page
-    settingsPage = new GeneralSettingsPage( 0, "SettingsPage" );
+    settingsPage = new GeneralSettingsPage();
     readSettings();
     connect( settingsPage, SIGNAL( autoCheckToggled( bool ) ), this, SLOT( autoCheckToggled( bool ) ) );
     connect( settingsPage, SIGNAL( autoRepairToggled( bool ) ), this, SLOT( autoRepairToggled( bool ) ) );

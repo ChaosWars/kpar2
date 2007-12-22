@@ -31,6 +31,7 @@
 #include <KDE/KMessageBox>
 #include <KDE/KStatusBar>
 #include <KDE/KLocale>
+#include <KDE/KGlobal>
 
 KPar2::KPar2()
 {
@@ -86,7 +87,7 @@ void KPar2::setupActions()
 {
     setStandardToolBarMenuEnabled( true );
     createStandardStatusBarAction();
-    KStandardAction::quit( kapp, SLOT( quit() ), actionCollection() );
+    KStandardAction::quit( this, SLOT( close() ), actionCollection() );
     KStandardAction::keyBindings( this, SLOT( optionsConfigureKeys()), actionCollection() );
     KStandardAction::configureToolbars( this, SLOT( optionsConfigureToolbars()), actionCollection() );
 }
@@ -113,7 +114,7 @@ void KPar2::optionsConfigureKeys()
 
 void KPar2::optionsConfigureToolbars()
 {
-//     saveMainWindowSettings( KGlobal::config(), autoSaveGroup() );
+    saveMainWindowSettings( KConfigGroup( KGlobal::config(), autoSaveGroup() ) );
 
     // use the standard toolbar editor
     KEditToolBar dlg(factory());
@@ -123,7 +124,7 @@ void KPar2::optionsConfigureToolbars()
 
 void KPar2::applyNewToolbarConfig()
 {
-//     applyMainWindowSettings(KGlobal::config(), autoSaveGroup());
+    applyMainWindowSettings( KConfigGroup( KGlobal::config(), autoSaveGroup() ) );
 }
 
 #include "kpar2.moc"

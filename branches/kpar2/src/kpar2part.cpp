@@ -23,29 +23,29 @@
 #include "kpar2settings.h"
 #include "settings.h"
 #include <KDE/KParts/MainWindow>
+#include <KDE/KParts/GenericFactory>
 #include <KDE/KStatusBar>
 #include <KDE/KAction>
 #include <KDE/KStandardAction>
+#include <KDE/KActionCollection>
 #include <KDE/KFileDialog>
 #include <KDE/KGlobal>
 #include <KDE/KLocale>
 #include <KDE/KIO/NetAccess>
+#include <KDE/KAboutData>
 #include <QFile>
 
 //Factory Code
 typedef KParts::GenericFactory< KPar2Part > KPar2PartFactory;
 K_EXPORT_COMPONENT_FACTORY( kpar2part /*library name*/, KPar2PartFactory )
 
-    KPar2Part::KPar2Part( QWidget* parentWidget,
-                          QObject* parent,
-                          const QStringList& args = QStringList() )
-    : KParts::ReadOnlyPart(parent, name), parent( parentWidget )
+KPar2Part::KPar2Part( QWidget* parentWidget,
+                      QObject* parent,
+                      const QStringList &args )
+    : KParts::ReadOnlyPart( parent ), parent( parentWidget )
 {
-    // we need an instance
-    setInstance( KPar2PartFactory::instance() );
-
     // this should be your custom internal widget
-    m_widget = new KPar2GUI( parentWidget );
+    m_widget = new KPar2Gui();
 
     // notify the part that this is our internal widget
     setWidget( m_widget );
@@ -70,9 +70,14 @@ K_EXPORT_COMPONENT_FACTORY( kpar2part /*library name*/, KPar2PartFactory )
 
 KPar2Part::~KPar2Part()
 {
-    kpar2thread->terminate();
-    static_cast< KParts::MainWindow* >( parent )->statusBar()->message( "" );
+//     kpar2thread->terminate();
+    static_cast< KParts::MainWindow* >( parent )->statusBar()->showMessage( "" );
     saveSettings();
+}
+
+KAboutData* KPar2Part::createAboutData()
+{
+    return new KAboutData( "kpar2part", 0, ki18n( "KPar2" ), "0.3.2" );
 }
 
 bool KPar2Part::openFile()
@@ -82,8 +87,8 @@ bool KPar2Part::openFile()
 
 bool KPar2Part::openUrl( const KUrl & url )
 {
-    QString m_file( KIO::NetAccess::mostLocalURL( url, 0 ).path() );
-    emit setWindowCaption( url.prettyURL() );
+    QString m_file( KIO::NetAccess::mostLocalUrl( url, 0 ).path() );
+    emit setWindowCaption( url.prettyUrl() );
     return true;
 }
 
@@ -92,7 +97,7 @@ void KPar2Part::fileOpen()
     // this slot is called whenever the File->Open menu is selected,
     // the Open shortcut is pressed (usually CTRL+O) or the Open toolbar
     // button is clicked
-    KUrl file_name = KFileDialog::getOpenURL( QString::null, "*.par2 *.PAR2 | PAR2 Files" );
+    KUrl file_name = KFileDialog::getOpenUrl( KUrl(), "*.par2 *.PAR2 | PAR2 Files" );
 
     if( !file_name.isEmpty() ){
         openUrl( file_name );
@@ -106,7 +111,7 @@ void KPar2Part::configureSettings()
 
     settings = new Settings( m_widget, "settings", config );
     connect( settings, SIGNAL( settingsChanged() ), this, SLOT( readSettings() ) );
-    connect( settings, SIGNAL( loadSettings() ), kpar2thread, SLOT( readSettings() ) );
+//     connect( settings, SIGNAL( loadSettings() ), kpar2thread, SLOT( readSettings() ) );
     settings->show();
 }
 

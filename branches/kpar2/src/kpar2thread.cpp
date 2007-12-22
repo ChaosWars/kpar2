@@ -22,7 +22,7 @@
 #include "kpar2settings.h"
 #include "kpar2customevents.h"
 
-KPar2Thread::KPar2Thread( KPar2GUI *gui )
+KPar2Thread::KPar2Thread( KPar2Gui *gui )
 {
     obj = NULL;
     m_gui = gui;

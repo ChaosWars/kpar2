@@ -28,22 +28,22 @@ GeneralSettingsPage::~GeneralSettingsPage()
 {
 }
 
-Qt::Checked GeneralSettingsPage::autoCheck() const
+Qt::CheckState GeneralSettingsPage::autoCheck() const
 {
     return m_AutoCheck->checkState();
 }
 
-Qt::Checked GeneralSettingsPage::autoRepair() const
+Qt::CheckState GeneralSettingsPage::autoRepair() const
 {
     return m_AutoRepair->checkState();
 }
 
-void GeneralSettingsPage::setAutoCheck( Qt::Checked checkState )
+void GeneralSettingsPage::setAutoCheck( Qt::CheckState checkState )
 {
     m_AutoCheck->setCheckState( checkState );
 }
 
-void GeneralSettingsPage::setAutoRepair( Qt::Checked checkState )
+void GeneralSettingsPage::setAutoRepair( Qt::CheckState checkState )
 {
     m_AutoRepair->setCheckState( checkState );
 }

@@ -27,7 +27,7 @@
 #include <klocale.h>
 #include "kpar2gui.h"
 
-KPar2Object::KPar2Object( KPar2GUI *gui )
+KPar2Object::KPar2Object( KPar2Gui *gui )
 {
     config = KPar2Settings::self();
     readSettings();

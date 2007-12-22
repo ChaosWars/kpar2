@@ -27,3 +27,5 @@ KPar2Gui::KPar2Gui()
 KPar2Gui::~KPar2Gui()
 {
 }
+
+#include "kpar2gui.moc"

@@ -26,7 +26,9 @@
 class QWidget;
 class QPainter;
 class KUrl;
-class KPar2GUI;
+class KAction;
+class KPar2Gui;
+class KAboutData;
 class KPar2Thread;
 class KPar2Settings;
 class Settings;
@@ -48,12 +50,13 @@ class KPar2Part : public KParts::ReadOnlyPart
      */
         KPar2Part( QWidget* parentWidget,
                    QObject* parent,
-                   const QStringList& args = QStringList() );
+                   const QStringList &args = QStringList() );
 
     /**
          * Destructor
      */
         virtual ~KPar2Part();
+        static KAboutData* createAboutData();
 
     protected:
     /**
@@ -73,8 +76,9 @@ class KPar2Part : public KParts::ReadOnlyPart
 
     private:
         QWidget *parent;
+        KAction *configureAction;
 //         KPar2Thread *kpar2thread;
-        KPar2GUI *m_widget;
+        KPar2Gui *m_widget;
         KPar2Settings *config;
         Settings *settings;
 };

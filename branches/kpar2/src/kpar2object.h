@@ -25,7 +25,7 @@
 #include <qobject.h>
 #include "kpar2customevents.h"
 
-class KPar2GUI;
+class KPar2Gui;
 class QCustomEvent;
 class ParHeaders;
 class Par2Repairer;
@@ -37,7 +37,7 @@ class KPar2Object : public QObject, public sigc::trackable
     Q_OBJECT
 
     public:
-        KPar2Object( KPar2GUI *gui );
+        KPar2Object( KPar2Gui *gui );
         ~KPar2Object();
         bool loadPAR2Files( const QString& par2file );
         bool checkParity( const QString& par2file );
@@ -50,7 +50,7 @@ class KPar2Object : public QObject, public sigc::trackable
         void customEvent( QCustomEvent *e );
 
     private:
-        KPar2GUI *m_gui;
+        KPar2Gui *m_gui;
         KPar2Settings *config;
         Par2Repairer *par2repairer;
         CommandLine *cmdline;

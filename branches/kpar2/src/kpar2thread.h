@@ -25,7 +25,7 @@
 #include <qobject.h>
 #include <qthread.h>
 
-class KPar2GUI;
+class KPar2Gui;
 class KPar2Object;
 class KPar2Settings;
 
@@ -34,7 +34,7 @@ class KPar2Thread : public QObject, public QThread
     Q_OBJECT
 
     public:
-        KPar2Thread( KPar2GUI *gui );
+        KPar2Thread( KPar2Gui *gui );
         ~KPar2Thread();
 
     public slots:
@@ -50,7 +50,7 @@ class KPar2Thread : public QObject, public QThread
         KPar2Settings *config;
         bool autoCheck;
         bool autoRepair;
-        KPar2GUI *m_gui;
+        KPar2Gui *m_gui;
         KPar2Object *obj;
         QString par2file;
         Operation operation;
