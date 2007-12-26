@@ -35,7 +35,7 @@
 #include <qtimer.h>
 #include <kio/netaccess.h>
 
-KPar2Part::KPar2Part( QWidget *parentWidget, const char *widgetName,
+KPar2Part::KPar2Part( QWidget *parentWidget, const char* /*widgetName*/,
                               QObject *parent, const char *name )
     : KParts::ReadOnlyPart(parent, name), parent( parentWidget )
 {
@@ -143,7 +143,7 @@ KPar2PartFactory::~KPar2PartFactory()
 
 KParts::Part* KPar2PartFactory::createPartObject(   QWidget *parentWidget, const char *widgetName,
                                                     QObject *parent, const char *name,
-                                                    const char *classname, const QStringList &args )
+                                                    const char* /*classname*/, const QStringList& /*args*/ )
 {
     // Create an instance of our Part
     KPar2Part* obj = new KPar2Part( parentWidget, widgetName, parent, name );
