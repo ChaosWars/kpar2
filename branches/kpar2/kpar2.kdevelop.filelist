@@ -5,7 +5,6 @@ cmake/Findlibsigc.cmake
 doc/CMakeLists.txt
 src
 src/CMakeLists.txt
-src/generalsettings.ui
 src/generalsettingspage.cpp
 src/generalsettingspage.h
 src/icons/CMakeLists.txt

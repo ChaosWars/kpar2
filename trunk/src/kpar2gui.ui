@@ -11,13 +11,13 @@
             <x>0</x>
             <y>0</y>
             <width>425</width>
-            <height>625</height>
+            <height>425</height>
         </rect>
     </property>
     <property name="minimumSize">
         <size>
             <width>425</width>
-            <height>625</height>
+            <height>425</height>
         </size>
     </property>
     <property name="caption">
@@ -59,7 +59,7 @@
             <property name="minimumSize">
                 <size>
                     <width>400</width>
-                    <height>400</height>
+                    <height>200</height>
                 </size>
             </property>
             <property name="selectionMode" stdset="0">
