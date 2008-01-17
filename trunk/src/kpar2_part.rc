@@ -3,8 +3,8 @@
 <MenuBar>
   <Menu name="file">
     <Action name="file_open"/>
+    <Separator/>
   </Menu>
-  <Separator/>
   <Merge/>
   <Menu name="settings">
       <Action name="configure_settings"/>
