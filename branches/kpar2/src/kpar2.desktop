@@ -12,4 +12,4 @@ Categories=Qt;KDE;Application;Utility;X-KDE-Utilities-File
 Terminal=false
 X-KDE-StartupNotify=true
 X-DBUS-StartupType=Multi
-X-DBUS-ServiceName=com.googlecode.kpar2
+X-DBUS-ServiceName=com.googlecode.KPar2

@@ -56,7 +56,7 @@ KPar2Part::KPar2Part( QWidget* parentWidget,
     // Set up the PAR2 thread
 //     kpar2thread = new KPar2Thread( m_widget );
 
-    configureAction = new KAction( KIcon( "configure" ), i18n( "&amp;Configure KPar2" ), actionCollection() );
+    configureAction = new KAction( KIcon( "configure" ), i18n( "&Configure KPar2..." ), actionCollection() );
     actionCollection()->addAction( "configure_settings", configureAction );
     connect( configureAction, SIGNAL( triggered( bool ) ), this, SLOT( configureSettings() ) );
 
