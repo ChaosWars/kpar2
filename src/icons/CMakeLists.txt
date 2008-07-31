@@ -1,0 +1,1 @@
+INSTALL( FILES kpar2.png DESTINATION ${ICON_INSTALL_DIR}/oxygen/48x48/apps )
