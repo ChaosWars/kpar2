@@ -18,60 +18,54 @@
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
 
-#include "kpar2.h"
-#include <KDE/KFileDialog>
-#include <KDE/KConfig>
-#include <KDE/KUrl>
-#include <KDE/KEditToolBar>
 #include <KDE/KAction>
-#include <KDE/KStandardAction>
 #include <KDE/KActionCollection>
-#include <KDE/KPluginLoader>
-#include <KDE/KPluginFactory>
-#include <KDE/KMessageBox>
-#include <KDE/KStatusBar>
-#include <KDE/KLocale>
+#include <KDE/KConfig>
+#include <KDE/KFileDialog>
 #include <KDE/KGlobal>
+#include <KDE/KLocale>
+#include <KDE/KMessageBox>
+#include <KDE/KPluginFactory>
+#include <KDE/KPluginLoader>
+#include <KDE/KStandardAction>
+#include <KDE/KStatusBar>
+#include <KDE/KUrl>
+#include "kpar2.h"
 
 KPar2::KPar2()
 {
-    // set the shell's ui resource file
-    setXMLFile("kpar2/kpar2.rc");
-
     // then, setup our actions
     setupActions();
+    setupGUI( ToolBar | Keys | StatusBar );
 
     KPluginLoader loader( "kpar2part" );
     KPluginFactory *factory = loader.factory();
 
-    if ( factory ){
-        // now that the Part is loaded, we cast it to a Part to get
-        // our hands on it
+    if( !factory ){
+        KMessageBox::error( this, i18n( "Error loading plugin: %1", loader.errorString() ) );
+    }else{
         m_part = factory->create< KParts::ReadOnlyPart >();
 
-        if( m_part ){
-            // tell the KParts::MainWindow that this is indeed the main widget
-            setCentralWidget( m_part->widget() );
-
-            // and integrate the part's GUI with the shell's
-            createGUI( m_part );
+        if ( !m_part ) {
+            // if we couldn't find our Part, we exit since the Shell by
+            // itself can't do anything useful
+            KMessageBox::error( this, i18n( "Could not find our part." ) );
+            kapp->quit();
+            // we return here, cause kapp->quit() only means "exit the
+            // next time we enter the event loop...
+            return;
         }
-    }
-    else
-    {
-        // if we couldn't find our Part, we exit since the Shell by
-        // itself can't do anything useful
-        KMessageBox::error( this, i18n( "Could not find our part." ) );
-        kapp->quit();
-        // we return here, cause kapp->quit() only means "exit the
-        // next time we enter the event loop...
-        return;
-    }
 
-    // apply the saved mainwindow settings, if any, and ask the mainwindow
-    // to automatically save settings if changed: window size, toolbar
-    // position, icon size, etc.
-    setAutoSaveSettings();
+        // tell the KParts::MainWindow that this is indeed the main widget
+        setCentralWidget( m_part->widget() );
+
+        // and integrate the part's GUI with the shell's
+        createGUI( m_part );
+        // apply the saved mainwindow settings, if any, and ask the mainwindow
+        // to automatically save settings if changed: window size, toolbar
+        // position, icon size, etc.
+        setAutoSaveSettings();
+    }
 }
 
 KPar2::~KPar2()
@@ -87,9 +81,7 @@ void KPar2::setupActions()
 {
     setStandardToolBarMenuEnabled( true );
     createStandardStatusBarAction();
-    KStandardAction::quit( this, SLOT( close() ), actionCollection() );
-    KStandardAction::keyBindings( this, SLOT( optionsConfigureKeys()), actionCollection() );
-    KStandardAction::configureToolbars( this, SLOT( optionsConfigureToolbars()), actionCollection() );
+    KStandardAction::quit( kapp, SLOT( closeAllWindows() ), actionCollection() );
 }
 
 void KPar2::saveProperties( KConfigGroup& )
@@ -105,26 +97,6 @@ void KPar2::readProperties( const KConfigGroup& )
     // config file.  this function is automatically called whenever
     // the app is being restored.  read in here whatever you wrote
     // in 'saveProperties'
-}
-
-void KPar2::optionsConfigureKeys()
-{
-//     KKeyDialog::configure(actionCollection());
-}
-
-void KPar2::optionsConfigureToolbars()
-{
-    saveMainWindowSettings( KConfigGroup( KGlobal::config(), autoSaveGroup() ) );
-
-    // use the standard toolbar editor
-    KEditToolBar dlg(factory());
-    connect( &dlg, SIGNAL( newToolbarConfig() ), this, SLOT( applyNewToolbarConfig() ) );
-    dlg.exec();
-}
-
-void KPar2::applyNewToolbarConfig()
-{
-    applyMainWindowSettings( KConfigGroup( KGlobal::config(), autoSaveGroup() ) );
 }
 
 #include "kpar2.moc"

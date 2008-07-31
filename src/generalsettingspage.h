@@ -25,12 +25,8 @@
 class GeneralSettingsPage : public QWidget, public Ui::GeneralSettingsPage
 {
     public:
-        GeneralSettingsPage();
+        GeneralSettingsPage( QWidget *parent );
         ~GeneralSettingsPage();
-        Qt::CheckState autoCheck() const;
-        Qt::CheckState autoRepair() const;
-        void setAutoCheck( const Qt::CheckState checkState );
-        void setAutoRepair( const Qt::CheckState checkState );
 };
 
 #endif // GENERAL_SETTINGS_PAGE

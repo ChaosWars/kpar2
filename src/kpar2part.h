@@ -45,42 +45,41 @@ class KPar2Part : public KParts::ReadOnlyPart
 {
     Q_OBJECT
     public:
-    /**
-     * Default constructor
-     */
+
+        /**
+         * 
+         * @param parentWidget 
+         * @param parent 
+         * @param args 
+         */
         KPar2Part( QWidget* parentWidget,
                    QObject* parent,
                    const QStringList &args = QStringList() );
-
-    /**
-         * Destructor
-     */
         virtual ~KPar2Part();
         static KAboutData* createAboutData();
 
+    public Q_SLOTS:
+        void loadSettings();
+
     protected:
-    /**
-     * This must be implemented by each part
-     */
+        /**
+         * This must be implemented by each part
+         */
         virtual bool openFile();
         virtual bool openUrl( const KUrl & url );
 
-    protected slots:
+    protected Q_SLOTS:
         void fileOpen();
-        void configureSettings();
-        void saveSettings();
-        void readSettings();
+        void optionsConfigure();
 
-    signals:
-        void loadPAR2Files( const QString& file );
+//     Q_SIGNALS:
+//         void loadPAR2Files( const QString& file );
 
     private:
         QWidget *parent;
-        KAction *configureAction;
 //         KPar2Thread *kpar2thread;
         KPar2Gui *m_widget;
-        KPar2Settings *config;
-        Settings *settings;
+        bool autoCheck, autoRepair;
 };
 
 #endif // _KPAR2PART_H_

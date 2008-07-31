@@ -19,31 +19,12 @@
  ***************************************************************************/
 #include "generalsettingspage.h"
 
-GeneralSettingsPage::GeneralSettingsPage()
+GeneralSettingsPage::GeneralSettingsPage( QWidget *parent )
+    : QWidget( parent )
 {
-    setupUi( this );
+    setupUi( parent );
 }
 
 GeneralSettingsPage::~GeneralSettingsPage()
 {
-}
-
-Qt::CheckState GeneralSettingsPage::autoCheck() const
-{
-    return m_AutoCheck->checkState();
-}
-
-Qt::CheckState GeneralSettingsPage::autoRepair() const
-{
-    return m_AutoRepair->checkState();
-}
-
-void GeneralSettingsPage::setAutoCheck( Qt::CheckState checkState )
-{
-    m_AutoCheck->setCheckState( checkState );
-}
-
-void GeneralSettingsPage::setAutoRepair( Qt::CheckState checkState )
-{
-    m_AutoRepair->setCheckState( checkState );
 }
