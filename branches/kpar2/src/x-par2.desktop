@@ -1,7 +1,0 @@
-[Desktop Entry]
-Type=MimeType
-MimeType=application/x-par2
-Icon=par
-Patterns=*.par2;*.PAR2;
-DefaultApp=kpar2
-Comment=Parity Archive Volume Set
