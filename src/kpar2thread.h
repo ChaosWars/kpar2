@@ -21,15 +21,14 @@
 #ifndef _KPAR2THREAD_H_
 #define _KPAR2THREAD_H_
 
+#include <QThread>
 #include "kpar2object.h"
-#include <qobject.h>
-#include <qthread.h>
 
 class KPar2Gui;
 class KPar2Object;
 class KPar2Settings;
 
-class KPar2Thread : public QObject, public QThread
+class KPar2Thread : public QThread
 {
     Q_OBJECT
 

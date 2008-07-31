@@ -20,6 +20,7 @@
 #include <KDE/KAboutData>
 #include <KDE/KAction>
 #include <KDE/KActionCollection>
+#include <KDE/KConfigDialog>
 #include <KDE/KFileDialog>
 #include <KDE/KGlobal>
 #include <KDE/KLocale>
@@ -33,7 +34,6 @@
 #include "kpar2part.h"
 #include "kpar2gui.h"
 #include "kpar2settings.h"
-#include "settings.h"
 
 //Factory Code
 typedef KParts::GenericFactory<KPar2Part> KPar2PartFactory;
