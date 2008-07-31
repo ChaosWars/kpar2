@@ -1,0 +1,17 @@
+<!DOCTYPE kpartgui SYSTEM "kpartgui.dtd">
+<kpartgui name="kpar2_part" version="1">
+<MenuBar>
+  <Menu name="file">
+    <Action name="file_open"/>
+    <Separator/>
+  </Menu>
+  <Merge/>
+  <Menu name="settings">
+      <Action name="configure_settings"/>
+  </Menu>
+</MenuBar>
+<ToolBar name="mainToolBar">
+  <Action name="file_open"/>
+  <Separator/>
+</ToolBar>
+</kpartgui>

@@ -1,0 +1,385 @@
+<?xml version="1.0" ?>
+<!DOCTYPE book PUBLIC "-//KDE//DTD DocBook XML V4.2-Based Variant V1.1//EN" "dtd/kdex.dtd" [
+  <!ENTITY Lawrence.C.Lee "<personname><firstname>Lawrence</firstname><othername>C.</othername><surname>Lee</surname></personname>">
+  <!ENTITY Lawrence.C.Lee.email "<email>valheru@facticius.net</email>">
+  <!ENTITY homepage "<ulink>http://kpar2.googlecode.com</ulink>">
+  <!ENTITY kpar2 "<application>KPar2</application>">
+  <!ENTITY kappname "&kpar2;">
+  <!ENTITY package "kde-module">
+  <!ENTITY % addindex "IGNORE">
+  <!ENTITY % English "INCLUDE">
+]>
+
+<book lang="&language;">
+
+<bookinfo>
+
+<title>The &kpar2; Handbook</title>
+
+<authorgroup>
+<author>
+&Lawrence.C.Lee;
+&Lawrence.C.Lee.email;
+</author>
+</authorgroup>
+
+<copyright>
+<year>2007</year>
+<holder>Lawrence C. Lee</holder>
+</copyright>
+
+<legalnotice>&FDLNotice;</legalnotice>
+
+<date>2007-12-16</date>
+
+<releaseinfo>0.03.10</releaseinfo>
+
+<abstract>
+
+<para>
+&kpar2; is an application for the verification and repair of source files
+using parity *.par2 and *.PAR2 files.
+</para>
+
+</abstract>
+
+<keywordset>
+<keyword>KDE</keyword>
+<keyword>kdeutils</keyword>
+<keyword>KPar2</keyword>
+<keyword>par2</keyword>
+<keyword>newsgroup</keyword>
+<keyword>recovery</keyword>
+</keywordset>
+
+</bookinfo>
+
+<chapter id="introduction">
+
+<title>Introduction</title>
+
+<para>
+&kpar2; is an application for the verification and repair of source files
+using parity files. Please report any problems or feature requests as an issue on &homepage;
+</para>
+
+</chapter>
+
+<chapter id="using-kpar2">
+
+<title>Using &kpar2;</title>
+
+<para>
+<screenshot>
+<screeninfo>Here's a screenshot of &kpar2;</screeninfo>
+	<mediaobject>
+	  <imageobject>
+	    <imagedata fileref="kpar2.png" format="PNG"/>
+	  </imageobject>
+	  <textobject>
+	    <phrase>Screenshot</phrase>
+	  </textobject>
+	</mediaobject>
+</screenshot>
+</para>
+
+<para>
+You can double click on any *.par2 or *.PAR2 file that you wish to load into KPar2.
+KPar2 will automatically open and proceed to load the recovery files.
+Alternatively, you can open any PAR file via
+
+<variablelist>
+<varlistentry>
+<term><menuchoice>
+<guimenu>File</guimenu>
+<guimenuitem>Open PAR2 File</guimenuitem>
+</menuchoice></term>
+</varlistentry>
+</variablelist>
+
+<para>
+<screenshot>
+<screeninfo>&kpar2; after loading PAR2 files</screeninfo>
+	<mediaobject>
+	  <imageobject>
+	    <imagedata fileref="kpar2_loaded.png" format="PNG"/>
+	  </imageobject>
+	  <textobject>
+	    <phrase>Screenshot</phrase>
+	  </textobject>
+	</mediaobject>
+</screenshot>
+</para>
+
+<para>
+Once loaded, KPar2 will proceed to verify and if neccessary repair any files that need repairing
+if the "Automatically check" and "Automatically repair" options are enabled.
+If they are not enabled, then the user will have to command KPar2 to carry out these steps
+using the buttons in the main window.
+</para>
+
+<para>
+<screenshot>
+<screeninfo>&kpar2; verifying source files</screeninfo>
+	<mediaobject>
+	  <imageobject>
+	    <imagedata fileref="kpar2_checking.png" format="PNG"/>
+	  </imageobject>
+	  <textobject>
+	    <phrase>Screenshot</phrase>
+	  </textobject>
+	</mediaobject>
+</screenshot>
+</para>
+
+<para>
+If all source files pass verification &kpar2; will report that all source files are correct.
+</para>
+
+<para>
+<screenshot>
+<screeninfo>&kpar2; has verified the source files</screeninfo>
+	<mediaobject>
+	  <imageobject>
+	    <imagedata fileref="kpar2_all_correct.png" format="PNG"/>
+	  </imageobject>
+	  <textobject>
+	    <phrase>Screenshot</phrase>
+	  </textobject>
+	</mediaobject>
+</screenshot>
+</para>
+
+<para>
+However, if there are damaged or missing source files then &kpar2; can repair them if possible.
+</para>
+
+<para>
+<screenshot>
+<screeninfo>&kpar2; after repairing damaged and missing source files</screeninfo>
+	<mediaobject>
+	  <imageobject>
+	    <imagedata fileref="kpar2_repaired.png" format="PNG"/>
+	  </imageobject>
+	  <textobject>
+	    <phrase>Screenshot</phrase>
+	  </textobject>
+	</mediaobject>
+</screenshot>
+</para>
+
+<para>
+However, it is possible that there are either too many damaged and/or missing source files,
+or not enough parity files to carry out a repair. In this case, &kpar2; will report that it
+is unable to carry out a repair of the source files. Your only recourse in this case will be
+to either redownload the damaged and missing files, or download more parity files.
+</para>
+
+<para>
+<screenshot>
+<screeninfo>&kpar2; is unable to repair the source files</screeninfo>
+	<mediaobject>
+	  <imageobject>
+	    <imagedata fileref="kpar2_repair_not_possible.png" format="PNG"/>
+	  </imageobject>
+	  <textobject>
+	    <phrase>Screenshot</phrase>
+	  </textobject>
+	</mediaobject>
+</screenshot>
+</para>
+
+</para>
+
+</chapter>
+
+<chapter id="commands">
+
+<title>Command Reference</title>
+
+<sect1 id="kpar2-mainwindow">
+
+<title>The main &kpar2; window</title>
+
+<sect2>
+
+<title>The File Menu</title>
+
+<para>
+<variablelist>
+<varlistentry>
+<term><menuchoice>
+<shortcut>
+<keycombo action="simul">&Ctrl;<keycap>O</keycap></keycombo>
+</shortcut>
+<guimenu>File</guimenu>
+<guimenuitem>Open PAR2 File</guimenuitem>
+</menuchoice></term>
+<listitem><para><action>Loads a *.par2 or *.PAR2 recovery file</action></para></listitem>
+</varlistentry>
+<varlistentry>
+<term><menuchoice>
+<shortcut>
+<keycombo action="simul">&Ctrl;<keycap>Q</keycap></keycombo>
+</shortcut>
+<guimenu>File</guimenu>
+<guimenuitem>Quit</guimenuitem>
+</menuchoice></term>
+<listitem><para><action>Quits</action> &kpar2;</para></listitem>
+</varlistentry>
+</variablelist>
+</para>
+
+</sect2>
+
+<sect2>
+
+<title>The Settings Menu</title>
+
+<para>
+<variablelist>
+<varlistentry>
+<term><menuchoice>
+<shortcut>
+<keycombo action="simul">&Ctrl;<keycap>C</keycap></keycombo>
+</shortcut>
+<guimenu>Settings</guimenu>
+<guimenuitem>Configure KPar2</guimenuitem>
+</menuchoice></term>
+<listitem><para><action>Opens the configuration dialog for KPar2</action></para></listitem>
+</varlistentry>
+</variablelist>
+</para>
+
+</sect2>
+
+<sect2>
+
+<title>The <guimenu>Help</guimenu> Menu</title>
+
+&help.menu.documentation;
+
+</sect2>
+
+</sect1>
+
+</chapter>
+
+<chapter id="faq">
+
+<title>Questions and Answers</title>
+
+&reporting.bugs;
+
+</chapter>
+
+<chapter id="credits">
+
+<title>Credits and License</title>
+
+<para>
+&kpar2;
+</para>
+<para>
+Program copyright 2007 &Lawrence.C.Lee; &Lawrence.C.Lee.email;
+</para>
+
+<para>
+Documentation Copyright &copy; 2007 &Lawrence.C.Lee; &Lawrence.C.Lee.email;
+</para>
+
+&underFDL;
+&underGPL;
+
+</chapter>
+
+<appendix id="installation">
+
+<title>Installation</title>
+
+<sect1 id="getting-kpar2">
+
+<title>How to obtain &kpar2;</title>
+
+<para>
+&kpar2; can be found on <ulink url="http://kpar2.googlecode.com">the &kpar2; home page</ulink>.
+</para>
+
+</sect1>
+
+<sect1 id="requirements">
+
+<title>Requirements</title>
+
+<para>
+In order to successfully use &kpar2; you need &kde; 3.5, libpar2 and sigc++-v2.
+</para>
+
+<para>
+Libpar2 can be obained from <ulink url="http://parchive.sourceforge.net">the libpar2 homepage</ulink>.
+</para>
+
+<para>
+Sigc++-v2 can be obtained from <ulink url="http://libsigc.sourceforge.net/">the sigc++ homepage</ulink>.
+</para>
+
+</sect1>
+
+<sect1 id="compilation">
+
+<title>Compilation and Installation</title>
+
+<para>
+In order to compile and install KPar2 on your system, type the following in the base directory of the KPar2 source:
+</para>
+
+<screen>
+%cmake . -DCMAKE_INSTALL_PREFIX=`kde-config --prefix`
+%make
+%make install
+</screen>
+
+</sect1>
+
+<sect1 id="configuration">
+
+<title>Configuration</title>
+
+<para>
+<screenshot>
+<screeninfo>Here's a screenshot of &kpar2;'s settings dialog</screeninfo>
+	<mediaobject>
+	  <imageobject>
+	    <imagedata fileref="kpar2_settings.png" format="PNG"/>
+	  </imageobject>
+	  <textobject>
+	    <phrase>Screenshot</phrase>
+	  </textobject>
+	</mediaobject>
+</screenshot>
+</para>
+
+<para>&kpar2; allows the user to configure it to automatically verify the source files once the parity files are loaded.
+Additionally, &kpar2; can be configured to automatically repair any damaged source files if possible.
+</para>
+
+</sect1>
+
+</appendix>
+
+&documentation.index;
+
+</book>
+
+<!--
+Local Variables:
+mode: xml
+sgml-minimize-attributes:nil
+sgml-general-insert-case:lower
+sgml-indent-step:0
+sgml-indent-data:nil
+End:
+
+vim:tabstop=2:shiftwidth=2:expandtab
+kate: space-indent on; indent-width 2; tab-width 2; indent-mode none;
+-->

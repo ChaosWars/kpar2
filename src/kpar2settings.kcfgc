@@ -1,0 +1,4 @@
+File=kpar2settings.kcfg
+ClassName=KPar2Settings
+Singleton=true
+Mutators=true

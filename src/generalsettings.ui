@@ -1,0 +1,97 @@
+<!DOCTYPE UI><UI version="3.3" stdsetdef="1">
+<class>GeneralSettings</class>
+<widget class="QWidget">
+    <property name="name">
+        <cstring>GeneralSettings</cstring>
+    </property>
+    <property name="geometry">
+        <rect>
+            <x>0</x>
+            <y>0</y>
+            <width>148</width>
+            <height>113</height>
+        </rect>
+    </property>
+    <property name="caption">
+        <string>General Settings</string>
+    </property>
+    <vbox>
+        <property name="name">
+            <cstring>unnamed</cstring>
+        </property>
+        <widget class="QGroupBox">
+            <property name="name">
+                <cstring>settingsGroupBox</cstring>
+            </property>
+            <property name="title">
+                <string>Repair Options</string>
+            </property>
+            <vbox>
+                <property name="name">
+                    <cstring>unnamed</cstring>
+                </property>
+                <widget class="QCheckBox">
+                    <property name="name">
+                        <cstring>m_autoCheck</cstring>
+                    </property>
+                    <property name="text">
+                        <string>&amp;Auto check</string>
+                    </property>
+                    <property name="accel">
+                        <string>Alt+A</string>
+                    </property>
+                    <property name="checked">
+                        <bool>true</bool>
+                    </property>
+                </widget>
+                <widget class="QCheckBox">
+                    <property name="name">
+                        <cstring>m_autoRepair</cstring>
+                    </property>
+                    <property name="text">
+                        <string>A&amp;uto repair</string>
+                    </property>
+                    <property name="accel">
+                        <string>Alt+U</string>
+                    </property>
+                    <property name="checked">
+                        <bool>true</bool>
+                    </property>
+                </widget>
+            </vbox>
+        </widget>
+        <spacer>
+            <property name="name">
+                <cstring>spacer2</cstring>
+            </property>
+            <property name="orientation">
+                <enum>Vertical</enum>
+            </property>
+            <property name="sizeType">
+                <enum>Expanding</enum>
+            </property>
+            <property name="sizeHint">
+                <size>
+                    <width>20</width>
+                    <height>40</height>
+                </size>
+            </property>
+        </spacer>
+    </vbox>
+</widget>
+<includes>
+    <include location="local" impldecl="in implementation">generalsettings.ui.h</include>
+</includes>
+<signals>
+    <signal>autoCheckToggled( bool on )</signal>
+    <signal>autoRepairToggled( bool on )</signal>
+</signals>
+<functions>
+    <function>init()</function>
+    <function returnType="bool">autoCheck()</function>
+    <function returnType="bool">autoRepair()</function>
+    <function>setAutoCheck( bool checked )</function>
+    <function>setAutoRepair( bool checked )</function>
+</functions>
+<layoutdefaults spacing="6" margin="11"/>
+</UI>
