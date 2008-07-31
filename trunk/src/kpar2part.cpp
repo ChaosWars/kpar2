@@ -17,27 +17,28 @@
  *   Free Software Foundation, Inc.,                                       *
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
-// #include "kpar2thread.h"
-#include "kpar2part.h"
-#include "kpar2gui.h"
-#include "kpar2settings.h"
-#include "settings.h"
-#include <KDE/KParts/MainWindow>
-#include <KDE/KParts/GenericFactory>
-#include <KDE/KStatusBar>
+#include <KDE/KAboutData>
 #include <KDE/KAction>
-#include <KDE/KStandardAction>
 #include <KDE/KActionCollection>
 #include <KDE/KFileDialog>
 #include <KDE/KGlobal>
 #include <KDE/KLocale>
+#include <KDE/KStandardAction>
+#include <KDE/KStatusBar>
 #include <KDE/KIO/NetAccess>
-#include <KDE/KAboutData>
+#include <KDE/KParts/GenericFactory>
 #include <QFile>
+// #include "kpar2thread.h"
+#include "generalsettingspage.h"
+#include "kpar2part.h"
+#include "kpar2gui.h"
+#include "kpar2settings.h"
+#include "settings.h"
 
 //Factory Code
-typedef KParts::GenericFactory< KPar2Part > KPar2PartFactory;
-K_EXPORT_COMPONENT_FACTORY( kpar2part /*library name*/, KPar2PartFactory )
+typedef KParts::GenericFactory<KPar2Part> KPar2PartFactory;
+K_EXPORT_PLUGIN( KPar2PartFactory );
+K_EXPORT_PLUGIN_VERSION( 0.4 );
 
 KPar2Part::KPar2Part( QWidget* parentWidget,
                       QObject* parent,
@@ -46,38 +47,27 @@ KPar2Part::KPar2Part( QWidget* parentWidget,
 {
     // this should be your custom internal widget
     m_widget = new KPar2Gui();
-
     // notify the part that this is our internal widget
     setWidget( m_widget );
-
     // create our actions
-    KStandardAction::open( this, SLOT( fileOpen() ), actionCollection() )->setText( i18n( "&Open PAR2 File" ) );
-
+    KStandardAction::open( this, SLOT( fileOpen() ), actionCollection() );
+    KStandardAction::preferences( this, SLOT( optionsConfigure() ), actionCollection() );
     // Set up the PAR2 thread
 //     kpar2thread = new KPar2Thread( m_widget );
-
-    configureAction = new KAction( KIcon( "configure" ), i18n( "&Configure KPar2..." ), actionCollection() );
-    actionCollection()->addAction( "configure_settings", configureAction );
-    connect( configureAction, SIGNAL( triggered( bool ) ), this, SLOT( configureSettings() ) );
-
-    config = KPar2Settings::self();
-    readSettings();
-
     // set our XML-UI resource file
     setXMLFile( "kpar2/kpar2part.rc" );
-
+    loadSettings();
 }
 
 KPar2Part::~KPar2Part()
 {
 //     kpar2thread->terminate();
 //    static_cast< KParts::MainWindow* >( parent )->statusBar()->showMessage( "" );
-    saveSettings();
 }
 
 KAboutData* KPar2Part::createAboutData()
 {
-    return new KAboutData( "kpar2part", 0, ki18n( "KPar2" ), "0.3.2" );
+    return new KAboutData( "kpar2part", 0, ki18n( "KPar2" ), "0.4.0" );
 }
 
 bool KPar2Part::openFile()
@@ -104,23 +94,20 @@ void KPar2Part::fileOpen()
     }
 }
 
-void KPar2Part::configureSettings()
+void KPar2Part::optionsConfigure()
 {
     if( KConfigDialog::showDialog( "settings" ) )
         return;
 
-    settings = new Settings( m_widget, "settings", config );
-    connect( settings, SIGNAL( settingsChanged() ), this, SLOT( readSettings() ) );
-//     connect( settings, SIGNAL( loadSettings() ), kpar2thread, SLOT( readSettings() ) );
-    settings->show();
+    KConfigDialog *configDialog = new KConfigDialog( m_widget, "settings", KPar2Settings::self() );
+    QWidget *g = new QWidget();
+    new GeneralSettingsPage( g );
+    configDialog->addPage( g, i18n( "General Settings" ), "preferences-other" );
+    connect( configDialog, SIGNAL( settingsChanged( QString ) ), this, SLOT( loadSettings() ) );
+    configDialog->show();
 }
 
-void KPar2Part::saveSettings()
-{
-    config->writeConfig();
-}
-
-void KPar2Part::readSettings()
+void KPar2Part::loadSettings()
 {
 }
 

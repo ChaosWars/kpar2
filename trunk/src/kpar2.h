@@ -18,6 +18,10 @@
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
 
+/**
+ * @class KPar2 kpar2.h
+ * @mainpage KPar2 is a PAR2  verification and repair application for KDE
+ */
 #ifndef _KPAR2_H_
 #define _KPAR2_H_
 
@@ -32,22 +36,16 @@
  * This is the application "Shell".  It has a menubar, toolbar, and
  * statusbar but relies on the "Part" to do all the real work.
  *
- * @short Application Shell
+ * @brief Application Shell
  * @author Lawrence Lee <valher@facticius.net>
- * @version 0.3.2
+ * @version 0.4.0
  */
 class KPar2 : public KParts::MainWindow
 {
     Q_OBJECT
-    public:
-        /**
-         * Default Constructor
-         */
-        KPar2();
 
-        /**
-         * Default Destructor
-         */
+    public:
+        KPar2();
         virtual ~KPar2();
 
         /**
@@ -69,13 +67,7 @@ class KPar2 : public KParts::MainWindow
          */
         void readProperties( const KConfigGroup& );
 
-    private slots:
-        void optionsConfigureKeys();
-        void optionsConfigureToolbars();
-        void applyNewToolbarConfig();
-
     private:
-        void setupAccel();
         void setupActions();
 
     private:

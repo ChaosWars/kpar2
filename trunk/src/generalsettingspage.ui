@@ -5,8 +5,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>130</width>
-    <height>112</height>
+    <width>124</width>
+    <height>107</height>
    </rect>
   </property>
   <property name="windowTitle" >
@@ -20,7 +20,7 @@
      </property>
      <layout class="QVBoxLayout" >
       <item>
-       <widget class="QCheckBox" name="m_AutoCheck" >
+       <widget class="QCheckBox" name="kcfg_autoCheck" >
         <property name="text" >
          <string>Auto check</string>
         </property>
@@ -30,7 +30,7 @@
        </widget>
       </item>
       <item>
-       <widget class="QCheckBox" name="m_AutoRepair" >
+       <widget class="QCheckBox" name="kcfg_autoRepair" >
         <property name="text" >
          <string>Auto repair</string>
         </property>
@@ -47,7 +47,7 @@
      <property name="orientation" >
       <enum>Qt::Vertical</enum>
      </property>
-     <property name="sizeHint" >
+     <property name="sizeHint" stdset="0" >
       <size>
        <width>20</width>
        <height>40</height>
