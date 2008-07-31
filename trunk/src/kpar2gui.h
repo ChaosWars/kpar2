@@ -24,6 +24,8 @@
 
 class KPar2Gui : public QWidget, public Ui::KPar2Gui
 {
+    Q_OBJECT
+
     public:
         KPar2Gui();
         ~KPar2Gui();
