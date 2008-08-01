@@ -21,7 +21,7 @@
         </property>
         <widget class="QGroupBox">
             <property name="name">
-                <cstring>settingsGroupBox</cstring>
+                <cstring>repairOptions</cstring>
             </property>
             <property name="title">
                 <string>Repair Options</string>
@@ -32,7 +32,7 @@
                 </property>
                 <widget class="QCheckBox">
                     <property name="name">
-                        <cstring>m_autoCheck</cstring>
+                        <cstring>kcfg_autoCheck</cstring>
                     </property>
                     <property name="text">
                         <string>&amp;Auto check</string>
@@ -46,7 +46,7 @@
                 </widget>
                 <widget class="QCheckBox">
                     <property name="name">
-                        <cstring>m_autoRepair</cstring>
+                        <cstring>kcfg_autoRepair</cstring>
                     </property>
                     <property name="text">
                         <string>A&amp;uto repair</string>
@@ -79,9 +79,6 @@
         </spacer>
     </vbox>
 </widget>
-<includes>
-    <include location="local" impldecl="in implementation">generalsettings.ui.h</include>
-</includes>
 <signals>
     <signal>autoCheckToggled( bool on )</signal>
     <signal>autoRepairToggled( bool on )</signal>

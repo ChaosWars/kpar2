@@ -11,11 +11,11 @@
 *****************************************************************************/
 
 #include <libpar2/parheaders.h>
-#include <qpixmap.h>
-#include <kstatusbar.h>
-#include <kparts/mainwindow.h>
 #include <kiconloader.h>
 #include <klocale.h>
+#include <kstatusbar.h>
+#include <kparts/mainwindow.h>
+#include <qpixmap.h>
 #include "kpar2customevents.h"
 
 static QPixmap p_info( KGlobal::iconLoader()->loadIcon( "info.png", KIcon::Toolbar ) );

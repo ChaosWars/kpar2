@@ -18,44 +18,41 @@
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
 
-#include "kpar2.h"
-#include <kkeydialog.h>
-#include <kfiledialog.h>
-#include <kconfig.h>
-#include <kurl.h>
-#include <kedittoolbar.h>
 #include <kaction.h>
-#include <kstdaction.h>
-#include <klibloader.h>
+#include <kapplication.h>
+#include <kconfig.h>
+#include <kedittoolbar.h>
+#include <kfiledialog.h>
+#include <kkeydialog.h>
 #include <kmessagebox.h>
-#include <kstatusbar.h>
+#include <klibloader.h>
 #include <klocale.h>
+#include <kurl.h>
+#include <kstatusbar.h>
+#include <kstdaction.h>
+#include "kpar2.h"
 
 KPar2::KPar2()
     : KParts::MainWindow( 0L, "KPar2" )
 {
-    // set the shell's ui resource file
-    setXMLFile("kpar2_shell.rc");
-
     // then, setup our actions
     setupActions();
+    setupGUI( ToolBar | Keys | StatusBar );
 
     // this routine will find and load our Part.  it finds the Part by
     // name which is a bad idea usually.. but it's alright in this
     // case since our Part is made for this Shell
-    KLibFactory *factory = KLibLoader::self()->factory("libkpar2part");
+    KLibFactory *factory = KLibLoader::self()->factory( "libkpar2part" );
     if ( factory ){
         // now that the Part is loaded, we cast it to a Part to get
         // our hands on it
-        m_part = static_cast<KParts::ReadOnlyPart *>(factory->create(this,
-                "kpar2_part", "KParts::ReadOnlyPart" ));
+        m_part = static_cast<KParts::ReadOnlyPart*>( factory->create( this, "kpar2part", "KParts::ReadOnlyPart" ) );
 
         if( m_part ){
             // tell the KParts::MainWindow that this is indeed the main widget
-            setCentralWidget(m_part->widget());
-
+            setCentralWidget( m_part->widget() );
             // and integrate the part's GUI with the shell's
-            createGUI(m_part);
+            createGUI( m_part );
         }
     }
     else
@@ -88,7 +85,7 @@ void KPar2::setupActions()
 {
     setStandardToolBarMenuEnabled( true );
     createStandardStatusBarAction();
-    KStdAction::quit( kapp, SLOT( quit() ), actionCollection() );
+    KStdAction::quit( kapp, SLOT( closeAllWindows() ), actionCollection() );
     KStdAction::keyBindings( this, SLOT( optionsConfigureKeys()), actionCollection() );
     KStdAction::configureToolbars( this, SLOT( optionsConfigureToolbars()), actionCollection() );
 }
