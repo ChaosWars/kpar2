@@ -29,6 +29,7 @@
 #include <KDE/KIO/NetAccess>
 #include <KDE/KParts/GenericFactory>
 #include <QFile>
+#include <QVBoxLayout>
 // #include "kpar2thread.h"
 #include "generalsettingspage.h"
 #include "kpar2part.h"
@@ -43,10 +44,14 @@ K_EXPORT_PLUGIN_VERSION( 0.4 );
 KPar2Part::KPar2Part( QWidget* parentWidget,
                       QObject* parent,
                       const QStringList& )
-    : KParts::ReadOnlyPart( parent ), parent( parentWidget )
+    : KParts::ReadOnlyPart( parent )
 {
     // this should be your custom internal widget
-    m_widget = new KPar2Gui();
+    m_widget = new QWidget( parentWidget );
+    QVBoxLayout *layout = new QVBoxLayout( m_widget );
+    m_gui = new KPar2Gui();
+    layout->addWidget( m_gui );
+    m_widget->setLayout( layout );
     // notify the part that this is our internal widget
     setWidget( m_widget );
     // create our actions
@@ -109,6 +114,7 @@ void KPar2Part::optionsConfigure()
 
 void KPar2Part::loadSettings()
 {
+    
 }
 
 #include "kpar2part.moc"

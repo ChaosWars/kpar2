@@ -24,18 +24,16 @@
 #include <KDE/KIcon>
 #include "kpar2.h"
 
-static const char description[] ="A PAR2  verification and repair application for KDE";
-
+static const char description[] = "A PAR2  verification and repair application for KDE";
 static const char version[] = "0.4.0";
 
 int main(int argc, char **argv)
 {
     KCmdLineOptions options;
     options.add( "+files", ki18n( "Documents to open. You can list multiple files here." ) );
-    KAboutData about( "kpar2", QByteArray(), ki18n( "KPar2" ), version, ki18n( description ),
-                      KAboutData::License_GPL, ki18n( "(C) 2007 Lawrence Lee" ), ki18n(""),
-                      "http://kpar2.googlecode.com", "valheru.ashen.shugar@gmail.com" );
-    about.addAuthor( ki18n( "Lawrence Lee" ), ki18n( "Lead programmer" ), "valheru.ashen.shugar@gmail.com", "http://www.facticius.net" );
+    KAboutData about( "kpar2", QByteArray(), ki18n( "KPar2" ), version, ki18n( description ), KAboutData::License_GPL,
+                      ki18n( "(C) 2007-2008 Lawrence Lee" ), ki18n(""), "http://kpar2.googlecode.com", "http://code.google.com/p/kpar2/issues/list" );
+    about.addAuthor( ki18n( "Lawrence Lee" ), ki18n( "Lead programmer" ), "valheru.ashen.shugar@gmail.com" );
     KCmdLineArgs::init( argc, argv, &about );
     KCmdLineArgs::addCmdLineOptions( options );
     KApplication app;

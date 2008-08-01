@@ -1,7 +1,7 @@
 <?xml version="1.0" ?>
 <!DOCTYPE book PUBLIC "-//KDE//DTD DocBook XML V4.2-Based Variant V1.1//EN" "dtd/kdex.dtd" [
   <!ENTITY Lawrence.C.Lee "<personname><firstname>Lawrence</firstname><othername>C.</othername><surname>Lee</surname></personname>">
-  <!ENTITY Lawrence.C.Lee.email "<email>valheru@facticius.net</email>">
+  <!ENTITY Lawrence.C.Lee.email "<email>valheru.ashen.shugar@gmail.com</email>">
   <!ENTITY homepage "<ulink url='http://kpar2.googlecode.com'>http://kpar2.googlecode.com</ulink>">
   <!ENTITY kpar2 "<application>KPar2</application>">
   <!ENTITY kappname "&kpar2;">
@@ -21,15 +21,15 @@
 </authorgroup>
 
 <copyright>
-<year>2007</year>
+<year>2007-2008</year>
 <holder>Lawrence C. Lee</holder>
 </copyright>
 
 <legalnotice>&FDLNotice;</legalnotice>
 
-<date>2007-12-16</date>
+<date>2008-08-01</date>
 
-<releaseinfo>0.03.10</releaseinfo>
+<releaseinfo>0.04.00</releaseinfo>
 
 <abstract>
 
@@ -285,11 +285,11 @@ to either redownload the damaged and missing files, or download more parity file
 &kpar2;
 </para>
 <para>
-Program copyright 2007 &Lawrence.C.Lee; &Lawrence.C.Lee.email;
+Program copyright 2007-2008 &Lawrence.C.Lee; &Lawrence.C.Lee.email;
 </para>
 
 <para>
-Documentation Copyright &copy; 2007 &Lawrence.C.Lee; &Lawrence.C.Lee.email;
+Documentation Copyright &copy; 2007-2008 &Lawrence.C.Lee; &Lawrence.C.Lee.email;
 </para>
 
 &underFDL;
@@ -316,7 +316,7 @@ Documentation Copyright &copy; 2007 &Lawrence.C.Lee; &Lawrence.C.Lee.email;
 <title>Requirements</title>
 
 <para>
-In order to successfully use &kpar2; you need &kde; 3.5, libpar2 and sigc++-v2.
+In order to successfully use &kpar2; you need &kde; 4.0, libpar2 and sigc++-v2.
 </para>
 
 <para>
@@ -338,7 +338,7 @@ In order to compile and install KPar2 on your system, type the following in the 
 </para>
 
 <screen>
-%cmake . -DCMAKE_INSTALL_PREFIX=$KDEDIR
+%cmake . -DCMAKE_INSTALL_PREFIX=/usr
 %make
 %make install
 </screen>

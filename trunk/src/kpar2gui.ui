@@ -10,6 +10,12 @@
     <height>625</height>
    </rect>
   </property>
+  <property name="sizePolicy" >
+   <sizepolicy vsizetype="Expanding" hsizetype="Expanding" >
+    <horstretch>0</horstretch>
+    <verstretch>0</verstretch>
+   </sizepolicy>
+  </property>
   <property name="minimumSize" >
    <size>
     <width>425</width>
@@ -28,7 +34,16 @@
        <height>363</height>
       </size>
      </property>
+     <property name="editTriggers" >
+      <set>QAbstractItemView::NoEditTriggers</set>
+     </property>
      <property name="rootIsDecorated" >
+      <bool>false</bool>
+     </property>
+     <property name="itemsExpandable" >
+      <bool>false</bool>
+     </property>
+     <property name="expandsOnDoubleClick" >
       <bool>false</bool>
      </property>
      <column>
@@ -120,7 +135,7 @@
         <property name="orientation" >
          <enum>Qt::Vertical</enum>
         </property>
-        <property name="sizeHint" >
+        <property name="sizeHint" stdset="0" >
          <size>
           <width>20</width>
           <height>20</height>
@@ -151,7 +166,7 @@
         <property name="orientation" >
          <enum>Qt::Horizontal</enum>
         </property>
-        <property name="sizeHint" >
+        <property name="sizeHint" stdset="0" >
          <size>
           <width>16</width>
           <height>20</height>
@@ -171,7 +186,6 @@
    <header>kpushbutton.h</header>
   </customwidget>
  </customwidgets>
- <includes/>
  <resources/>
  <connections/>
  <designerdata>

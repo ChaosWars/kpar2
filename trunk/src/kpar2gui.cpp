@@ -19,7 +19,7 @@
  ***************************************************************************/
 #include "kpar2gui.h"
 
-KPar2Gui::KPar2Gui()
+KPar2Gui::KPar2Gui( QWidget *parent ) : QWidget( parent )
 {
     setupUi( this );
 }

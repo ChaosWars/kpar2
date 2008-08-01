@@ -1,7 +1,7 @@
 <?xml version="1.0" ?>
 <!DOCTYPE book PUBLIC "-//KDE//DTD DocBook XML V4.2-Based Variant V1.1//EN" "dtd/kdex.dtd" [
   <!ENTITY Lawrence.C.Lee "<personname><firstname>Lawrence</firstname><othername>C.</othername><surname>Lee</surname></personname>">
-  <!ENTITY Lawrence.C.Lee.email "<email>valheru@facticius.net</email>">
+  <!ENTITY Lawrence.C.Lee.email "<email>valheru.ashen.shugar@gmail.com</email>">
   <!ENTITY homepage "<ulink>http://kpar2.googlecode.com</ulink>">
   <!ENTITY kpar2 "<application>KPar2</application>">
   <!ENTITY kappname "&kpar2;">
@@ -30,9 +30,9 @@
 
 <legalnotice>&FDLNotice;</legalnotice>
 
-<date>2007-12-16</date>
+<date>2008-08-01</date>
 
-<releaseinfo>0.03.10</releaseinfo>
+<releaseinfo>0.03.20</releaseinfo>
 
 <abstract>
 

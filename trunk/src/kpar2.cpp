@@ -37,7 +37,6 @@ KPar2::KPar2()
     // then, setup our actions
     setupActions();
     setupGUI( ToolBar | Keys | StatusBar );
-
     KPluginLoader loader( "kpar2part" );
     KPluginFactory *factory = loader.factory();
 
@@ -58,7 +57,6 @@ KPar2::KPar2()
 
         // tell the KParts::MainWindow that this is indeed the main widget
         setCentralWidget( m_part->widget() );
-
         // and integrate the part's GUI with the shell's
         createGUI( m_part );
         // apply the saved mainwindow settings, if any, and ask the mainwindow

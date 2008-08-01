@@ -36,8 +36,8 @@ static KCmdLineOptions options[] =
 
 int main(int argc, char **argv)
 {
-    KAboutData about( "kpar2", I18N_NOOP("KPar2"), version, description,
-                      KAboutData::License_GPL, "(C) 2007 Lawrence Lee", 0, "http://kpar2.googlecode.com" );
+    KAboutData about( "kpar2", I18N_NOOP("KPar2"), version, description, KAboutData::License_GPL,
+                      "(C) 2007-2008 Lawrence Lee", 0, "http://kpar2.googlecode.com", "http://code.google.com/p/kpar2/issues/list" );
     about.addAuthor( "Lawrence Lee", 0, "valheru.ashen.shugar@gmail.com" );
     KCmdLineArgs::init( argc, argv, &about );
     KCmdLineArgs::addCmdLineOptions( options );

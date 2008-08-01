@@ -25,6 +25,7 @@
 #include <kstatusbar.h>
 #include <kstdaction.h>
 #include <kio/netaccess.h>
+#include <kparts/genericfactory.h>
 #include <kparts/mainwindow.h>
 #include <qfile.h>
 #include <qlayout.h>
@@ -35,7 +36,7 @@
 #include "kpar2thread.h"
 
 KPar2Part::KPar2Part( QWidget *parentWidget, const char* /*widgetName*/,
-                              QObject *parent, const char *name )
+                      QObject *parent, const char *name )
     : KParts::ReadOnlyPart( parent, name ), parent( parentWidget )
 {
     // we need an instance

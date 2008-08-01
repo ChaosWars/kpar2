@@ -65,7 +65,7 @@ class KPar2 : public KParts::MainWindow
         /**
          * This method is called when this app is restored.  The KConfig
          * object points to the session management config file that was saved
-         * with @ref saveProperties
+         * with saveProperties()
          */
         void readProperties(KConfig *);
 
