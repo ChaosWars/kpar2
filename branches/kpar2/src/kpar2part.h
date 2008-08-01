@@ -37,36 +37,28 @@ class Settings;
  * application.
  *
  * @short Main Part
- * @author Lawrence Lee <valher@facticius.net>
- * @version 0.3
+ * @author Lawrence Lee <valheru.ashen.shugar@gmail.com>
+ * @version 0.3.2
  */
 class KPar2Part : public KParts::ReadOnlyPart
 {
     Q_OBJECT
+
     public:
-    /**
-     * Default constructor
-     */
         KPar2Part( QWidget *parentWidget, const char *widgetName,
                       QObject *parent, const char *name );
-
-    /**
-         * Destructor
-     */
         virtual ~KPar2Part();
 
     protected:
-    /**
-     * This must be implemented by each part
-     */
+        /**
+         * This must be implemented by each part
+         */
         virtual bool openFile();
         virtual bool openURL( const KURL & url );
 
     protected slots:
         void fileOpen();
-        void configureSettings();
-        void saveSettings();
-        void readSettings();
+        void optionsConfigure();
 
     signals:
         void loadPAR2Files( const QString& file );
@@ -75,8 +67,6 @@ class KPar2Part : public KParts::ReadOnlyPart
         QWidget *parent;
         KPar2Thread *kpar2thread;
         KPar2GUI *m_widget;
-        KPar2Settings *config;
-        Settings *settings;
 };
 
 class KInstance;
@@ -85,6 +75,7 @@ class KAboutData;
 class KPar2PartFactory : public KParts::Factory
 {
     Q_OBJECT
+
     public:
         KPar2PartFactory();
         virtual ~KPar2PartFactory();
