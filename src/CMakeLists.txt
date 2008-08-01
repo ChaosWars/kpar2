@@ -20,7 +20,7 @@ SET( SRC main.cpp kpar2.cpp )
 SET( KPART_SRC kpar2object.cpp
                kpar2part.cpp
                kpar2thread.cpp )
-SET( KPART_UI_SRC kpar2gui.ui generalsettings.ui )
+SET( KPART_UI_SRC kpar2gui.ui generalsettingspage.ui )
 ADD_DEFINITIONS( ${QT_DEFINITIONS} ${KDE3_DEFINITIONS} )
 LINK_DIRECTORIES( ${KDE3_LIB_DIR} )
 KDE3_ADD_UI_FILES( KPART_SRC ${KPART_UI_SRC} )

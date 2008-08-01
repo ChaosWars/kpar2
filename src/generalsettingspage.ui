@@ -1,8 +1,8 @@
 <!DOCTYPE UI><UI version="3.3" stdsetdef="1">
-<class>GeneralSettings</class>
+<class>GeneralSettingsPage</class>
 <widget class="QWidget">
     <property name="name">
-        <cstring>GeneralSettings</cstring>
+        <cstring>GeneralSettingsPage</cstring>
     </property>
     <property name="geometry">
         <rect>
