@@ -35,7 +35,7 @@ Settings::Settings( QWidget *parent, const char *name, KPar2Settings *config )
     settingsPageLayout = new QVBoxLayout( settingsPage );
     generalSettings = new GeneralSettings( settingsPage );
     settingsPageLayout->addWidget( generalSettings );
-    readSettings();
+    loadSettings();
     connect( generalSettings, SIGNAL( autoCheckToggled( bool ) ), this, SLOT( autoCheckToggled( bool ) ) );
     connect( generalSettings, SIGNAL( autoRepairToggled( bool ) ), this, SLOT( autoRepairToggled( bool ) ) );
     connect( this, SIGNAL( cancelClicked() ), this, SLOT( cancelled() ) );
@@ -49,13 +49,13 @@ Settings::~Settings()
 
 void Settings::showEvent( QShowEvent* )
 {
-    readSettings();
+    loadSettings();
     /* Since reading the settings can cause dialog settings to change,
      * we must now reset the document's changed status */
     cancelled();
 }
 
-void Settings::readSettings()
+void Settings::loadSettings()
 {
     generalSettings->setAutoCheck( m_config->autoCheck() );
     generalSettings->setAutoRepair( m_config->autoRepair() );

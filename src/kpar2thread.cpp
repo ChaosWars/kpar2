@@ -26,11 +26,10 @@ KPar2Thread::KPar2Thread( KPar2GUI *gui )
 {
     obj = NULL;
     m_gui = gui;
-    config = KPar2Settings::self();
     operation = noop;
-    readSettings();
     connect( gui, SIGNAL( checkParity() ), this, SLOT( checkParity() ) );
     connect( gui, SIGNAL( repairFiles() ), this, SLOT( repairFiles() ) );
+    loadSettings();
 }
 
 KPar2Thread::~KPar2Thread()
@@ -80,10 +79,10 @@ void KPar2Thread::run()
 
 }
 
-void KPar2Thread::readSettings()
+void KPar2Thread::loadSettings()
 {
-    autoCheck = config->autoCheck();
-    autoRepair = config->autoRepair();
+    autoCheck = KPar2Settings::autoCheck();
+    autoRepair = KPar2Settings::autoRepair();
 
     if( obj != NULL ){
         LoadSettings *l = new LoadSettings();

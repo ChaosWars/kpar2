@@ -27,7 +27,6 @@
 
 class KPar2GUI;
 class KPar2Object;
-class KPar2Settings;
 
 class KPar2Thread : public QObject, public QThread
 {
@@ -41,13 +40,12 @@ class KPar2Thread : public QObject, public QThread
         void loadPAR2Files( const QString& par2file );
         void checkParity();
         void repairFiles();
-        void readSettings();
+        void loadSettings();
 
     protected:
         void run();
 
     private:
-        KPar2Settings *config;
         bool autoCheck;
         bool autoRepair;
         KPar2GUI *m_gui;

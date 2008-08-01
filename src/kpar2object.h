@@ -25,12 +25,11 @@
 #include <qobject.h>
 #include "kpar2customevents.h"
 
+class CommandLine;
 class KPar2GUI;
 class QCustomEvent;
 class ParHeaders;
 class Par2Repairer;
-class CommandLine;
-class KPar2Settings;
 
 class KPar2Object : public QObject, public sigc::trackable
 {
@@ -44,14 +43,13 @@ class KPar2Object : public QObject, public sigc::trackable
         bool repairFiles( const QString& par2file );
 
     public slots:
-        void readSettings();
+        void loadSettings();
 
     protected:
         void customEvent( QCustomEvent *e );
 
     private:
         KPar2GUI *m_gui;
-        KPar2Settings *config;
         Par2Repairer *par2repairer;
         CommandLine *cmdline;
         Operation operation;

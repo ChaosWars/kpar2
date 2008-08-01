@@ -51,7 +51,7 @@ class Settings : public KConfigDialog
         QVBoxLayout *settingsPageLayout;
         GeneralSettings *generalSettings;
         bool settingsChanged;
-        void readSettings();
+        void loadSettings();
 
     private slots:
         void autoCheckToggled( bool );

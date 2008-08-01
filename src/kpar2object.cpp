@@ -20,17 +20,15 @@
 
 #include <libpar2/par2cmdline.h>
 #include <libpar2/par2repairer.h>
-#include "kpar2object.h"
-#include "kpar2settings.h"
-#include <qapplication.h>
 #include <klistview.h>
 #include <klocale.h>
+#include <qapplication.h>
 #include "kpar2gui.h"
+#include "kpar2object.h"
+#include "kpar2settings.h"
 
 KPar2Object::KPar2Object( KPar2GUI *gui )
 {
-    config = KPar2Settings::self();
-    readSettings();
     m_gui = gui;
     operation = noop;
     total_files = 0;
@@ -39,6 +37,7 @@ KPar2Object::KPar2Object( KPar2GUI *gui )
     files_missing = 0;
     par2repairer = NULL;
     cmdline = NULL;
+    loadSettings();
 }
 
 KPar2Object::~KPar2Object()
@@ -231,16 +230,16 @@ bool KPar2Object::repairFiles( const QString& par2file )
     return result;
 }
 
-void KPar2Object::readSettings()
+void KPar2Object::loadSettings()
 {
-    autoCheck = config->autoCheck();
-    autoRepair = config->autoRepair();
+    autoCheck = KPar2Settings::autoCheck();
+    autoRepair = KPar2Settings::autoRepair();
 }
 
 void KPar2Object::customEvent( QCustomEvent *e )
 {
     if( e->type() ==  QEvent::User + 9 ){
-        readSettings();
+        loadSettings();
     }
 }
 
