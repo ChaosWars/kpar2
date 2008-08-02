@@ -1,15 +1,15 @@
 [Desktop Entry]
-Encoding=UTF-8
-Name=KPar2
+Categories=Qt;KDE;Utility;X-KDE-Utilities-File
+Comment=A PAR2 verification and repair application
 GenericName=PAR2 Verification And Repair
+Encoding=UTF-8
 Exec=kpar2 %i %m -caption "%c"
 Icon=kpar2
-Type=Application
-X-DocPath=kpar2/index.html
-Comment=A PAR2 verification and repair application
-MimeType=application/x-par2
-Categories=Qt;KDE;Utility;X-KDE-Utilities-File
+MimeType=application/x-par2;
+Name=KPar2
 Terminal=false
-X-KDE-StartupNotify=true
-X-DBUS-StartupType=Multi
+Type=Application
 X-DBUS-ServiceName=com.googlecode.kpar2
+X-DBUS-StartupType=Multi
+X-DocPath=kpar2/index.html
+X-KDE-StartupNotify=true
