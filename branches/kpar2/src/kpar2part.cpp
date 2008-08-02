@@ -143,7 +143,7 @@ KInstance* KPar2PartFactory::instance()
 
 extern "C"
 {
-    void* init_libkpar2part()
+    void* init_kpar2part()
     {
         KGlobal::locale()->insertCatalogue( "kpar2" );
         return new KPar2PartFactory;
