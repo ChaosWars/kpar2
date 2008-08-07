@@ -1,10 +1,10 @@
 [Desktop Entry]
-Encoding=UTF-8
-Name=KPar2
-GenericName=PAR2 Verification And Repair
 Comment=A PAR2 verification and repair application
+Encoding=UTF-8
+GenericName=PAR2 Verification And Repair
 Icon=kpar2
 MimeType=application/x-par2
-X-KDE-Library=kpar2part
-Type=Service
+Name=KPar2
 ServiceTypes=KParts/ReadOnlyPart,Browser/View
+Type=Service
+X-KDE-Library=kpar2part
