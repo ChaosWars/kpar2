@@ -36,6 +36,7 @@ int main(int argc, char **argv)
     about.addAuthor( ki18n( "Lawrence Lee" ), ki18n( "Lead programmer" ), "valheru.ashen.shugar@gmail.com" );
     KCmdLineArgs::init( argc, argv, &about );
     KCmdLineArgs::addCmdLineOptions( options );
+    KCmdLineArgs::addTempFileOption();
     KApplication app;
     KCmdLineArgs *args = KCmdLineArgs::parsedArgs();
 

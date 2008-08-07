@@ -49,7 +49,7 @@ KPar2Part::KPar2Part( QWidget* parentWidget,
     // this should be your custom internal widget
     m_widget = new QWidget( parentWidget );
     QVBoxLayout *layout = new QVBoxLayout( m_widget );
-    m_gui = new KPar2Gui();
+    m_gui = new KPar2Gui( m_widget );
     layout->addWidget( m_gui );
     m_widget->setLayout( layout );
     // notify the part that this is our internal widget

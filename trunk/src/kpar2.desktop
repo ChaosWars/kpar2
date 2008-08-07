@@ -12,4 +12,5 @@ Type=Application
 X-DBUS-ServiceName=com.googlecode.kpar2
 X-DBUS-StartupType=Multi
 X-DocPath=kpar2/index.html
+X-KDE-HasTempFileOption=true
 X-KDE-StartupNotify=true
