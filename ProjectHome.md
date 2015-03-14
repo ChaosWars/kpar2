@@ -1,0 +1,1 @@
+Uses libpar2 to verify and repair data files.
